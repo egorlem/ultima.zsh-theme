@@ -32,6 +32,4 @@ zstyle ':vcs_info:*:*' actionformats "[%F{81}%u%b%f %a]"
 zstyle ':vcs_info:*:*' formats       "[%F{81}%u%b%f]"
 
 PROMPT='%F{238}⌈%f%F{50}%~%f
-%F{238}⌊%f[%m@%n] %F{238}〉%f' 
-
-RPROMPT=$'${vcs_info_msg_0_}'
+%F{238}⌊%f[%m@%n] ${vcs_info_msg_0_}%F{238} 〉%f' 
