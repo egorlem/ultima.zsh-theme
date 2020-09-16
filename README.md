@@ -1,2 +1,2 @@
-# gsh-zsh-theme
-Native style zshell for linux/osx 
+# zshell config
+PSONE / Git branch / grep color / man color / ls color 
