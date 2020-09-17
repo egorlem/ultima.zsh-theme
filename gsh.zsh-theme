@@ -35,5 +35,5 @@ PROMPT='%F{238}⌈%f%F{50}%~%f
 %F{238}⌊%f[%m@%n] ${vcs_info_msg_0_}%F{238} 〉%f' 
 
 if [[ -n "$SSH_CLIENT" || -n "$SSH2_CLIENT" ]]; then 
-  RPROMPT='SSH'
+  RPROMPT='%F{238}SSH%f'
  fi
