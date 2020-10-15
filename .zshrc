@@ -10,7 +10,7 @@ alias wpm='python3 -m wpm'
 LS_COLORS=$LS_COLORS:"di=1;32":"*.js=01;33":"*.json=33"
 export LS_COLORS
 
-export LESS='--quit-if-one-screen --ignore-case --status-column --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init --window=-4'
+export LESS="--quit-if-one-screen --ignore-case --status-column --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init --window=-4"
 
 export LESS_TERMCAP_mb=$'\E[1;31m'     # begin bold
 export LESS_TERMCAP_md=$'\E[1;36m'     # begin blink
@@ -25,7 +25,7 @@ export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
  
 autoload -Uz vcs_info
 precmd() { vcs_info }
-#zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*:*' check-for-changes true # can be slow on big repos
 zstyle ':vcs_info:*:*' unstagedstr '%F{red}'
 zstyle ':vcs_info:*:*' actionformats "[%F{81}%u%b%f %a]"
