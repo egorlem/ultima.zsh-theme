@@ -20,12 +20,12 @@ export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
 export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
-source /home/egorl/projects/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /home/egorl/projects/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
  
 autoload -Uz vcs_info
 precmd() { vcs_info }
-zstyle ':vcs_info:*' enable git
+#zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*:*' check-for-changes true # can be slow on big repos
 zstyle ':vcs_info:*:*' unstagedstr '%F{red}'
 zstyle ':vcs_info:*:*' actionformats "[%F{81}%u%b%f %a]"
