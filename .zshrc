@@ -7,7 +7,7 @@ case "$TERM" in
 esac
 alias ls='ls --color=auto'
 alias wpm='python3 -m wpm'
-LS_COLORS=$LS_COLORS:"di=1;32":"*.js=01;33":"*.json=33"
+LS_COLORS=$LS_COLORS:"di=1;32":"*.js=01;33":"*.json=33":"*.jsx=48;5;24"
 export LS_COLORS
 
 export LESS="--quit-if-one-screen --ignore-case --status-column --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init --window=-4"
