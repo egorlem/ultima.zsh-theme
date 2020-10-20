@@ -4,7 +4,7 @@ ____
 For all settings is used [guezwhoz color schema](https://github.com/guesswhozzz/guezwhoz-schema)
  - psone prompt line
    - precmd() divider
-   - Single git branch color for git [branch, diff, commit, etc] and prompt
+   - Single git branch color for git [branch, diff, commit, etc] and prompt git branch 
  - less
    - Less display settings (status column, tab size, etc)
    - Man color settings
