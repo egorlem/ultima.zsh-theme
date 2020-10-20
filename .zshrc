@@ -37,3 +37,51 @@ PROMPT='%F{238}⌈%f%F{50}%~%f
 if [[ -n "$SSH_CLIENT" || -n "$SSH2_CLIENT" ]]; then 
   RPROMPT='%F{238}SSH%f'
  fi
+
+
+RST="\e[0m"
+ZSH_THEME_GIT_PROMPT_PREFIX="%F{237} on: %f%F{85}" # %{$fg[85]%}\u2b60
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_DIRTY=""
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[red]%}?"
+ZSH_THEME_GIT_PROMPT_CLEAN=""
+ZSH_THEME_RUBY_PROMPT_SUFFIX="›%{$reset_color%}"
+# 2570 ╰  257C ╼ 2578 ╸ 257E ╾ 298A ⦊
+
+lpLineOne() {
+  echo "%F{236}├ %f%F{151}%~%f$(git_prompt_info)"
+}
+lpLineTwo() {
+  echo "%F{236}└ %f%n%F{237} ⮁%f "
+}
+
+rpLine() {
+  if [[ -n "$SSH_CLIENT" || -n "$SSH2_CLIENT" ]]; then
+    RPROMPT='%F{⫘} %fSSH'
+  fi
+}
+
+PROMPT='$(lpLineOne)
+$(lpLineTwo)'
+
+RPROMPT='$(rpLine)'
+
+# COLUMN DIVIDER \u2500 ─
+# ROW DIVEDER \u2502 │
+
+precmd() {
+  local termwidth
+  ((termwidth = ${COLUMNS} - 1))
+  local DIVIDERCOLOR="\e[38;05;236m"
+  local spacing=""
+  for i in {1..$termwidth}; do
+    spacing="${spacing}\u2500"
+  done
+  echo $DIVIDERCOLOR"┌"$spacing$RST
+}
+#BSD/Darwin/OSX DIR COLOR
+LSCOLORS=Cxfxcxdxbxegedabagacad
+export LSCOLORS
+#GNU/Linux/DIR COLOR
+LS_COLORS=$LS_COLORS:"di=1;32":"*.js=01;33":"*.json=33":"*.jsx=38;5;117":"ma=48;5;24":"*.ts=38;5;75":"*.css=38;5;27":"*.scss=38;5;169"
+export LS_COLORS
