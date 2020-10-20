@@ -1,4 +1,4 @@
-## Guezwhoz Zshell
+## Guezwhoz Zshell theme
 #### Guezwhoz Zshell is a selection of settings that'll bring the shell and the workspace into one
 ____
 For all settings is used [guezwhoz color schema](https://github.com/guesswhozzz/guezwhoz-schema)
