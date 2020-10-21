@@ -1,87 +1,98 @@
-setopt prompt_subst
-xrdb -merge ~/.Xresources
-case "$TERM" in
-'xterm') TERM=xterm-256color ;;
-'screen') TERM=screen-256color ;;
-'Eterm') TERM=Eterm-256color ;;
-esac
-alias ls='ls --color=auto'
-alias wpm='python3 -m wpm'
-LS_COLORS=$LS_COLORS:"di=1;32":"*.js=01;33":"*.json=33":"*.jsx=48;5;24"
-export LS_COLORS
-
-export LESS="--quit-if-one-screen --ignore-case --status-column --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init --window=-4"
-
-export LESS_TERMCAP_mb=$'\E[1;31m'     # begin bold
-export LESS_TERMCAP_md=$'\E[1;36m'     # begin blink
-export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
-export LESS_TERMCAP_so=$'\E[38;5;159m' # begin reverse video
-export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
-export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
-export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
-
-#source /home/egorl/projects/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
- 
 autoload -Uz vcs_info
-precmd() { vcs_info }
+
+RST="\e[0m"         # RESET COLOR
+DVC="\e[2;38;05;255m" # DIVIDER COLOR DIM
+DVCD="\e[38;05;236m"
+
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*:*' check-for-changes true # can be slow on big repos
-zstyle ':vcs_info:*:*' unstagedstr '%F{red}'
-zstyle ':vcs_info:*:*' actionformats "[%F{81}%u%b%f %a]"
-zstyle ':vcs_info:*:*' formats       "[%F{81}%u%b%f]"
+zstyle ':vcs_info:*:*' unstagedstr ''
+zstyle ':vcs_info:*:*' actionformats "${DVC} on: ${RST}%F{85}%u%b%f %a"
+zstyle ':vcs_info:*:*' formats "%K{235}${DVC} on:${RST}%F{235}⮀%f%F{85}%u %b%f${DVCD} ┛${RST}"
 
-PROMPT='%F{238}⌈%f%F{50}%~%f
-%F{238}⌊%f[%m@%n] ${vcs_info_msg_0_}%F{238} 〉%f' 
-
-if [[ -n "$SSH_CLIENT" || -n "$SSH2_CLIENT" ]]; then 
-  RPROMPT='%F{238}SSH%f'
- fi
-
-
-RST="\e[0m"
-ZSH_THEME_GIT_PROMPT_PREFIX="%F{237} on: %f%F{85}" # %{$fg[85]%}\u2b60
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY=""
-ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[red]%}?"
-ZSH_THEME_GIT_PROMPT_CLEAN=""
-ZSH_THEME_RUBY_PROMPT_SUFFIX="›%{$reset_color%}"
-# 2570 ╰  257C ╼ 2578 ╸ 257E ╾ 298A ⦊
-
+pwdlength=0
+branchlength=0
+branchdivider=""
+pwdlength=""
+pwddivider=""
+getBranchLength() {
+  local git="${vcs_info_msg_0_}"
+  if [ ${#git} != 0 ]; then
+    ((git = ${#git} - 63))
+  else
+    git=0
+    branchlength=0
+  fi
+  branchlength=$git
+}
+getPwd() {
+  echo "${PWD/$HOME/~}"
+}
+getPwdLength() {
+  local pwdvd=""
+  for i in {1.."${#$(getPwd)}"}; do
+    pwdvd="${pwdvd}━"
+  done
+  pwdlength="━${pwdvd}━┳"
+}
+getPwdDivider() {
+  if [ ${branchlength} != 0 ]; then
+    pwddivider="${DVCD}┻${RST}"
+  else
+    pwddivider="${DVCD}┛${RST}"
+  fi
+}
+getBarnchDivider() {
+  local BRANCHTOPDIVIDER=""
+  if [ ${branchlength} != 0 ]; then
+    for i in {1..$branchlength}; do
+      BRANCHTOPDIVIDER="${BRANCHTOPDIVIDER}━"
+    done
+    branchdivider="${BRANCHTOPDIVIDER}┳"
+    else
+    branchdivider="━"
+  fi 
+}
 lpLineOne() {
-  echo "%F{236}├ %f%F{151}%~%f$(git_prompt_info)"
+  echo "%F{236}┣%K{235} %f%F{151}%~%f %k${pwddivider}${vcs_info_msg_0_}"
 }
 lpLineTwo() {
-  echo "%F{236}└ %f%n%F{237} ⮁%f "
+  echo "%F{236}┗ %f%n%F{237} ⮁%f "
 }
-
 rpLine() {
   if [[ -n "$SSH_CLIENT" || -n "$SSH2_CLIENT" ]]; then
     RPROMPT='%F{⫘} %fSSH'
   fi
 }
-
 PROMPT='$(lpLineOne)
 $(lpLineTwo)'
-
 RPROMPT='$(rpLine)'
-
 # COLUMN DIVIDER \u2500 ─
 # ROW DIVEDER \u2502 │
-
 precmd() {
+  vcs_info
+  getPwdLength
+  getBranchLength
+  getPwdDivider
+  getBarnchDivider
   local termwidth
-  ((termwidth = ${COLUMNS} - 1))
-  local DIVIDERCOLOR="\e[38;05;236m"
+  ((termwidth = ${COLUMNS} - ${branchlength} - ${#$(getPwd)} - 5))
+  local DIVIDERCOLOR="\e[38;05;236m" # \e[2;38;05;232m
   local spacing=""
   for i in {1..$termwidth}; do
-    spacing="${spacing}\u2500"
+    spacing="${spacing}━"
   done
-  echo $DIVIDERCOLOR"┌"$spacing$RST
+  local BRANCHTOPDIVIDER=""
+  if [ ${branchlength} != 0 ]; then
+    for i in {1..$branchlength}; do
+      BRANCHTOPDIVIDER="${BRANCHTOPDIVIDER}M"
+    done
+  fi
+  echo $DIVIDERCOLOR"┏"$pwdlength$branchdivider$spacing$RST
 }
-#BSD/Darwin/OSX DIR COLOR
+# BSD/Darwin/OSX DIR COLOR
 LSCOLORS=Cxfxcxdxbxegedabagacad
 export LSCOLORS
-#GNU/Linux/DIR COLOR
+# GNU/Linux/DIR COLOR
 LS_COLORS=$LS_COLORS:"di=1;32":"*.js=01;33":"*.json=33":"*.jsx=38;5;117":"ma=48;5;24":"*.ts=38;5;75":"*.css=38;5;27":"*.scss=38;5;169"
 export LS_COLORS
