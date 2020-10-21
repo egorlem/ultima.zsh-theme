@@ -1,3 +1,4 @@
+#test
 setopt prompt_subst
 xrdb -merge ~/.Xresources
 case "$TERM" in
