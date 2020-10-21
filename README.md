@@ -12,4 +12,4 @@ For all settings is used [guezwhoz color schema](https://github.com/guesswhozzz/
  - zsh tab completion 
    - Filename extension highlight 
 ____
-![item zsh prompt](https://github.com/guesswhozzz/guezwhoz-zshell/blob/master/about/iterm2020-10-20.png)
+![item zsh prompt](https://github.com/guesswhozzz/guezwhoz-zshell/blob/master/about/iterm2020-10-21.png)
