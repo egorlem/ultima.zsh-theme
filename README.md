@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Guezwhoz Zshell theme
 #### Guezwhoz Zshell is a selection of settings that'll bring the shell and the workspace into one
 ____
@@ -13,3 +14,7 @@ For all settings is used [guezwhoz color schema](https://github.com/guesswhozzz/
    - Filename extension highlight 
 ____
 ![item zsh prompt](https://github.com/guesswhozzz/guezwhoz-zshell/blob/master/about/iterm2020-10-21.png)
+=======
+# gsh-zsh-theme
+Native style zshell for linux/osx 
+>>>>>>> dev
