@@ -1,1 +1,1 @@
-echo 'Hello Guezwhoz'
+echo 'guezwhoz zsh theme'

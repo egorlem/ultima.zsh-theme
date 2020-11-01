@@ -31,7 +31,10 @@
 ---
 
 ## Recommended Settings
-- [Color scheme](https://github.com/guesswhozzz/guezwhoz-scheme/blob/main/color-scheme/guezwhoz-scheme.yaml) for term 
-- [iterm2](https://www.iterm2.com/index.html) *for MasOs users* 
+
+- [Color scheme](https://github.com/guesswhozzz/guezwhoz-scheme/blob/main/color-scheme/guezwhoz-scheme.yaml) for term
+- [iterm2](https://www.iterm2.com/index.html) _for MasOs users_
 
 ---
+
+License [MIT](https://github.com/guesswhozzz/guezwhoz-vscode-theme/blob/master/LICENSE) © [Egor Lem](https://github.com/guesswhozzz)

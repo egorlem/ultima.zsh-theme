@@ -1,4 +1,4 @@
-# guezwhoz zsh theme v1.0.2 - https://github.com/guesswhozzz/guezwhoz-zshell
+# guezwhoz zsh theme v1.0.3 - https://github.com/guesswhozzz/guezwhoz-zshell
 
 autoload -Uz vcs_info
 RST="\e[0m"           # RESET COLOR
