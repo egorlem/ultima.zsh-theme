@@ -21,6 +21,4 @@
 
 ## Recommended Settings
 
-- init
-
 ---
