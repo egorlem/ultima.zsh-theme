@@ -1,4 +1,4 @@
-# guezwhoz zsh theme v1.0.1 - https://github.com/guesswhozzz/guezwhoz-zshell
+# guezwhoz zsh theme v1.0.2 - https://github.com/guesswhozzz/guezwhoz-zshell
 
 autoload -Uz vcs_info
 RST="\e[0m"           # RESET COLOR
@@ -16,11 +16,11 @@ DT="\u22c5"    #DOT ⋅
 
 HASH="%F{151}%6.6i%f %F{236}${ARROW}%f "
 ACTION="%F{238}%a %f%F{236}${ARROW}%f"
-BADGE="%F{238} 𝗈𝗇%f%F{236}${ARROW}%f"
+BADGE="%F{238}${DT}𝗈𝗇 %f%F{236}${ARROW}%f"
 BRANCH="%F{85}%b%f"
-UNTRACKED="%F{74}${DT}𝗎𝗍${ARROW}%f"
-UNSTAGED="%F{80}${DT}𝗆 ${ARROW}%f"
-STAGED="%F{115}${DT}𝖺${ARROW}%f"
+UNTRACKED="%F{74}${DT}U ${ARROW}%f"
+UNSTAGED="%F{80}${DT}M ${ARROW}%f"
+STAGED="%F{115}${DT}A ${ARROW}%f"
 
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git*:*' get-revision true
