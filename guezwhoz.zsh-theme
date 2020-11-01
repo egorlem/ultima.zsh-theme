@@ -19,8 +19,8 @@ ACTION="%F{238}%a %f%F{236}${ARROW}%f"
 BADGE="%F{238} 𝗈𝗇%f%F{236}${ARROW}%f"
 BRANCH="%F{85}%b%f"
 UNTRACKED="%F{74}${DT}𝗎𝗍${ARROW}%f"
-UNSTAGED="%F{80}${DT}𝗎𝗌${ARROW}%f"
-STAGED="%F{115}${DT}𝗌${ARROW}%f"
+UNSTAGED="%F{80}${DT}𝗆 ${ARROW}%f"
+STAGED="%F{115}${DT}𝖺${ARROW}%f"
 
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git*:*' get-revision true
