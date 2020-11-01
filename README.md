@@ -26,7 +26,7 @@
 
 ## Preview
 
-![item zsh prompt](https://github.com/guesswhozzz/guezwhoz-zshell/blob/theme/demos/theme-demo-5.18.01.png?raw=true)
+![item zsh prompt](https://github.com/guesswhozzz/guezwhoz-zshell/blob/main/demos/theme-demo-5.18.01.png?raw=true)
 
 ---
 
