@@ -1,1 +1,0 @@
-echo 'guezwhoz zsh theme'
