@@ -1,4 +1,4 @@
-# guezwhoz zsh theme v1.0.1 - https://github.com/guesswhozzz/guezwhoz-zshell
+# guezwhoz zsh theme v1.1.0 - https://github.com/guesswhozzz/guezwhoz-zshell
 
 autoload -Uz vcs_info
 autoload -Uz compinit 
