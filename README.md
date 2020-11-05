@@ -30,10 +30,16 @@
 
 ---
 
+## Main feature
+
+- Single git status marker for Visual Studio Code and Git cli
+- Interactive `Tab` completer
+
 ## Recommended Settings
 
-- [Color scheme](https://github.com/guesswhozzz/guezwhoz-scheme/blob/main/color-scheme/guezwhoz-scheme.yaml) for term
-- [iterm2](https://www.iterm2.com/index.html) _for MasOs users_
+- [Color scheme for term](https://github.com/guesswhozzz/guezwhoz-scheme/blob/main/color-scheme/guezwhoz-scheme.yaml)
+
+  > Mac Os users can set color scheme for iTerm2 from [repo](https://github.com/guesswhozzz/guezwhoz-scheme/blob/main/color-scheme/guezwhoz-scheme.yaml)
 
 ---
 
