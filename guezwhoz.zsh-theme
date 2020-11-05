@@ -4,7 +4,7 @@ autoload -Uz vcs_info
 autoload -Uz compinit 
 compinit
 
-RST="\e[0m"n# RESET 
+RST="\e[0m"
 
 # GRAPHICS VARIABLES ===========================================================
 
@@ -92,7 +92,7 @@ zstyle ':completion:*:expand:*' tag-order all-expansions
 # formatting and messages
 DESCRIPTIONS='%B%F{85} › %f%%F{green}%d%b%f'
 WARNINGS='%F{yellow} › %fno matches for %F{green}%d%f'
-ERROR='%B%F{red} › %f%e%d error'
+ERROR='%B%F{red} › %f%e %d error'
 
 zstyle ':completion:*' menu select
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} "ma=38;5;253;48;5;23"
