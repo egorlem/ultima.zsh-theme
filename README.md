@@ -39,7 +39,7 @@
 
 - [Color scheme for term](https://github.com/guesswhozzz/guezwhoz-scheme/blob/main/color-scheme/guezwhoz-scheme.yaml)
 
-  > Mac Os users can set color scheme for iTerm2 from [repo](https://github.com/guesswhozzz/guezwhoz-scheme/blob/main/color-scheme/guezwhoz-scheme.yaml)
+  > Mac Os users can set color scheme for iTerm2 from [repo](https://github.com/guesswhozzz/guezwhoz-iterm2-theme)
 
 ---
 
