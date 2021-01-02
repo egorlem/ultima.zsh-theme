@@ -42,8 +42,9 @@
   > Mac Os users can set color scheme for iTerm2 from [repo](https://github.com/guesswhozzz/guezwhoz-iterm2-theme)
 
 ---
-### Extra 
+## Extra 
 
 You can also find this color scheme for other development tools in [special repository](https://github.com/guesswhozzz/guezwhoz-scheme)
+
 ---
 License [MIT](https://github.com/guesswhozzz/guezwhoz-vscode-theme/blob/master/LICENSE) © [Egor Lem](https://github.com/guesswhozzz)
