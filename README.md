@@ -43,14 +43,8 @@
 
 ---
 ## Extra 
-<<<<<<< HEAD
 
 You can find this color scheme for other terminal emulators in the [mbadolato](https://github.com/mbadolato/iTerm2-Color-Schemes) color scheme repository
 
-=======
-
-You can also find this color scheme for other development tools in [special repository](https://github.com/guesswhozzz/guezwhoz-scheme)
-
->>>>>>> c359b33ef74a92ca6f5c7681d1f3cd94931ba9f6
 ---
 License [MIT](https://github.com/guesswhozzz/guezwhoz-vscode-theme/blob/master/LICENSE) © [Egor Lem](https://github.com/guesswhozzz)
