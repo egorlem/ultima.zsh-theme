@@ -56,7 +56,7 @@ rpLine() {
 }
 
 # Pring prompt line limiter
-printPsOneLiminer() {
+printPsOneLimiter() {
   local termwidth
   ((termwidth = ${COLUMNS} - 1))
   local spacing=""
@@ -73,7 +73,7 @@ RPROMPT='$(rpLine)'
 
 precmd() {
   vcs_info
-  printPsOneLiminer
+  printPsOneLimiter
 }
 # LS_COLORS ====================================================================
 
