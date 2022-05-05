@@ -11,16 +11,16 @@
 1. Cloning the repo
 
 ```shell
-% git clone https://github.com/guesswhozzz/guezwhoz-zshell ~/guezwhoz-scheme
+% git clone https://github.com/guesswhozzz/021011.zsh-theme ~/021011-tools
 ```
 
 2. Creating a symbolic link to oh-my-zsh's theme folder
 
 ```shell
-% ln -s ~/guezwhoz-scheme/guezwhoz.zsh-theme $ZSH/themes/guezwhoz.zsh-theme
+% ln -s ~/021011-tools/021011.zsh-theme $ZSH/themes/021011.zsh-theme
 ```
 
-3. Go to your `~/.zshrc` file and set `ZSH_THEME="guezwhoz"`
+3. Go to your `~/.zshrc` file and set `ZSH_THEME=021011`
 
 ---
 
