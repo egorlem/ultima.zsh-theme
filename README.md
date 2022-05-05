@@ -1,6 +1,6 @@
-# Guezwhoz prompt settings for zsh
+# 021011.zsh-theme — prompt settings for zsh
 
-#### Guezwhoz Zshell is a selection of settings that'll bring the shell and the workspace into one
+#### 021011.zsh-theme is a selection of settings that'll bring the shell and the workspace into one
 
 ---
 
