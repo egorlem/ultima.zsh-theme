@@ -66,9 +66,9 @@ printPsOneLimiter() {
   echo $DIVIDERCOLOR$DIVD2$spacing$RST
 }
 # Prompt lines
-PROMPT="$(lpLineOne)
-$(lpLineTwo)"
-RPROMPT="$(rpLine)"
+PROMPT='$(lpLineOne)
+$(lpLineTwo)'
+RPROMPT='$(rpLine)'
 # Preloader ===================================================================
 
 precmd() {
