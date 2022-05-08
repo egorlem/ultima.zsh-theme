@@ -74,6 +74,8 @@ printPsOneLimiter() {
 }
 
 # Prompt lines
+setopt PROMPT_SUBST
+
 PROMPT="%F{236}${DIVD1} %f%F{80}%~%f $(prepareGitStatusLine)
 %F{85} ${ARROW}%f "
 
