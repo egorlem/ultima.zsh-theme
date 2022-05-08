@@ -1,7 +1,7 @@
 # 021011 zsh theme v1.2.0 - https://github.com/guesswhozzz/021011.zsh-theme
 
-autoload -Uz vcs_info
 autoload -Uz compinit 
+autoload -Uz vcs_info
 compinit
 
 local RST="\e[0m"
@@ -23,24 +23,24 @@ local UNTRACKED="%F{74} U ${ARROW}%f"
 local UNSTAGED="%F{80} M ${ARROW}%f"
 local STAGED="%F{115} A ${ARROW}%f"
 
-zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:git*:*' get-revision true
-zstyle ':vcs_info:git*:*' check-for-changes true
+zstyle ":vcs_info:*" enable git
+zstyle ":vcs_info:git*:*" get-revision true
+zstyle ":vcs_info:git*:*" check-for-changes true
 
 # hash changes branch misc
-zstyle ':vcs_info:git*:*' unstagedstr $UNSTAGED
-zstyle ':vcs_info:*' stagedstr $STAGED
-zstyle ':vcs_info:git*' formats "%c%u%m${BADGE} ${BRANCH}"
-zstyle ':vcs_info:git*' actionformats "${ACTION} ${HASH}%m%u%c${BADGE} ${BRANCH}"
-zstyle ':vcs_info:git*+set-message:*' hooks untracked
+zstyle ":vcs_info:git*:*" unstagedstr $UNSTAGED
+zstyle ":vcs_info:*" stagedstr $STAGED
+zstyle ":vcs_info:git*" formats "%c%u%m${BADGE} ${BRANCH}"
+zstyle ":vcs_info:git*" actionformats "${ACTION} ${HASH}%m%u%c${BADGE} ${BRANCH}"
+zstyle ":vcs_info:git*+set-message:*" hooks untracked
 
 # Show unracked on prompt
 +vi-untracked() {
-  if [[ $(git rev-parse --is-inside-work-tree 2>/dev/null) == 'true' ]] &&
-    git status --porcelain | grep -m 1 '^??' &>/dev/null; then
+  if [[ $(git rev-parse --is-inside-work-tree 2>/dev/null) == "true" ]] &&
+    git status --porcelain | grep -m 1 "^??" &>/dev/null; then
     hook_com[misc]=$UNTRACKED
   else
-    hook_com[misc]=''
+    hook_com[misc]=""
   fi
 }
 
@@ -58,6 +58,10 @@ local DIVIDERCOLOR="\e[38;05;236m"
 # rpLine() {
 # }
 
+prepareGitStatusLine() {
+  echo '${vcs_info_msg_0_}'
+} 
+
 # Pring prompt line limiter
 printPsOneLimiter() {
   local termwidth
@@ -70,10 +74,10 @@ printPsOneLimiter() {
 }
 
 # Prompt lines
-PROMPT="%F{236}${DIVD1} %f%F{80}%~%f ${vcs_info_msg_0_} 1.2.0
+PROMPT="%F{236}${DIVD1} %f%F{80}%~%f $(prepareGitStatusLine)
 %F{85} ${ARROW}%f "
 
-# RPROMPT='$(rpLine)'
+# RPROMPT="$(rpLine)"
 
 # Preloader ====================================================================
 precmd() {
@@ -91,33 +95,33 @@ export LS_COLORS
 # Completer ====================================================================
 
 # list of completers to use
-zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
-zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'
-zstyle ':completion:*:expand:*' tag-order all-expansions
+zstyle ":completion:*::::" completer _expand _complete _ignored _approximate
+zstyle -e ":completion:*:approximate:*" max-errors "reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )"
+zstyle ":completion:*:expand:*" tag-order all-expansions
 
 # formatting and messages
-local DESCRIPTIONS='%B%F{85} › %f%%F{green}%d%b%f'
-local WARNINGS='%F{yellow} › %fno matches for %F{green}%d%f'
-local ERROR='%B%F{red} › %f%e %d error'
+local DESCRIPTIONS="%B%F{85} › %f%%F{green}%d%b%f"
+local WARNINGS="%F{yellow} › %fno matches for %F{green}%d%f"
+local ERROR="%B%F{red} › %f%e %d error"
 
-zstyle ':completion:*' menu select
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} "ma=38;5;253;48;5;23"
-zstyle ':completion:*' verbose yes
-zstyle ':completion:*:descriptions' format $DESCRIPTIONS
-zstyle ':completion:*:messages' format '%d'
-zstyle ':completion:*:warnings' format $WARNINGS
-zstyle ':completion:*:corrections' format $ERROR
-zstyle ':completion:*' group-name ''
+zstyle ":completion:*" menu select
+zstyle ":completion:*:default" list-colors ${(s.:.)LS_COLORS} "ma=38;5;253;48;5;23"
+zstyle ":completion:*" verbose yes
+zstyle ":completion:*:descriptions" format $DESCRIPTIONS
+zstyle ":completion:*:messages" format "%d"
+zstyle ":completion:*:warnings" format $WARNINGS
+zstyle ":completion:*:corrections" format $ERROR
+zstyle ":completion:*" group-name ''
 
 # match uppercase from lowercase
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ":completion:*" matcher-list "m:{a-z}={A-Z}"
 
 # offer indexes before parameters in subscripts
-zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
+zstyle ":completion:*:*:-subscript-:*" tag-order indexes parameters
 
 # Filename suffixes to ignore during completion (except after rm command)
-zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' '*?.old' '*?.pro'
+zstyle ":completion:*:*:(^rm):*:*files" ignored-patterns "*?.o" "*?.c~" "*?.old" "*?.pro"
 
 # ignore completion functions (until the _ignored completer)
-zstyle ':completion:*:functions' ignored-patterns '_*'
+zstyle ":completion:*:functions" ignored-patterns "_*"
 # ==============================================================================
