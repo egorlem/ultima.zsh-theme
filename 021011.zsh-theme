@@ -7,12 +7,11 @@ compinit
 local RST="\e[0m"
 
 # GRAPHICS VARIABLES ===========================================================
-local ARROW="›" #DIVIDER ARROW \u203a
-local DIVD1="└" #DIVIDER UP AND RIGHT " └ " \u2514
-local DIVD2="┌" #DIVIDER DOWN AND RIGHT " ┌ " \u250c
-
-local DIVD3="─" #Vertical divider " ─ " \u2500
-local DT="⋅" #Dot ⋅ \u22c5
+local ARROW="›" #Divider arrow "›"  \u203a
+local DIVD1="└" #Divider up and right "└" \u2514
+local DIVD2="┌" #Divider down and right "┌" \u250c
+local DIVD3="─" #Vertical divider "─" \u2500
+local DT="⋅" #Dot "⋅" \u22c5
 
 # Git ==========================================================================
 local HASH="%F{151}%6.6i%f %F{236}${ARROW}%f "
@@ -44,25 +43,14 @@ zstyle ":vcs_info:git*+set-message:*" hooks untracked
   fi
 }
 
-# Prompt =======================================================================
-local DIVIDERCOLOR="\e[38;05;236m"
+# Utils ========================================================================
 
-# lpLineOne() {
-#   echo "%F{236}${DIVD1} %f%F{80}%~%f ${vcs_info_msg_0_}"
-# }
-
-# lpLineTwo() {
-#   echo "%F{85} ${ARROW}%f "
-# }
-
-# rpLine() {
-# }
-
+# Prepare git status line
 prepareGitStatusLine() {
   echo '${vcs_info_msg_0_}'
 } 
 
-# Pring prompt line limiter
+# Prepare prompt line limiter
 printPsOneLimiter() {
   local termwidth
   ((termwidth = ${COLUMNS} - 1))
@@ -73,6 +61,8 @@ printPsOneLimiter() {
   echo $DIVIDERCOLOR$DIVD2$spacing$RST
 }
 
+# Prompt  ======================================================================
+
 # Prompt lines
 setopt PROMPT_SUBST
 
@@ -81,7 +71,7 @@ PROMPT="%F{236}${DIVD1} %f%F{80}%~%f $(prepareGitStatusLine)
 
 # RPROMPT="$(rpLine)"
 
-# Preloader ====================================================================
+# Hooks ======================================================================== 
 precmd() {
   vcs_info
   printPsOneLimiter
@@ -94,7 +84,7 @@ export LSCOLORS
 LS_COLORS=$LS_COLORS:"di=36":"ln=30;45":"so=34:pi=1;33":"ex=35":"bd=34;46":"cd=34;43":"su=30;41":"sg=30;46":"ow=30;43":"tw=30;42":"*.js=01;33":"*.json=33":"*.jsx=38;5;117":"*.ts=38;5;75":"*.css=38;5;27":"*.scss=38;5;169"
 export LS_COLORS
 
-# Completer ====================================================================
+# COMPLETER SETTINGS ===========================================================
 
 # list of completers to use
 zstyle ":completion:*::::" completer _expand _complete _ignored _approximate
