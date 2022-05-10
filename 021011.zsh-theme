@@ -4,40 +4,41 @@ autoload -Uz compinit
 autoload -Uz vcs_info
 compinit
 
-local RST="\e[0m"
+# ANSI variables =============================================================== 
+local ANSI_reset="\x1B[0m"
+local ANSI_dim_black="\x1B[38;05;236m"
 
 # GRAPHICS VARIABLES ===========================================================
-local ARROW="›" #Divider arrow "›"  \u203a
-local DIVD1="└" #Divider up and right "└" \u2514
-local DIVD2="┌" #Divider down and right "┌" \u250c
-local DIVD3="─" #Vertical divider "─" \u2500
-local DT="⋅" #Dot "⋅" \u22c5
+local char-arrow="›"                                            #Unicode: \u203a
+local char_up_and_right_divider="└"                             #Unicode: \u2514
+local char_down_and_right_divider="┌"                           #Unicode: \u250c
+local char-vertical-divider="─"                                 #Unicode: \u2500
 
-# Git ==========================================================================
-local HASH="%F{151}%6.6i%f %F{236}${ARROW}%f "
-local ACTION="%F{238}%a %f%F{236}${ARROW}%f"
-local BADGE="%F{238} 𝗈𝗇 %f%F{236}${ARROW}%f"
-local BRANCH="%F{85}%b%f"
-local UNTRACKED="%F{74} U ${ARROW}%f"
-local UNSTAGED="%F{80} M ${ARROW}%f"
-local STAGED="%F{115} A ${ARROW}%f"
+# Git status line  =============================================================
+local char_badge="%F{238} 𝗈𝗇 %f%F{236}${char-arrow}%f"
+local git_hash="%F{151}%6.6i%f %F{236}${char-arrow}%f "
+local git_action="%F{238}%a %f%F{236}${char-arrow}%f"
+local git_branch_name="%F{85}%b%f"
+local git_untracked_status="%F{74} U ${char-arrow}%f"
+local git_unstaged_status="%F{80} M ${char-arrow}%f"
+local git_staged_status="%F{115} A ${char-arrow}%f"
 
 zstyle ":vcs_info:*" enable git
 zstyle ":vcs_info:git*:*" get-revision true
 zstyle ":vcs_info:git*:*" check-for-changes true
 
 # hash changes branch misc
-zstyle ":vcs_info:git*:*" unstagedstr $UNSTAGED
-zstyle ":vcs_info:*" stagedstr $STAGED
-zstyle ":vcs_info:git*" formats "%c%u%m${BADGE} ${BRANCH}"
-zstyle ":vcs_info:git*" actionformats "${ACTION} ${HASH}%m%u%c${BADGE} ${BRANCH}"
+zstyle ":vcs_info:git*:*" unstagedstr $git_unstaged_status
+zstyle ":vcs_info:*" stagedstr $git_staged_status
+zstyle ":vcs_info:git*" formats "%c%u%m${BADGE} ${git_branch_name}"
+zstyle ":vcs_info:git*" actionformats "${git_action} ${git_hash}%m%u%c${char_badge} ${git_branch_name}"
 zstyle ":vcs_info:git*+set-message:*" hooks untracked
 
-# Show unracked on prompt
+# Show untracked file status on git status line
 +vi-untracked() {
   if [[ $(git rev-parse --is-inside-work-tree 2>/dev/null) == "true" ]] &&
     git status --porcelain | grep -m 1 "^??" &>/dev/null; then
-    hook_com[misc]=$UNTRACKED
+    hook_com[misc]=$git_untracked_status
   else
     hook_com[misc]=""
   fi
@@ -47,6 +48,7 @@ zstyle ":vcs_info:git*+set-message:*" hooks untracked
 
 # Prepare git status line
 prepareGitStatusLine() {
+  setopt PROMPT_SUBST
   echo '${vcs_info_msg_0_}'
 } 
 
@@ -58,19 +60,15 @@ printPsOneLimiter() {
   ((termwidth = ${COLUMNS} - 1))
   
   for i in {1..$termwidth}; do
-    spacing="${spacing}${DIVD3}"
+    spacing="${spacing}${char-vertical-divider}"
   done
   
-  echo $DIVIDERCOLOR$DIVD2$spacing$RST
+  echo $ANSI_dim_black$char_down_and_right_divider$spacing$ANSI_reset
 }
 
-# Prompt  ======================================================================
-
-# Prompt lines
-setopt PROMPT_SUBST
-
-PROMPT="%F{236}${DIVD1} %f%F{80}%~%f $(prepareGitStatusLine)
-%F{85} ${ARROW}%f "
+# Prompt =======================================================================
+PROMPT="%F{236}${char_up_and_right_divider} %f%F{80}%~%f $(prepareGitStatusLine)
+%F{85} ${char-arrow}%f "
 
 # RPROMPT="$(rpLine)"
 
