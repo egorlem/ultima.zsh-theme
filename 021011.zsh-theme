@@ -9,19 +9,19 @@ local ANSI_reset="\x1B[0m"
 local ANSI_dim_black="\x1B[38;05;236m"
 
 # GRAPHICS VARIABLES ===========================================================
-local char-arrow="›"                                            #Unicode: \u203a
+local char_arrow="›"                                            #Unicode: \u203a
 local char_up_and_right_divider="└"                             #Unicode: \u2514
 local char_down_and_right_divider="┌"                           #Unicode: \u250c
-local char-vertical-divider="─"                                 #Unicode: \u2500
+local char_vertical_divider="─"                                 #Unicode: \u2500
 
 # Git status line  =============================================================
-local char_badge="%F{238} 𝗈𝗇 %f%F{236}${char-arrow}%f"
-local git_hash="%F{151}%6.6i%f %F{236}${char-arrow}%f "
-local git_action="%F{238}%a %f%F{236}${char-arrow}%f"
+local char_badge="%F{238} 𝗈𝗇 %f%F{236}${char_arrow}%f"
+local git_hash="%F{151}%6.6i%f %F{236}${char_arrow}%f "
+local git_action="%F{238}%a %f%F{236}${char_arrow}%f"
 local git_branch_name="%F{85}%b%f"
-local git_untracked_status="%F{74} U ${char-arrow}%f"
-local git_unstaged_status="%F{80} M ${char-arrow}%f"
-local git_staged_status="%F{115} A ${char-arrow}%f"
+local git_untracked_status="%F{74} U ${char_arrow}%f"
+local git_unstaged_status="%F{80} M ${char_arrow}%f"
+local git_staged_status="%F{115} A ${char_arrow}%f"
 
 zstyle ":vcs_info:*" enable git
 zstyle ":vcs_info:git*:*" get-revision true
@@ -30,7 +30,7 @@ zstyle ":vcs_info:git*:*" check-for-changes true
 # hash changes branch misc
 zstyle ":vcs_info:git*:*" unstagedstr $git_unstaged_status
 zstyle ":vcs_info:*" stagedstr $git_staged_status
-zstyle ":vcs_info:git*" formats "%c%u%m${BADGE} ${git_branch_name}"
+zstyle ":vcs_info:git*" formats "%c%u%m${char_badge} ${git_branch_name}"
 zstyle ":vcs_info:git*" actionformats "${git_action} ${git_hash}%m%u%c${char_badge} ${git_branch_name}"
 zstyle ":vcs_info:git*+set-message:*" hooks untracked
 
@@ -60,7 +60,7 @@ printPsOneLimiter() {
   ((termwidth = ${COLUMNS} - 1))
   
   for i in {1..$termwidth}; do
-    spacing="${spacing}${char-vertical-divider}"
+    spacing="${spacing}${char_vertical_divider}"
   done
   
   echo $ANSI_dim_black$char_down_and_right_divider$spacing$ANSI_reset
@@ -68,7 +68,7 @@ printPsOneLimiter() {
 
 # Prompt =======================================================================
 PROMPT="%F{236}${char_up_and_right_divider} %f%F{80}%~%f $(prepareGitStatusLine)
-%F{85} ${char-arrow}%f "
+%F{85} ${char_arrow}%f "
 
 # RPROMPT="$(rpLine)"
 
