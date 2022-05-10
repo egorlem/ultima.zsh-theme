@@ -53,11 +53,14 @@ prepareGitStatusLine() {
 # Prepare prompt line limiter
 printPsOneLimiter() {
   local termwidth
-  ((termwidth = ${COLUMNS} - 1))
   local spacing=""
+  
+  ((termwidth = ${COLUMNS} - 1))
+  
   for i in {1..$termwidth}; do
     spacing="${spacing}${DIVD3}"
   done
+  
   echo $DIVIDERCOLOR$DIVD2$spacing$RST
 }
 
