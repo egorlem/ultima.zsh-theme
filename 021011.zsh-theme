@@ -86,24 +86,23 @@ LS_COLORS=$LS_COLORS:"di=36":"ln=30;45":"so=34:pi=1;33":"ex=35":"bd=34;46":"cd=3
 export LS_COLORS
 
 # COMPLETER SETTINGS ===========================================================
-
 # list of completers to use
 zstyle ":completion:*::::" completer _expand _complete _ignored _approximate
 zstyle -e ":completion:*:approximate:*" max-errors "reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )"
 zstyle ":completion:*:expand:*" tag-order all-expansions
 
 # formatting and messages
-local DESCRIPTIONS="%B%F{85} › %f%%F{green}%d%b%f"
-local WARNINGS="%F{yellow} › %fno matches for %F{green}%d%f"
-local ERROR="%B%F{red} › %f%e %d error"
+local completion_descriptions="%B%F{85} › %f%%F{green}%d%b%f"
+local completion_warnings="%F{yellow} › %fno matches for %F{green}%d%f"
+local completion_error="%B%F{red} › %f%e %d error"
 
 zstyle ":completion:*" menu select
 zstyle ":completion:*:default" list-colors ${(s.:.)LS_COLORS} "ma=38;5;253;48;5;23"
 zstyle ":completion:*" verbose yes
-zstyle ":completion:*:descriptions" format $DESCRIPTIONS
+zstyle ":completion:*:descriptions" format $completion_descriptions
+zstyle ":completion:*:warnings" format $completion_warnings
 zstyle ":completion:*:messages" format "%d"
-zstyle ":completion:*:warnings" format $WARNINGS
-zstyle ":completion:*:corrections" format $ERROR
+zstyle ":completion:*:corrections" format $completion_error
 zstyle ":completion:*" group-name ''
 
 # match uppercase from lowercase
