@@ -4,35 +4,42 @@ autoload -Uz compinit
 autoload -Uz vcs_info
 compinit
 
-# ANSI variables =============================================================== 
+# ANSI VARIABLES =============================================================== 
+
 local ANSI_reset="\x1B[0m"
 local ANSI_dim_black="\x1B[38;05;236m"
 
 # GRAPHICS VARIABLES ===========================================================
+
 local char_arrow="›"                                            #Unicode: \u203a
 local char_up_and_right_divider="└"                             #Unicode: \u2514
 local char_down_and_right_divider="┌"                           #Unicode: \u250c
 local char_vertical_divider="─"                                 #Unicode: \u2500
 
-# Git status line  =============================================================
+# VCS STATUS LINE ==============================================================
+
 local char_badge="%F{238} 𝗈𝗇 %f%F{236}${char_arrow}%f"
+local vc_branch_name="%F{85}%b%f"
 local git_hash="%F{151}%6.6i%f %F{236}${char_arrow}%f "
 local git_action="%F{238}%a %f%F{236}${char_arrow}%f"
-local git_branch_name="%F{85}%b%f"
 local git_untracked_status="%F{74} U ${char_arrow}%f"
 local git_unstaged_status="%F{80} M ${char_arrow}%f"
 local git_staged_status="%F{115} A ${char_arrow}%f"
 
-zstyle ":vcs_info:*" enable git
-zstyle ":vcs_info:git*:*" get-revision true
-zstyle ":vcs_info:git*:*" check-for-changes true
+zstyle ":vcs_info:*" enable git svn
+zstyle ":vcs_info:*" get-revision true
+zstyle ":vcs_info:*" check-for-changes true
 
-# hash changes branch misc
-zstyle ":vcs_info:git*:*" unstagedstr $git_unstaged_status
-zstyle ":vcs_info:*" stagedstr $git_staged_status
-zstyle ":vcs_info:git*" formats "%c%u%m${char_badge} ${git_branch_name}"
-zstyle ":vcs_info:git*" actionformats "${git_action} ${git_hash}%m%u%c${char_badge} ${git_branch_name}"
+# git sepecific 
 zstyle ":vcs_info:git*+set-message:*" hooks untracked
+zstyle ":vcs_info:git:*" stagedstr $git_staged_status
+zstyle ":vcs_info:git:*" unstagedstr $git_unstaged_status
+zstyle ":vcs_info:git:*" actionformats "${git_action} ${git_hash}%m%u%c${char_badge} ${vc_branch_name}"
+zstyle ":vcs_info:git:*" formats "%c%u%m${char_badge} ${vc_branch_name}"
+
+# svn sepecific 
+zstyle ':vcs_info:svn:*' branchformat "%b"
+zstyle ':vcs_info:svn:*' formats "${char_badge} ${vc_branch_name}"
 
 # Show untracked file status on git status line
 +vi-untracked() {
@@ -44,7 +51,7 @@ zstyle ":vcs_info:git*+set-message:*" hooks untracked
   fi
 }
 
-# Utils ========================================================================
+# UTILS ========================================================================
 
 setopt PROMPT_SUBST
 
@@ -67,13 +74,15 @@ printPsOneLimiter() {
   echo $ANSI_dim_black$char_down_and_right_divider$spacing$ANSI_reset
 }
 
-# Prompt =======================================================================
+# PROMPT LINES  ================================================================
+
 PROMPT="%F{236}${char_up_and_right_divider} %f%F{80}%~%f $(prepareGitStatusLine)
 %F{85} ${char_arrow}%f "
 
-# RPROMPT="$(rpLine)"
+RPROMPT="gogogog"
 
-# Hooks ======================================================================== 
+# HOOKS ======================================================================== 
+
 precmd() {
   vcs_info
   printPsOneLimiter
@@ -87,6 +96,7 @@ LS_COLORS=$LS_COLORS:"di=36":"ln=30;45":"so=34:pi=1;33":"ex=35":"bd=34;46":"cd=3
 export LS_COLORS
 
 # COMPLETER SETTINGS ===========================================================
+
 # list of completers to use
 zstyle ":completion:*::::" completer _expand _complete _ignored _approximate
 zstyle -e ":completion:*:approximate:*" max-errors "reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )"
