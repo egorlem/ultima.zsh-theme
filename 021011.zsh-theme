@@ -46,9 +46,10 @@ zstyle ":vcs_info:git*+set-message:*" hooks untracked
 
 # Utils ========================================================================
 
+setopt PROMPT_SUBST
+
 # Prepare git status line
 prepareGitStatusLine() {
-  setopt PROMPT_SUBST
   echo '${vcs_info_msg_0_}'
 } 
 
