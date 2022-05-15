@@ -79,7 +79,7 @@ printPsOneLimiter() {
 PROMPT="%F{236}${char_up_and_right_divider} %f%F{80}%~%f $(prepareGitStatusLine)
 %F{85} ${char_arrow}%f "
 
-RPROMPT="gogogog"
+RPROMPT=""
 
 # HOOKS ======================================================================== 
 
