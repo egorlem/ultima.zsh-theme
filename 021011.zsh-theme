@@ -17,35 +17,52 @@ local char_down_and_right_divider="┌"                           #Unicode: \u25
 local char_vertical_divider="─"                                 #Unicode: \u2500
 
 # VCS STATUS LINE ==============================================================
+export VCS="git"
 
+local current_vcs="\":vcs_info:*\" enable $VCS"
 local char_badge="%F{238} 𝗈𝗇 %f%F{236}${char_arrow}%f"
 local vc_branch_name="%F{85}%b%f"
-local git_hash="%F{151}%6.6i%f %F{236}${char_arrow}%f "
-local git_action="%F{238}%a %f%F{236}${char_arrow}%f"
-local git_untracked_status="%F{74} U ${char_arrow}%f"
-local git_unstaged_status="%F{80} M ${char_arrow}%f"
-local git_staged_status="%F{115} A ${char_arrow}%f"
 
-zstyle ":vcs_info:*" enable git svn
-zstyle ":vcs_info:*" get-revision true
-zstyle ":vcs_info:*" check-for-changes true
+local vc_action="%F{238}%a %f%F{236}${char_arrow}%f"
+local vc_unstaged_status="%F{80} M ${char_arrow}%f"
 
+local vc_git_staged_status="%F{115} A ${char_arrow}%f"
+local vc_git_hash="%F{151}%6.6i%f %F{236}${char_arrow}%f"
+local vc_git_untracked_status="%F{74} U ${char_arrow}%f"
+
+# vcs_info_printsys list off suported vcs backends
+# vcs_info_lastmsg display formated message
+
+if [[ $VCS != "" ]]; then
+  echo "ставим базовые переменные для vcs_info"
+  autoload -Uz vcs_info
+  eval zstyle $current_vcs
+  zstyle ":vcs_info:*" get-revision true
+  zstyle ":vcs_info:*" check-for-changes true
+fi
+
+case "$VCS" in 
+   "git")
+    # git sepecific 
 # git sepecific 
-zstyle ":vcs_info:git*+set-message:*" hooks untracked
-zstyle ":vcs_info:git:*" stagedstr $git_staged_status
-zstyle ":vcs_info:git:*" unstagedstr $git_unstaged_status
-zstyle ":vcs_info:git:*" actionformats "${git_action} ${git_hash}%m%u%c${char_badge} ${vc_branch_name}"
-zstyle ":vcs_info:git:*" formats "%c%u%m${char_badge} ${vc_branch_name}"
+    # git sepecific 
+    echo "ставим git переменные для vcs_info"
+    zstyle ":vcs_info:git*+set-message:*" hooks use_git_untracked
+    zstyle ":vcs_info:git:*" stagedstr $vc_git_staged_status
+    zstyle ":vcs_info:git:*" unstagedstr $vc_unstaged_status
+    zstyle ":vcs_info:git:*" actionformats "  ${vc_action} ${vc_git_hash}%m%u%c${char_badge} ${vc_branch_name}"
+    zstyle ":vcs_info:git:*" formats " %c%u%m${char_badge} ${vc_branch_name}"
+  ;;
 
 # svn sepecific 
 zstyle ':vcs_info:svn:*' branchformat "%b"
-zstyle ':vcs_info:svn:*' formats "${char_badge} ${vc_branch_name}"
+esac
 
 # Show untracked file status on git status line
-+vi-untracked() {
++vi-use_git_untracked() {
   if [[ $(git rev-parse --is-inside-work-tree 2>/dev/null) == "true" ]] &&
     git status --porcelain | grep -m 1 "^??" &>/dev/null; then
-    hook_com[misc]=$git_untracked_status
+    hook_com[misc]=$vc_git_untracked_status
   else
     hook_com[misc]=""
   fi
@@ -76,15 +93,18 @@ printPsOneLimiter() {
 
 # PROMPT LINES  ================================================================
 
-PROMPT="%F{236}${char_up_and_right_divider} %f%F{80}%~%f $(prepareGitStatusLine)
+PROMPT="%F{236}${char_up_and_right_divider} %f%F{80}%~%f$(prepareGitStatusLine)
 %F{85} ${char_arrow}%f "
 
 RPROMPT=""
 
+# 𝗌𝗌𝗁:
 # HOOKS ======================================================================== 
 
 precmd() {
-  vcs_info
+  if [[ $VCS != "" ]]; then
+    vcs_info
+  fi
   printPsOneLimiter
 }
 
