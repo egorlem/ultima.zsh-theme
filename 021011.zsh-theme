@@ -54,8 +54,14 @@ case "$VCS" in
     zstyle ":vcs_info:git:*" formats " %c%u%m${char_badge} ${vc_branch_name}"
   ;;
 
+  # svn sepecific 
 # svn sepecific 
-zstyle ':vcs_info:svn:*' branchformat "%b"
+  # svn sepecific 
+  "svn")
+    echo "ставим svn переменные для vcs_info"
+    zstyle ':vcs_info:svn:*' branchformat "%b"
+    zstyle ':vcs_info:svn:*' formats " ${char_badge} ${vc_branch_name}"
+  ;;
 esac
 
 # Show untracked file status on git status line
