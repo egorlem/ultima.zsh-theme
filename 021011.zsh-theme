@@ -1,7 +1,6 @@
 # 021011 zsh theme v1.2.0 - https://github.com/guesswhozzz/021011.zsh-theme
 
 autoload -Uz compinit 
-autoload -Uz vcs_info
 compinit
 
 # ANSI VARIABLES =============================================================== 
@@ -44,8 +43,6 @@ fi
 case "$VCS" in 
    "git")
     # git sepecific 
-# git sepecific 
-    # git sepecific 
     echo "ставим git переменные для vcs_info"
     zstyle ":vcs_info:git*+set-message:*" hooks use_git_untracked
     zstyle ":vcs_info:git:*" stagedstr $vc_git_staged_status
@@ -55,10 +52,15 @@ case "$VCS" in
   ;;
 
   # svn sepecific 
-# svn sepecific 
-  # svn sepecific 
   "svn")
     echo "ставим svn переменные для vcs_info"
+    zstyle ':vcs_info:svn:*' branchformat "%b"
+    zstyle ':vcs_info:svn:*' formats " ${char_badge} ${vc_branch_name}"
+  ;;
+
+   # hg sepecific 
+  "hg")
+    echo "ставим hg переменные для vcs_info"
     zstyle ':vcs_info:svn:*' branchformat "%b"
     zstyle ':vcs_info:svn:*' formats " ${char_badge} ${vc_branch_name}"
   ;;
