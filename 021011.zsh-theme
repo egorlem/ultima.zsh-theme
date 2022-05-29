@@ -33,7 +33,7 @@ local vc_git_untracked_status="%F{74} U ${char_arrow}%f"
 # vcs_info_lastmsg display formated message
 
 if [[ $VCS != "" ]]; then
-  echo "ставим базовые переменные для vcs_info"
+  # echo "ставим базовые переменные для vcs_info"
   autoload -Uz vcs_info
   eval zstyle $current_vcs
   zstyle ":vcs_info:*" get-revision true
@@ -43,7 +43,7 @@ fi
 case "$VCS" in 
    "git")
     # git sepecific 
-    echo "ставим git переменные для vcs_info"
+    # echo "ставим git переменные для vcs_info"
     zstyle ":vcs_info:git*+set-message:*" hooks use_git_untracked
     zstyle ":vcs_info:git:*" stagedstr $vc_git_staged_status
     zstyle ":vcs_info:git:*" unstagedstr $vc_unstaged_status
@@ -53,14 +53,14 @@ case "$VCS" in
 
   # svn sepecific 
   "svn")
-    echo "ставим svn переменные для vcs_info"
+    # echo "ставим svn переменные для vcs_info"
     zstyle ':vcs_info:svn:*' branchformat "%b"
     zstyle ':vcs_info:svn:*' formats " ${char_badge} ${vc_branch_name}"
   ;;
 
    # hg sepecific 
   "hg")
-    echo "ставим hg переменные для vcs_info"
+    # echo "ставим hg переменные для vcs_info"
     zstyle ':vcs_info:svn:*' branchformat "%b"
     zstyle ':vcs_info:svn:*' formats " ${char_badge} ${vc_branch_name}"
   ;;
