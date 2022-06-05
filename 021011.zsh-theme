@@ -81,7 +81,7 @@ esac
 local ssh_marker=""
 
 if [[ -n "$SSH_CLIENT" || -n "$SSH2_CLIENT" ]]; then
-    ssh_marker="%F{236}SSH:%M%f"
+ ssh_marker="%F{115}SSH%f%F{236}:%f"
 fi
 
 # UTILS ========================================================================
@@ -108,12 +108,11 @@ printPsOneLimiter() {
 }
 
 # PROMPT LINES  ================================================================
-PROMPT="%F{236}${char_up_and_right_divider} %f%F{80}%~%f$(prepareGitStatusLine)
+PROMPT="%F{236}${char_up_and_right_divider} ${ssh_marker} %f%F{80}%~%f$(prepareGitStatusLine)
 %F{85} ${char_arrow}%f "
 
-RPROMPT="${ssh_marker}"
+RPROMPT=""
 
-# 𝗌𝗌𝗁:
 # HOOKS ======================================================================== 
 
 precmd() {
