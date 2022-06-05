@@ -58,7 +58,7 @@ case "$VCS" in
     zstyle ':vcs_info:svn:*' formats " ${char_badge} ${vc_branch_name}"
   ;;
 
-   # hg sepecific 
+  # hg sepecific 
   "hg")
     # echo "ставим hg переменные для vcs_info"
     zstyle ':vcs_info:svn:*' branchformat "%b"
@@ -75,6 +75,14 @@ esac
     hook_com[misc]=""
   fi
 }
+
+# SSH STATUS  ==================================================================
+
+local ssh_marker=""
+
+if [[ -n "$SSH_CLIENT" || -n "$SSH2_CLIENT" ]]; then
+    ssh_marker="%F{236}SSH:%M%f"
+fi
 
 # UTILS ========================================================================
 
@@ -100,11 +108,10 @@ printPsOneLimiter() {
 }
 
 # PROMPT LINES  ================================================================
-
 PROMPT="%F{236}${char_up_and_right_divider} %f%F{80}%~%f$(prepareGitStatusLine)
 %F{85} ${char_arrow}%f "
 
-RPROMPT=""
+RPROMPT="${ssh_marker}"
 
 # 𝗌𝗌𝗁:
 # HOOKS ======================================================================== 
