@@ -15,7 +15,7 @@ local char_up_and_right_divider="└"                             #Unicode: \u25
 local char_down_and_right_divider="┌"                           #Unicode: \u250c
 local char_vertical_divider="─"                                 #Unicode: \u2500
 
-# BLOCK/VCS_STATUS_LINE ========================================================
+# SEGMENT/VCS_STATUS_LINE ========================================================
 
 export VCS="git"
 
@@ -72,7 +72,7 @@ esac
   fi
 }
 
-# BLOCK/SSH_STATUS =============================================================
+# SEGMENT/SSH_STATUS =============================================================
 
 local ssh_marker=""
 
@@ -127,7 +127,7 @@ export LSCOLORS
 LS_COLORS=$LS_COLORS:"di=36":"ln=30;45":"so=34:pi=1;33":"ex=35":"bd=34;46":"cd=34;43":"su=30;41":"sg=30;46":"ow=30;43":"tw=30;42":"*.js=01;33":"*.json=33":"*.jsx=38;5;117":"*.ts=38;5;75":"*.css=38;5;27":"*.scss=38;5;169"
 export LS_COLORS
 
-# BLOCK/COMPLETION =============================================================
+# SEGMENT/COMPLETION =============================================================
 
 # list of completers to use
 zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
