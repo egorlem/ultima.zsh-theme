@@ -1,8 +1,19 @@
 # 021011.zsh-theme — theme and settings for Z shell
 
+## Preview
+
+![item zsh prompt](https://github.com/guesswhozzz/guezwhoz-scheme/blob/main/demos/zsh-theme-demo-min.png?raw=true)
+
+---
+
 ## Overview
 
-*TBA*
+Essentially, the shell prompt is split into three separate areas: prompt border, segments 
+area and action area.   
+
+- **prompt border** - *TBA*
+- **segments area** - *TBA*
+- **action area** - *TBA*
 
 ---
 
@@ -29,12 +40,6 @@ For Installation you need git
 ```
 
 3. Go to your `~/.zshrc` file and set `ZSH_THEME=021011`
-
----
-
-## Preview
-
-![item zsh prompt](https://github.com/guesswhozzz/guezwhoz-scheme/blob/main/demos/zsh-theme-demo-min.png?raw=true)
 
 ---
 
