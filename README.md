@@ -8,12 +8,15 @@
 
 ## Overview
 
-Essentially, the shell prompt is split into three separate areas: prompt border, segments 
-area and action area.   
+Essentially, the shell prompt is split into three separate lines. The first line helps to visually 
+divide the previous output from the next prompt. The second line contains all about path and
+split into three **segments**. The third is the input line. 
 
-- **prompt border** - *TBA*
-- **segments area** - *TBA*
-- **action area** - *TBA*
+### Segments
+
+- **ssh connection** - *TBA*
+- **cuurent location** - *TBA*
+- **vsc status line** - *TBA*
 
 ---
 
