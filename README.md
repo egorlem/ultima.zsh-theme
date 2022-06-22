@@ -1,34 +1,36 @@
 # 021011.zsh-theme — theme and settings for Z shell
 
-## Preview
+## **Preview**
 
 ![item zsh prompt](https://github.com/guesswhozzz/guezwhoz-scheme/blob/main/demos/zsh-theme-demo-min.png?raw=true)
 
 ---
 
-## Overview
+## **Overview**
+### Theme includes prompt settings, vsc_info settings, and zsh completion settings.
+### **Prompt**
 
 Essentially, the shell prompt is split into three separate lines. The first line helps to visually 
 divide the previous output from the next prompt. The second line contains all about path and
-split into three **segments**. The third is the input line. 
+split into three **path segments**. The third is the input line. 
 
-### Segments
+### **Path segments**
 
-- **ssh connection** - *TBA*
-- **cuurent location** - *TBA*
-- **vsc status line** - *TBA*
+- **ssh connection** - The badge indicates whether the ssh connection is currently established
+- **directory** - Current working directory.
+- **vsc status line** - This segment displays all about the status of the branch in the working directory.
 
 ---
 
-## Installation
+## **Installation**
 
 For Installation you need git
 
-### Manual
+### **Manual**
 
 *TBA*
 
-### Oh My Zsh
+### **Oh My Zsh**
 
 1. Cloning the repo
 
@@ -46,7 +48,7 @@ For Installation you need git
 
 ---
 
-## Recommended Settings
+## **Recommended Settings**
 
 - [Color scheme for term](https://github.com/guesswhozzz/guezwhoz-scheme/blob/main/color-scheme/guezwhoz-scheme.yaml)
 
@@ -55,7 +57,7 @@ For Installation you need git
 
 ---
 
-## Extra 
+## **Extra**
 
 You can find this color scheme for other terminal emulators in the [mbadolato](https://github.com/mbadolato/iTerm2-Color-Schemes) color scheme repository
 
