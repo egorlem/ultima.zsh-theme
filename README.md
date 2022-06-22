@@ -17,8 +17,8 @@ split into three **path segments**. The third is the input line.
 ### **Path segments**
 
 - **ssh connection** - The badge indicates whether the ssh connection is currently established
-- **directory** - Current working directory.
-- **vsc status line** - This segment displays all about the status of the branch in the working directory.
+- **directory** - Current working directory
+- **vsc status line** - This segment displays all about the status of the branch in the working directory
 
 ---
 
