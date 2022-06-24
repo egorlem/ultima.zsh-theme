@@ -7,7 +7,7 @@
 ---
 
 ## **Overview**
-### Theme includes prompt settings, vsc_info settings, and zsh completion settings.
+### Theme includes prompt settings, vsc_info settings, and zsh completion settings
 ### **Prompt**
 
 Essentially, the shell prompt is split into three separate lines. The first line helps to visually 
@@ -17,7 +17,7 @@ divide the previous output from the next prompt. The second line consists of thr
 
 - **ssh connection** - The badge indicates whether the ssh connection is currently established
 - **directory** - Current working directory
-- **vsc status line** - This segment displays all about the status of the branch in the working directory
+- **vsc status line** - This segment displays current branch status in the working directory
 
 ---
 
