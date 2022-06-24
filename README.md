@@ -23,11 +23,20 @@ divide the previous output from the next prompt. The second line consists of thr
 
 ## **Installation**
 
-For Installation you need git
+_For Installation you need git_
 
 ### **Manual**
 
-*TBA*
+1. Cloning the repo
+
+```shell
+% git clone https://github.com/guesswhozzz/021011.zsh-theme ~/021011-tools
+```
+2. Update your .zshrc file 
+
+```shell
+% echo 'source ~/021011-tools/021011.zsh-theme' >> ~/.zshrc
+```
 
 ### **Oh My Zsh**
 
@@ -37,10 +46,10 @@ For Installation you need git
 % git clone https://github.com/guesswhozzz/021011.zsh-theme ~/021011-tools
 ```
 
-2. Creating a symbolic link to oh-my-zsh's theme folder
+2. Move file to oh-my-zsh's theme folder
 
 ```shell
-% ln -s ~/021011-tools/021011.zsh-theme $ZSH/themes/021011.zsh-theme
+% mv ~/021011-tools/021011.zsh-theme $ZSH/themes/021011.zsh-theme
 ```
 
 3. Go to your `~/.zshrc` file and set `ZSH_THEME=021011`
