@@ -27,12 +27,12 @@ _For Installation you need git_
 
 ### **Manual**
 
-1. Cloning the repo
+1. Clone the repository:
 
 ```shell
 % git clone https://github.com/guesswhozzz/021011.zsh-theme ~/021011-tools
 ```
-2. Update your .zshrc file 
+2. Update your .zshrc file:
 
 ```shell
 % echo 'source ~/021011-tools/021011.zsh-theme' >> ~/.zshrc
@@ -40,13 +40,13 @@ _For Installation you need git_
 
 ### **Oh My Zsh**
 
-1. Cloning the repo
+1. Clone the repository:
 
 ```shell
 % git clone https://github.com/guesswhozzz/021011.zsh-theme ~/021011-tools
 ```
 
-2. Move file to oh-my-zsh's theme folder
+2. Move file to oh-my-zsh's theme folder:
 
 ```shell
 % mv ~/021011-tools/021011.zsh-theme $ZSH/themes/021011.zsh-theme
