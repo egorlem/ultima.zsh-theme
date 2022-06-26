@@ -35,12 +35,12 @@ _For Installation you need git_
 1. Clone the repository:
 
 ```shell
-% git clone https://github.com/guesswhozzz/021011.zsh-theme ~/021011-tools
+git clone https://github.com/guesswhozzz/021011.zsh-theme ~/021011-tools
 ```
 2. Update your .zshrc file:
 
 ```shell
-% echo 'source ~/021011-tools/021011.zsh-theme' >> ~/.zshrc
+echo 'source ~/021011-tools/021011.zsh-theme' >> ~/.zshrc
 ```
 
 ### **Oh My Zsh**
@@ -48,13 +48,13 @@ _For Installation you need git_
 1. Clone the repository:
 
 ```shell
-% git clone https://github.com/guesswhozzz/021011.zsh-theme ~/021011-tools
+git clone https://github.com/guesswhozzz/021011.zsh-theme ~/021011-tools
 ```
 
 2. Move file to oh-my-zsh's theme folder:
 
 ```shell
-% mv ~/021011-tools/021011.zsh-theme $ZSH/themes/021011.zsh-theme
+mv ~/021011-tools/021011.zsh-theme $ZSH/themes/021011.zsh-theme
 ```
 
 3. Go to your `~/.zshrc` file and set `ZSH_THEME=021011`
