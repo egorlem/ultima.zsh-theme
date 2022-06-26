@@ -1,7 +1,6 @@
 # 021011 zsh theme v2.0.0 - https://github.com/guesswhozzz/021011.zsh-theme
 
-autoload -Uz compinit 
-compinit
+autoload -Uz compinit; compinit
 
 # LOCAL/VARIABLES/ANSI =========================================================
 
@@ -129,27 +128,32 @@ export LS_COLORS
 
 # SEGMENT/COMPLETION =============================================================
 
-# list of completers to use
-zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
-zstyle -e ':completion:*:approximate:*' max-errors "reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )"
-zstyle ':completion:*:expand:*' tag-order all-expansions
+setopt MENU_COMPLETE
 
-# formatting and messages
 local completion_descriptions="%B%F{85} ${char_arrow} %f%%F{green}%d%b%f"
 local completion_warnings="%F{yellow} ${char_arrow} %fno matches for %F{green}%d%f"
 local completion_error="%B%F{red} ${char_arrow} %f%e %d error"
 
-zstyle ':completion:*' menu select
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} "ma=38;5;253;48;5;23"
+zstyle ':completion:*' completer _expand _complete _ignored _approximate
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/.zcompcache"
 zstyle ':completion:*' verbose yes
-zstyle ':completion:*:descriptions' format $completion_descriptions
-zstyle ':completion:*:warnings' format $completion_warnings
-zstyle ':completion:*:messages' format "%d"
-zstyle ':completion:*:corrections' format $completion_error
-zstyle ':completion:*' group-name ''
+zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list "m:{a-z}={A-Z}"
+zstyle ':completion:*' group-name ''
+
+zstyle ':completion:*:*:*:*:descriptions' format $completion_descriptions
+zstyle ':completion:*:*:*:*:corrections' format $completion_error
+zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS} "ma=38;5;253;48;5;23"
+zstyle ':completion:*:*:*:*:warnings' format $completion_warnings
+zstyle ':completion:*:*:*:*:messages' format "%d"
+
+zstyle ':completion:*:expand:*' tag-order all-expansions
+zstyle ':completion:*:approximate:*' max-errors "reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )"
 zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns "*?.o" "*?.c~" "*?.old" "*?.pro"
 zstyle ':completion:*:functions' ignored-patterns "_*"
+
+zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
 # ==============================================================================
