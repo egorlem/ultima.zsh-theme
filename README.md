@@ -19,6 +19,11 @@ divide the previous output from the next prompt. The second line consists of thr
 - **directory** - Current working directory
 - **vsc status line** - This segment displays current branch status in the working directory
 
+### **Completion**
+
+Includes completion menu and style settings, caching, setting for ssh host and name suggestion, 
+and many other useful settings.
+
 ---
 
 ## **Installation**
