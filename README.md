@@ -2,7 +2,7 @@
 
 ## **Preview**
 
-![item zsh prompt](https://github.com/guesswhozzz/guezwhoz-scheme/blob/main/demos/zsh-theme-demo-min.png?raw=true)
+![item zsh prompt](https://github.com/guesswhozzz/021011/blob/main/demos/zsh-theme-demo-min.png?raw=true)
 
 ---
 
