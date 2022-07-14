@@ -10,7 +10,7 @@
 ### Theme includes prompt settings, vsc_info settings, and zsh completion settings
 ### **Prompt**
 
-Essentially, the shell prompt is split into three separate lines. The first line helps to visually 
+The shell prompt is split into three separate lines. The first line helps to visually 
 divide the previous output from the next prompt. The second line consists of three **segments** and contains all about path. The third is the input line. 
 
 ### **Path segments**
