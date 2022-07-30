@@ -10,12 +10,12 @@
 ### Theme includes prompt settings, vsc_info settings, and zsh completion settings
 ### **Prompt**
 
-The shell prompt is split into three separate lines. The first line helps to visually 
-divide the previous output from the next prompt. The second line consists of three **segments** and contains all about path. The third is the input line. 
+Shell prompt is split into three separate lines. The first line helps to visually 
+divide previous output from next prompt. The second line consists of three **segments** and contains all about path. The third is input line. 
 
 ### **Path segments**
 
-- **ssh connection** - The badge indicates whether the ssh connection is currently established
+- **ssh connection** - The badge indicates whether ssh connection is currently established
 - **directory** - Current working directory
 - **vsc status line** - This segment displays current branch status in the working directory
 
