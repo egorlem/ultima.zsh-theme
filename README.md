@@ -61,12 +61,18 @@ mv ~/021011-tools/021011.zsh-theme $ZSH/themes/021011.zsh-theme
 
 ---
 
-## **Recommended Settings**
+## **Recommended settings and compatibility**
 
-- [Color scheme for term](https://github.com/guesswhozzz/guezwhoz-scheme/blob/main/color-scheme/guezwhoz-scheme.yaml)
+### Color schema
 
-  > Mac Os users can set color scheme for iTerm2 from [repo](https://github.com/guesswhozzz/guezwhoz-iterm2-theme)
+[Color scheme for term](https://github.com/guesswhozzz/guezwhoz-scheme/blob/main/color-scheme/guezwhoz-scheme.yaml). Mac Os users can set color scheme for iTerm2 from [repo](https://github.com/guesswhozzz/guezwhoz-iterm2-theme)
 
+### Fonts
+
+Not all fonts contain U+203a unicode unless your system supports **Single Right-Pointing Angle Quotation Mark** install one of the standard fonts on your system. For example **Arial**, **Consolas**, **Impact**. 
+
+For comfortable work, I usually use [JetBrains Mono](https://www.jetbrains.com/lp/mono/). 
+The font is already available characters that are used in the theme and are ideal for full compatibility.
 
 ---
 
