@@ -55,7 +55,6 @@ case "$VCS" in
 
   # hg sepecific 
   "hg")
-    # echo "ставим hg переменные для vcs_info"
     zstyle ':vcs_info:hg:*' branchformat "%b"
     zstyle ':vcs_info:hg:*' formats " ${char_badge} ${vc_branch_name}"
   ;;
