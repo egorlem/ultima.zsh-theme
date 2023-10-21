@@ -40,7 +40,7 @@ git clone https://github.com/egorlem/ultima.zsh-theme ~/ultima-shell
 2. Update your .zshrc file:
 
 ```shell
-echo 'source ~/021011-tools/ultima.zsh-theme' >> ~/.zshrc
+echo 'source ~/ultima-shell/ultima.zsh-theme' >> ~/.zshrc
 ```
 
 ### **Oh My Zsh**
