@@ -1,8 +1,8 @@
-# 021011.zsh-theme — theme and settings for Z shell
+# ultima.zsh-theme — theme and settings for Z shell
 
 ## **Preview**
 
-![item zsh prompt](https://github.com/guesswhozzz/021011/blob/main/demos/zsh-theme-demo-min.png?raw=true)
+![item zsh prompt](https://github.com/egorlem/021011/blob/main/demos/zsh-theme-demo-min.png?raw=true)
 
 ---
 
@@ -35,12 +35,12 @@ _For Installation you need git_
 1. Clone the repository:
 
 ```shell
-git clone https://github.com/guesswhozzz/021011.zsh-theme ~/021011-tools
+git clone https://github.com/egorlem/ultima.zsh-theme ~/ultima-shell
 ```
 2. Update your .zshrc file:
 
 ```shell
-echo 'source ~/021011-tools/021011.zsh-theme' >> ~/.zshrc
+echo 'source ~/021011-tools/ultima.zsh-theme' >> ~/.zshrc
 ```
 
 ### **Oh My Zsh**
@@ -48,13 +48,13 @@ echo 'source ~/021011-tools/021011.zsh-theme' >> ~/.zshrc
 1. Clone the repository:
 
 ```shell
-git clone https://github.com/guesswhozzz/021011.zsh-theme ~/021011-tools
+git clone https://github.com/egorlem/ultima.zsh-theme ~/ultima-shell
 ```
 
 2. Move file to oh-my-zsh's theme folder:
 
 ```shell
-mv ~/021011-tools/021011.zsh-theme $ZSH/themes/021011.zsh-theme
+mv ~/021011-tools/ultima.zsh-theme $ZSH/themes/ultima.zsh-theme
 ```
 
 3. Go to your `~/.zshrc` file and set `ZSH_THEME=021011`
@@ -65,7 +65,7 @@ mv ~/021011-tools/021011.zsh-theme $ZSH/themes/021011.zsh-theme
 
 ### Color schema
 
-[Color scheme for term](https://github.com/guesswhozzz/guezwhoz-scheme/blob/main/color-scheme/guezwhoz-scheme.yaml). Mac Os users can set color scheme for iTerm2 from [repo](https://github.com/guesswhozzz/guezwhoz-iterm2-theme)
+[Color scheme for term](https://github.com/egorlem/guezwhoz-scheme/blob/main/color-scheme/guezwhoz-scheme.yaml). Mac Os users can set color scheme for iTerm2 from [repo](https://github.com/egorlem/guezwhoz-iterm2-theme)
 
 ### Fonts
 
@@ -82,4 +82,4 @@ You can find this color scheme for other terminal emulators in the [mbadolato](h
 
 ---
 
-License [MIT](https://github.com/guesswhozzz/guezwhoz-vscode-theme/blob/master/LICENSE) © [Egor Lem](https://github.com/guesswhozzz)
+License [MIT](https://github.com/egorlem/guezwhoz-vscode-theme/blob/master/LICENSE) © [Egor Lem](https://github.com/egorlem)

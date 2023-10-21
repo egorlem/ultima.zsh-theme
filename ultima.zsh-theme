@@ -1,4 +1,6 @@
-# 021011 zsh theme v2.0.0 - https://github.com/guesswhozzz/021011.zsh-theme
+# ultima zsh theme v2.0.0 - https://github.com/egorlem/ultima.zsh-theme
+# Minimalistic .zshrc config contains all of the settings required for 
+# comfortable terminal use ...
 
 autoload -Uz compinit; compinit
 

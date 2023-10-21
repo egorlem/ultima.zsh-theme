@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 # Display base term color scheme
 function termPalettePrinter() {
   local acc=$(($1 - 1))
