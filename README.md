@@ -54,10 +54,10 @@ git clone https://github.com/egorlem/ultima.zsh-theme ~/ultima-shell
 2. Move file to oh-my-zsh's theme folder:
 
 ```shell
-mv ~/021011-tools/ultima.zsh-theme $ZSH/themes/ultima.zsh-theme
+mv ~/ultima-shell/ultima.zsh-theme $ZSH/themes/ultima.zsh-theme
 ```
 
-3. Go to your `~/.zshrc` file and set `ZSH_THEME=021011`
+3. Go to your `~/.zshrc` file and set `ZSH_THEME=ultima`
 
 ---
 
