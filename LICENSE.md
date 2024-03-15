@@ -1,6 +1,8 @@
 MIT License
 
-Copyright (c) 2022 Egor Lem
+It's just a config file. I don't think this needs a license.
+
+Copyright (c) 2024 Egor Lem
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
