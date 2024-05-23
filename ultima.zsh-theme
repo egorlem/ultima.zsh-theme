@@ -25,11 +25,11 @@ local char_badge="%F{238} 𝗈𝗇 %f%F{236}${char_arrow}%f"
 local vc_branch_name="%F{85}%b%f"
 
 local vc_action="%F{238}%a %f%F{236}${char_arrow}%f"
-local vc_unstaged_status="%F{80} M ${char_arrow}%f"
+local vc_unstaged_status="%F{cyan} M ${char_arrow}%f"
 
-local vc_git_staged_status="%F{115} A ${char_arrow}%f"
+local vc_git_staged_status="%F{green} A ${char_arrow}%f"
 local vc_git_hash="%F{151}%6.6i%f %F{236}${char_arrow}%f"
-local vc_git_untracked_status="%F{74} U ${char_arrow}%f"
+local vc_git_untracked_status="%F{blue} U ${char_arrow}%f"
 
 
 if [[ $VCS != "" ]]; then
@@ -77,7 +77,7 @@ esac
 local ssh_marker=""
 
 if [[ -n "$SSH_CLIENT" || -n "$SSH2_CLIENT" ]]; then
- ssh_marker="%F{115}SSH%f%F{236}:%f"
+ ssh_marker="%F{green}SSH%f%F{236}:%f"
 fi
 
 # UTILS ========================================================================
@@ -105,7 +105,7 @@ printPsOneLimiter() {
 
 # ENV/VARIABLES/PROMPT_LINES ===================================================
 
-PROMPT="%F{236}${char_up_and_right_divider} ${ssh_marker} %f%F{80}%~%f$(prepareGitStatusLine)
+PROMPT="%F{236}${char_up_and_right_divider} ${ssh_marker} %f%F{cyan}%~%f$(prepareGitStatusLine)
 %F{85} ${char_arrow}%f "
 
 RPROMPT=""
@@ -124,7 +124,7 @@ precmd() {
 LSCOLORS=gxafexDxfxegedabagacad
 export LSCOLORS
 
-LS_COLORS=$LS_COLORS:"di=36":"ln=30;45":"so=34:pi=1;33":"ex=35":"bd=34;46":"cd=34;43":"su=30;41":"sg=30;46":"ow=30;43":"tw=30;42":"*.js=01;33":"*.json=33":"*.jsx=38;5;117":"*.ts=38;5;75":"*.css=38;5;27":"*.scss=38;5;169"
+LS_COLORS=$LS_COLORS:"di=36":"ln=30;45":"so=34:pi=33":"ex=35":"bd=34;46":"cd=34;43":"su=30;41":"sg=30;46":"ow=30;43":"tw=30;42":"*.js=0;33":"*.json=33":"*.jsx=38;5;117":"*.ts=38;5;75":"*.css=38;5;27":"*.scss=38;5;169"
 export LS_COLORS
 
 # SEGMENT/COMPLETION ===========================================================
