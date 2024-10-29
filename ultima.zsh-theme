@@ -6,30 +6,26 @@ autoload -Uz compinit; compinit
 
 # LOCAL/VARIABLES/ANSI =========================================================
 
-local ANSI_reset="\x1B[0m"
-local ANSI_dim_black="\x1B[38;05;236m"
+ANSI_reset="\x1B[0m"
+ANSI_dim_black="\x1B[38;05;236m"
 
 # LOCAL/VARIABLES/GRAPHIC ======================================================
 
-local char_arrow="›"                                            #Unicode: \u203a
-local char_up_and_right_divider="└"                             #Unicode: \u2514
-local char_down_and_right_divider="┌"                           #Unicode: \u250c
-local char_vertical_divider="─"                                 #Unicode: \u2500
+char_arrow="›"                                                  #Unicode: \u203a
+char_up_and_right_divider="└"                                   #Unicode: \u2514
+char_down_and_right_divider="┌"                                 #Unicode: \u250c
+char_vertical_divider="─"                                       #Unicode: \u2500
 
 # SEGMENT/VCS_STATUS_LINE ======================================================
 
 export VCS="git"
 
-local current_vcs="\":vcs_info:*\" enable $VCS"
-local char_badge="%F{238} 𝗈𝗇 %f%F{236}${char_arrow}%f"
-local vc_branch_name="%F{85}%b%f"
+vc_action="%F{238}%a %f%F{236}${char_arrow}%f"
+vc_unstaged_status="%F{cyan} M ${char_arrow}%f"
 
-local vc_action="%F{238}%a %f%F{236}${char_arrow}%f"
-local vc_unstaged_status="%F{cyan} M ${char_arrow}%f"
-
-local vc_git_staged_status="%F{green} A ${char_arrow}%f"
-local vc_git_hash="%F{151}%6.6i%f %F{236}${char_arrow}%f"
-local vc_git_untracked_status="%F{blue} U ${char_arrow}%f"
+vc_git_staged_status="%F{green} A ${char_arrow}%f"
+vc_git_hash="%F{151}%6.6i%f %F{236}${char_arrow}%f"
+vc_git_untracked_status="%F{blue} U ${char_arrow}%f"
 
 
 if [[ $VCS != "" ]]; then
@@ -74,7 +70,7 @@ esac
 
 # SEGMENT/SSH_STATUS ===========================================================
 
-local ssh_marker=""
+ssh_marker=""
 
 if [[ -n "$SSH_CLIENT" || -n "$SSH2_CLIENT" ]]; then
  ssh_marker="%F{green}SSH%f%F{236}:%f"
@@ -131,9 +127,9 @@ export LS_COLORS
 
 setopt MENU_COMPLETE
 
-local completion_descriptions="%B%F{85} ${char_arrow} %f%%F{green}%d%b%f"
-local completion_warnings="%F{yellow} ${char_arrow} %fno matches for %F{green}%d%f"
-local completion_error="%B%F{red} ${char_arrow} %f%e %d error"
+completion_descriptions="%B%F{85} ${char_arrow} %f%%F{green}%d%b%f"
+completion_warnings="%F{yellow} ${char_arrow} %fno matches for %F{green}%d%f"
+completion_error="%B%F{red} ${char_arrow} %f%e %d error"
 
 zstyle ':completion:*' completer _expand _complete _ignored _approximate
 zstyle ':completion:*' use-cache on
