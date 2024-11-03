@@ -105,10 +105,23 @@ printPsOneLimiter() {
 
 # ENV/VARIABLES/PROMPT_LINES ===================================================
 
-PROMPT="%F{236}${char_up_and_right_divider} ${ssh_marker} %f%F{cyan}%~%f$(prepareGitStatusLine)
-%F{85} ${char_arrow}%f "
+# PS1 arrow - green # PS2 arrow - cyan # PS3 arrow - white
+
+PROMPT="%F{black}${char_up_and_right_divider} ${ssh_marker} %f%F{cyan}%~%f$(prepareGitStatusLine)
+%F{green} ${char_arrow}%f "
 
 RPROMPT=""
+
+# PS2 Example 
+# wc << EOF 
+# wc << HEAR 
+PS2="%F{black} %_ %f%F{cyan}${char_arrow} "
+
+# PS3 The value of this parameter is used as the prompt for the select
+# command (see SHELL GRAMMAR above).
+# PS3 Example 
+# select x in foo bar baz; do echo $x; done
+PS3=" ${char_arrow} "
 
 # ENV/HOOKS ==================================================================== 
 
