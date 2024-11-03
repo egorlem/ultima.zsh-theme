@@ -20,6 +20,10 @@ char_vertical_divider="─"                                       #Unicode: \u25
 
 export VCS="git"
 
+current_vcs="\":vcs_info:*\" enable $VCS"
+char_badge="%F{238} on %f%F{236}${char_arrow}%f"
+vc_branch_name="%F{85}%b%f"
+
 vc_action="%F{238}%a %f%F{236}${char_arrow}%f"
 vc_unstaged_status="%F{cyan} M ${char_arrow}%f"
 
