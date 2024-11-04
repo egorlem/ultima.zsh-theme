@@ -1,13 +1,13 @@
-# ultima zsh theme v2.0.0 - https://github.com/egorlem/ultima.zsh-theme
-# Minimalistic .zshrc config contains all of the settings required for 
-# comfortable terminal use ...
+# Ultima zsh theme p2.c7 - https://github.com/egorlem/ultima.zsh-theme
+# Minimalistic .zshrc config contains all of the settings required for comfortable terminal use ...
+# This code doesn't provide much value, but it will make using zsh a little more enjoyable.
 
 autoload -Uz compinit; compinit
 
 # LOCAL/VARIABLES/ANSI =========================================================
 
-ANSI_reset="\x1B[0m"
-ANSI_dim_black="\x1B[38;05;236m"
+ANSI_reset="\x1b[0m"
+ANSI_dim_black="\x1b[0;30m"
 
 # LOCAL/VARIABLES/GRAPHIC ======================================================
 
@@ -21,16 +21,15 @@ char_vertical_divider="─"                                       #Unicode: \u25
 export VCS="git"
 
 current_vcs="\":vcs_info:*\" enable $VCS"
-char_badge="%F{238} on %f%F{236}${char_arrow}%f"
-vc_branch_name="%F{85}%b%f"
+char_badge="%F{black} on %f%F{black}${char_arrow}%f"
+vc_branch_name="%F{green}%b%f"
 
-vc_action="%F{238}%a %f%F{236}${char_arrow}%f"
+vc_action="%F{black}%a %f%F{black}${char_arrow}%f"
 vc_unstaged_status="%F{cyan} M ${char_arrow}%f"
 
 vc_git_staged_status="%F{green} A ${char_arrow}%f"
-vc_git_hash="%F{151}%6.6i%f %F{236}${char_arrow}%f"
+vc_git_hash="%F{green}%6.6i%f %F{black}${char_arrow}%f"
 vc_git_untracked_status="%F{blue} U ${char_arrow}%f"
-
 
 if [[ $VCS != "" ]]; then
   autoload -Uz vcs_info
@@ -77,7 +76,7 @@ esac
 ssh_marker=""
 
 if [[ -n "$SSH_CLIENT" || -n "$SSH2_CLIENT" ]]; then
- ssh_marker="%F{green}SSH%f%F{236}:%f"
+ ssh_marker="%F{green}SSH%f%F{black}:%f"
 fi
 
 # UTILS ========================================================================
@@ -156,7 +155,7 @@ export GROFF_NO_SGR=1
 
 setopt MENU_COMPLETE
 
-completion_descriptions="%B%F{85} ${char_arrow} %f%%F{green}%d%b%f"
+completion_descriptions="%F{blue} ${char_arrow} %f%%F{green}%d%f"
 completion_warnings="%F{yellow} ${char_arrow} %fno matches for %F{green}%d%f"
 completion_error="%B%F{red} ${char_arrow} %f%e %d error"
 
@@ -170,7 +169,7 @@ zstyle ':completion:*' group-name ''
 
 zstyle ':completion:*:*:*:*:descriptions' format $completion_descriptions
 zstyle ':completion:*:*:*:*:corrections' format $completion_error
-zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS} "ma=38;5;253;48;5;23"
+zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS} "ma=0;42;30"
 zstyle ':completion:*:*:*:*:warnings' format $completion_warnings
 zstyle ':completion:*:*:*:*:messages' format "%d"
 
