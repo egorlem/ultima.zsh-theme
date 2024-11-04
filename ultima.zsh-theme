@@ -1,36 +1,35 @@
-# ultima zsh theme v2.0.0 - https://github.com/egorlem/ultima.zsh-theme
-# Minimalistic .zshrc config contains all of the settings required for 
-# comfortable terminal use ...
+# Ultima zsh theme p2.c7 - https://github.com/egorlem/ultima.zsh-theme
+# Minimalistic .zshrc config contains all of the settings required for comfortable terminal use ...
+# This code doesn't provide much value, but it will make using zsh a little more enjoyable.
 
 autoload -Uz compinit; compinit
 
 # LOCAL/VARIABLES/ANSI =========================================================
 
-local ANSI_reset="\x1B[0m"
-local ANSI_dim_black="\x1B[38;05;236m"
+ANSI_reset="\x1b[0m"
+ANSI_dim_black="\x1b[0;30m"
 
 # LOCAL/VARIABLES/GRAPHIC ======================================================
 
-local char_arrow="›"                                            #Unicode: \u203a
-local char_up_and_right_divider="└"                             #Unicode: \u2514
-local char_down_and_right_divider="┌"                           #Unicode: \u250c
-local char_vertical_divider="─"                                 #Unicode: \u2500
+char_arrow="›"                                                  #Unicode: \u203a
+char_up_and_right_divider="└"                                   #Unicode: \u2514
+char_down_and_right_divider="┌"                                 #Unicode: \u250c
+char_vertical_divider="─"                                       #Unicode: \u2500
 
 # SEGMENT/VCS_STATUS_LINE ======================================================
 
 export VCS="git"
 
-local current_vcs="\":vcs_info:*\" enable $VCS"
-local char_badge="%F{238} 𝗈𝗇 %f%F{236}${char_arrow}%f"
-local vc_branch_name="%F{85}%b%f"
+current_vcs="\":vcs_info:*\" enable $VCS"
+char_badge="%F{black} on %f%F{black}${char_arrow}%f"
+vc_branch_name="%F{green}%b%f"
 
-local vc_action="%F{238}%a %f%F{236}${char_arrow}%f"
-local vc_unstaged_status="%F{cyan} M ${char_arrow}%f"
+vc_action="%F{black}%a %f%F{black}${char_arrow}%f"
+vc_unstaged_status="%F{cyan} M ${char_arrow}%f"
 
-local vc_git_staged_status="%F{green} A ${char_arrow}%f"
-local vc_git_hash="%F{151}%6.6i%f %F{236}${char_arrow}%f"
-local vc_git_untracked_status="%F{blue} U ${char_arrow}%f"
-
+vc_git_staged_status="%F{green} A ${char_arrow}%f"
+vc_git_hash="%F{green}%6.6i%f %F{black}${char_arrow}%f"
+vc_git_untracked_status="%F{blue} U ${char_arrow}%f"
 
 if [[ $VCS != "" ]]; then
   autoload -Uz vcs_info
@@ -74,10 +73,10 @@ esac
 
 # SEGMENT/SSH_STATUS ===========================================================
 
-local ssh_marker=""
+ssh_marker=""
 
 if [[ -n "$SSH_CLIENT" || -n "$SSH2_CLIENT" ]]; then
- ssh_marker="%F{green}SSH%f%F{236}:%f"
+ ssh_marker="%F{green}SSH%f%F{black}:%f"
 fi
 
 # UTILS ========================================================================
@@ -105,10 +104,23 @@ printPsOneLimiter() {
 
 # ENV/VARIABLES/PROMPT_LINES ===================================================
 
-PROMPT="%F{236}${char_up_and_right_divider} ${ssh_marker} %f%F{cyan}%~%f$(prepareGitStatusLine)
-%F{85} ${char_arrow}%f "
+# PS1 arrow - green # PS2 arrow - cyan # PS3 arrow - white
+
+PROMPT="%F{black}${char_up_and_right_divider} ${ssh_marker} %f%F{cyan}%~%f$(prepareGitStatusLine)
+%F{green} ${char_arrow}%f "
 
 RPROMPT=""
+
+# PS2 Example 
+# wc << EOF 
+# wc << HEAR 
+PS2="%F{black} %_ %f%F{cyan}${char_arrow} "
+
+# PS3 The value of this parameter is used as the prompt for the select
+# command (see SHELL GRAMMAR above).
+# PS3 Example 
+# select x in foo bar baz; do echo $x; done
+PS3=" ${char_arrow} "
 
 # ENV/HOOKS ==================================================================== 
 
@@ -121,19 +133,31 @@ precmd() {
 
 # ENV/VARIABLES/LS_COLORS ======================================================
 
-LSCOLORS=gxafexDxfxegedabagacad
-export LSCOLORS
+LSCOLORS=gxafexdxfxagadabagacad
+export LSCOLORS                                                             #BSD
 
-LS_COLORS=$LS_COLORS:"di=36":"ln=30;45":"so=34:pi=33":"ex=35":"bd=34;46":"cd=34;43":"su=30;41":"sg=30;46":"ow=30;43":"tw=30;42":"*.js=0;33":"*.json=33":"*.jsx=38;5;117":"*.ts=38;5;75":"*.css=38;5;27":"*.scss=38;5;169"
-export LS_COLORS
+LS_COLORS="di=36:ln=30;45:so=34:pi=33:ex=35:bd=30;46:cd=30;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
+export LS_COLORS                                                            #GNU
+
+# ENV/VARIABLES/LESS AND MAN ===================================================
+
+export LESS='--quit-if-one-screen --ignore-case --status-column --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init --window=-4'
+export LESS_TERMCAP_mb=$'\x1b[0;36m'                                # begin bold
+export LESS_TERMCAP_md=$'\x1b[0;34m'                               # begin blink
+export LESS_TERMCAP_me=$'\x1b[0m'                             # reset bold/blink
+export LESS_TERMCAP_so=$' \x1b[0;42;30m '                  # begin reverse video
+export LESS_TERMCAP_se=$' \x1b[0m'
+export LESS_TERMCAP_us=$'\x1b[0m\x1b[0;32m'                    # begin underline
+export LESS_TERMCAP_ue=$'\x1b[0m'                              # reset underline
+export GROFF_NO_SGR=1     
 
 # SEGMENT/COMPLETION ===========================================================
 
 setopt MENU_COMPLETE
 
-local completion_descriptions="%B%F{85} ${char_arrow} %f%%F{green}%d%b%f"
-local completion_warnings="%F{yellow} ${char_arrow} %fno matches for %F{green}%d%f"
-local completion_error="%B%F{red} ${char_arrow} %f%e %d error"
+completion_descriptions="%F{blue} ${char_arrow} %f%%F{green}%d%f"
+completion_warnings="%F{yellow} ${char_arrow} %fno matches for %F{green}%d%f"
+completion_error="%B%F{red} ${char_arrow} %f%e %d error"
 
 zstyle ':completion:*' completer _expand _complete _ignored _approximate
 zstyle ':completion:*' use-cache on
@@ -145,7 +169,7 @@ zstyle ':completion:*' group-name ''
 
 zstyle ':completion:*:*:*:*:descriptions' format $completion_descriptions
 zstyle ':completion:*:*:*:*:corrections' format $completion_error
-zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS} "ma=38;5;253;48;5;23"
+zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS} "ma=0;42;30"
 zstyle ':completion:*:*:*:*:warnings' format $completion_warnings
 zstyle ':completion:*:*:*:*:messages' format "%d"
 
@@ -157,4 +181,7 @@ zstyle ':completion:*:functions' ignored-patterns "_*"
 
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
+zstyle ':completion:*:parameters' list-colors '=*=34'
+zstyle ':completion:*:options' list-colors '=^(-- *)=34'
+zstyle ':completion:*:commands' list-colors '=*=1;34'
 # ==============================================================================
