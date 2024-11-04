@@ -140,6 +140,18 @@ export LSCOLORS                                                             #BSD
 LS_COLORS="di=36:ln=30;45:so=34:pi=33:ex=35:bd=30;46:cd=30;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
 export LS_COLORS                                                            #GNU
 
+# ENV/VARIABLES/LESS AND MAN ===================================================
+
+export LESS='--quit-if-one-screen --ignore-case --status-column --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init --window=-4'
+export LESS_TERMCAP_mb=$'\x1b[0;36m'                                # begin bold
+export LESS_TERMCAP_md=$'\x1b[0;34m'                               # begin blink
+export LESS_TERMCAP_me=$'\x1b[0m'                             # reset bold/blink
+export LESS_TERMCAP_so=$' \x1b[0;42;30m '                  # begin reverse video
+export LESS_TERMCAP_se=$' \x1b[0m'
+export LESS_TERMCAP_us=$'\x1b[0m\x1b[0;32m'                    # begin underline
+export LESS_TERMCAP_ue=$'\x1b[0m'                              # reset underline
+export GROFF_NO_SGR=1     
+
 # SEGMENT/COMPLETION ===========================================================
 
 setopt MENU_COMPLETE
