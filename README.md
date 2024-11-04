@@ -82,4 +82,4 @@ You can find this color scheme for other terminal emulators in the [mbadolato](h
 
 ---
 
-License [WTFPL](https://github.com/egorlem/ultima.zsh-theme/blob/4e47c5242a9ec2231a7fc61245059573b67bc53f/LICENSE.md) : [Egor Lem](https://egorlem.com/)
+License [WTFPL](https://github.com/egorlem/ultima.zsh-theme/blob/764b2cb1f47cb45aaeebc07f4a7670c1c3ddd3fd/LICENSE.txt) : [Egor Lem](https://egorlem.com/)
