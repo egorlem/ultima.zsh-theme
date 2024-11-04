@@ -182,4 +182,7 @@ zstyle ':completion:*:functions' ignored-patterns "_*"
 
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
+zstyle ':completion:*:parameters' list-colors '=*=34'
+zstyle ':completion:*:options' list-colors '=^(-- *)=34'
+zstyle ':completion:*:commands' list-colors '=*=1;34'
 # ==============================================================================
