@@ -1,7 +1,13 @@
 # ultima.zsh-theme — theme and settings for Z shell
 
-## **Preview**
+**Minimalistic .zshrc config contains all of the settings required for comfortable terminal use**
 
+![GitHub Release](https://img.shields.io/github/v/release/egorlem/ultima.zsh-theme?style=for-the-badge&color=%2384D5AC&labelColor=%23303030)
+![GitHub License](https://img.shields.io/github/license/egorlem/ultima.zsh-theme?style=for-the-badge&color=%235DB0D9&labelColor=%23303030)
+
+---
+
+## **Preview**
 ![item zsh prompt](https://github.com/egorlem/021011/blob/main/demos/zsh-theme-demo-min.png?raw=true)
 
 ---
