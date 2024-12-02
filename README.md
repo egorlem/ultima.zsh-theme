@@ -2,8 +2,9 @@
 
 **Minimalistic .zshrc config contains all of the settings required for comfortable terminal use**
 
-![GitHub Release](https://img.shields.io/github/v/release/egorlem/ultima.zsh-theme?style=for-the-badge&color=%2384D5AC&labelColor=%23303030)
-![GitHub License](https://img.shields.io/github/license/egorlem/ultima.zsh-theme?style=for-the-badge&color=%235DB0D9&labelColor=%23303030)
+![GitHub Release](https://img.shields.io/github/v/release/egorlem/ultima.zsh-theme?style=for-the-badge&color=7CD996&labelColor=212121)
+![GitHub License](https://img.shields.io/github/license/egorlem/ultima.zsh-theme?style=for-the-badge&color=59D9D0&labelColor=212121)
+![GitHub Repo stars](https://img.shields.io/github/stars/egorlem/ultima.zsh-theme?style=for-the-badge&labelColor=212121&color=59D9D0)
 
 ---
 
