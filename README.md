@@ -4,7 +4,7 @@
 
 ![GitHub Release](https://img.shields.io/github/v/release/egorlem/ultima.zsh-theme?style=for-the-badge&color=7CD996&labelColor=212121)
 ![GitHub License](https://img.shields.io/github/license/egorlem/ultima.zsh-theme?style=for-the-badge&color=59D9D0&labelColor=212121)
-![GitHub Repo stars](https://img.shields.io/github/stars/egorlem/ultima.zsh-theme?style=for-the-badge&labelColor=212121&color=59D9D0)
+<!-- ![GitHub Repo stars](https://img.shields.io/github/stars/egorlem/ultima.zsh-theme?style=for-the-badge&labelColor=212121&color=59D9D0) -->
 
 ---
 
