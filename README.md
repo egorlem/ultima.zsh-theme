@@ -69,9 +69,10 @@ mv ~/ultima-shell/ultima.zsh-theme $ZSH/themes/ultima.zsh-theme
 
 ## **Recommended settings and compatibility**
 
-### Color schema
+<!-- ### Color schema
 
-[Color scheme for term](https://github.com/egorlem/guezwhoz-scheme/blob/main/color-scheme/guezwhoz-scheme.yaml). Mac Os users can set color scheme for iTerm2 from [repo](https://github.com/egorlem/guezwhoz-iterm2-theme)
+[Color scheme for term](https://github.com/egorlem/guezwhoz-scheme/blob/main/color-scheme/guezwhoz-scheme.yaml). Mac Os users can set color scheme for iTerm2 from [repo](https://github.com/egorlem/guezwhoz-iterm2-theme) 
+-->
 
 ### Fonts
 
