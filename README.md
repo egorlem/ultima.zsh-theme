@@ -8,7 +8,6 @@
 
 ---
 
-## **Preview**
 ![item zsh prompt](https://github.com/egorlem/021011/blob/main/demos/zsh-theme-demo-min.png?raw=true)
 
 ---
@@ -83,10 +82,8 @@ The font is already available characters that are used in the theme and are idea
 
 ---
 
-## **Extra**
+<!-- ## **Extra**
 
-You can find this color scheme for other terminal emulators in the [mbadolato](https://github.com/mbadolato/iTerm2-Color-Schemes) color scheme repository
-
----
+You can find this color scheme for other terminal emulators in the [mbadolato](https://github.com/mbadolato/iTerm2-Color-Schemes) color scheme repository -->
 
 License [WTFPL](https://github.com/egorlem/ultima.zsh-theme/blob/764b2cb1f47cb45aaeebc07f4a7670c1c3ddd3fd/LICENSE.txt) : [Egor Lem](https://egorlem.com/)
