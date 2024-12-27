@@ -183,6 +183,8 @@ If you need any help, feel free to reach out by opening an issue or starting a d
 
 Thank you for contributing to `ultima.zsh-theme`!
 
+---
+
 ## License
 
 This project is licensed under the __Do What The F*ck You Want To Public License__. See the [LICENSE](https://github.com/egorlem/ultima.zsh-theme/blob/f8a01d549ee38e720a597f9632ccf7960c7b9c8e/LICENSE) file for details.
