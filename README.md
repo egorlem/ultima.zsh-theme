@@ -31,6 +31,8 @@ These features make the `ultima.zsh-theme` a powerful and versatile theme for Z 
 
 ---
 
+<!-- 
+
 ## Multi-Line Prompt
 
 The Multi-Line prompt is designed to enhance readability and provide useful information in a structured manner. It splits the shell prompt into three distinct lines, each serving a specific purpose. Let's break down each line:
@@ -85,6 +87,8 @@ The prompt also includes a segment dedicated to displaying the status of the ver
   - **Repository Status**: Shows the overall status of the repository.
 
 ---
+
+-->
 
 ## **Installation**
 
