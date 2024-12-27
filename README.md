@@ -1,6 +1,6 @@
 # ultima.zsh-theme — Theme and Settings for Z Shell
 
-`ultima.zsh-theme` is a Z shell (Zsh) theme designed to improve the terminal experience with a minimalist configuration and a structured three-line prompt. It enhances readability and functionality by displaying essential information such as the SSH connection status, current working directory, and version control system (VCS) status directly in the prompt. The theme also integrates with Git, SVN, and Mercurial, providing a clear and organized view of repository status, along with advanced completion settings and customized configurations for less and man.
+**Minimalistic `.zshrc` configuration file designed to provide all the necessary settings for a comfortable terminal experience**
 
 ![GitHub Release](https://img.shields.io/github/v/release/egorlem/ultima.zsh-theme?style=for-the-badge&color=7CD996&labelColor=212121)
 ![Static Badge](https://img.shields.io/badge/License-WTFPL-blue?style=for-the-badge&labelColor=212121&color=59D9D0&link=https%3A%2F%2Fgithub.com%2Fegorlem%2Fultima.zsh-theme%2Fblob%2Ff8a01d549ee38e720a597f9632ccf7960c7b9c8e%2FLICENSE)
@@ -33,7 +33,7 @@ These features make the `ultima.zsh-theme` a powerful and versatile theme for Z 
 
 ## Multi-Line Prompt
 
-The ulti-Line prompt is designed to enhance readability and provide useful information in a structured manner. It splits the shell prompt into three distinct lines, each serving a specific purpose. Let's break down each line:
+The Multi-Line prompt is designed to enhance readability and provide useful information in a structured manner. It splits the shell prompt into three distinct lines, each serving a specific purpose. Let's break down each line:
 
 ### First Line: Separator
 
@@ -43,11 +43,6 @@ The first line acts as a visual separator. It helps to clearly distinguish the o
 ### Second Line: Information Line
 
 The second line is divided into three segments and provides essential information about the current state of the terminal. This line typically includes details such as the SSH connection status, the current working directory, and the version control system (VCS) status.
-
-### Third Line: Input Line
-
-The third line is for command input, providing a clear space for entering new commands.
-
 
 #### SSH Connection Segment
 
@@ -64,11 +59,15 @@ The third line is for command input, providing a clear space for entering new co
 - **Purpose:** Shows the version control system status for the current directory, typically for Git repositories.
 - **Display:** Information about the current branch, staged changes, and uncommitted changes.
 
+### Third Line: Input Line
+
+The third line is for command input, providing a clear space for entering new commands.
+
 ---
 
 ## VCS Integration
 
-The three-line prompt also includes a segment dedicated to displaying the status of the version control system (VCS). This allows users to quickly see the current state of the repository directly in the terminal. Here's a breakdown of this segment:
+The prompt also includes a segment dedicated to displaying the status of the version control system (VCS). This allows users to quickly see the current state of the repository directly in the terminal. Here's a breakdown of this segment:
 
 #### VCS Status Segment
 
@@ -173,10 +172,6 @@ We welcome contributions to improve `ultima.zsh-theme`! Here’s how you can hel
 
 If you find any bugs or have feature requests, please open an issue on the GitHub repository. Provide as much detail as possible to help us understand and resolve the issue.
 
-### Code of Conduct
-
-Please adhere to the [Code of Conduct](CODE_OF_CONDUCT.md) in all your interactions with the project.
-
 ### Getting Help
 
 If you need any help, feel free to reach out by opening an issue or starting a discussion in the repository.
@@ -192,5 +187,3 @@ This project is licensed under the __Do What The F*ck You Want To Public License
 ---
 
 Maintained by [Egor Lem](https://egorlem.com/)
-
----
