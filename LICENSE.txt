@@ -1,13 +1,20 @@
-        DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
-                    Version 2, December 2004
 
-Copyright (c) 2024 Egor Lem / egorlem.com
+           DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+                   Version 2, December 2004
+
+Copyright (c) 2024 Egor Lem and contributors · egorlem.com
 
 Everyone is permitted to copy and distribute verbatim or modified
 copies of this license document, and changing it is allowed as long
 as the name is changed.
 
-            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
-   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+           DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+  TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
 
 0. You just DO WHAT THE FUCK YOU WANT TO.
+
+--- 
+
+Legal stuff is boring, but this license isn't! Use the code, share it, modify it, and have fun! 
+As Bukowski said, 'An intellectual says a simple thing in a hard way. An artist says a hard thing in a simple way.' 
+So be an artist in your code and keep it simple yet powerful!
