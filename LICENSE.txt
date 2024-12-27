@@ -13,7 +13,9 @@ as the name is changed.
 
 0. You just DO WHAT THE FUCK YOU WANT TO.
 
---- 
+Note: 
 
-Legal stuff is boring, but this license isn't! Use the code, share it, modify it, and have fun! 
-As Bukowski said, 'An intellectual says a simple thing in a hard way. An artist says a hard thing in a simple way.' So be an artist in your code and keep it simple yet powerful!
+Legal stuff is boring, but this license isn't! Use the code, share it,
+modify it, and have fun! As Bukowski said, 'An intellectual says a
+simple thing in a hard way. An artist says a hard thing in a simple
+way.' So be an artist in your code and keep it simple yet powerful!
