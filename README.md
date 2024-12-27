@@ -176,8 +176,6 @@ If you find any bugs or have feature requests, please open an issue on the GitHu
 
 If you need any help, feel free to reach out by opening an issue or starting a discussion in the repository.
 
-Thank you for contributing to `ultima.zsh-theme`!
-
 ---
 
 ## License
