@@ -16,7 +16,6 @@
 
 ## Features
 
-- **Minimalistic Configuration**: The theme provides a minimalistic `.zshrc` configuration that includes all necessary settings for a comfortable terminal experience.
 - **Multi-Line Prompt**: The prompt is divided into three lines for better readability. The first line separates the previous command's output from the prompt, the second line provides detailed path information, and the third line is for input.
 - **Multiple Prompt Levels**: Provides configurations for secondary and tertiary prompt levels (`PS2` and `PS3`).
 - **SSH Status Indicator**: Displays an indicator when an SSH connection is established.
