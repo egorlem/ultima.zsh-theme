@@ -45,7 +45,7 @@ case "$VCS" in
     zstyle ':vcs_info:git:*' stagedstr $vc_git_staged_status
     zstyle ':vcs_info:git:*' unstagedstr $vc_unstaged_status
     zstyle ':vcs_info:git:*' actionformats "  ${vc_action} ${vc_git_hash}%m%u%c${char_badge} ${vc_branch_name}"
-    zstyle ':vcs_info:git:*' formats " %c%u%m${char_badge} ${vc_branch_name}"
+    zstyle ':vcs_info:git:*' formats " %c%u%m${char_badge} ${vc_git_hash} ${vc_branch_name}"
   ;;
 
   # svn sepecific 
