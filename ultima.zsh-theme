@@ -1,22 +1,34 @@
-# Ultima zsh theme p2.c7 - https://github.com/egorlem/ultima.zsh-theme
-# Minimalistic .zshrc config contains all of the settings required for comfortable terminal use ...
-# This code doesn't provide much value, but it will make using zsh a little more enjoyable.
+# Ultima Zsh Theme p2.c7 - https://github.com/egorlem/ultima.zsh-theme
+#
+# Minimalistic .zshrc config contains all of the settings required for 
+# comfortable terminal use.
+#
+# This code doesn't provide much value, but it will make using zsh a little more
+# enjoyable.
+#
+# ------------------------------------------------------------------------------
+# Authors
+# -------
+#
+#  * Egor Lem <guezwhoz@gmail.com> / egorlem.com
+#
+# ------------------------------------------------------------------------------
 
 autoload -Uz compinit; compinit
 
-# LOCAL/VARIABLES/ANSI =========================================================
+# LOCAL/VARIABLES/ANSI ---------------------------------------------------------
 
 ANSI_reset="\x1b[0m"
 ANSI_dim_black="\x1b[0;30m"
 
-# LOCAL/VARIABLES/GRAPHIC ======================================================
+# LOCAL/VARIABLES/GRAPHIC ------------------------------------------------------
 
 char_arrow="›"                                                  #Unicode: \u203a
 char_up_and_right_divider="└"                                   #Unicode: \u2514
 char_down_and_right_divider="┌"                                 #Unicode: \u250c
 char_vertical_divider="─"                                       #Unicode: \u2500
 
-# SEGMENT/VCS_STATUS_LINE ======================================================
+# SEGMENT/VCS_STATUS_LINE ------------------------------------------------------
 
 export VCS="git"
 
@@ -71,7 +83,7 @@ esac
   fi
 }
 
-# SEGMENT/SSH_STATUS ===========================================================
+# SEGMENT/SSH_STATUS -----------------------------------------------------------
 
 ssh_marker=""
 
@@ -79,7 +91,7 @@ if [[ -n "$SSH_CLIENT" || -n "$SSH2_CLIENT" ]]; then
  ssh_marker="%F{green}SSH%f%F{black}:%f"
 fi
 
-# UTILS ========================================================================
+# UTILS ------------------------------------------------------------------------
 
 setopt PROMPT_SUBST
 
@@ -102,7 +114,7 @@ printPsOneLimiter() {
   echo $ANSI_dim_black$char_down_and_right_divider$spacing$ANSI_reset
 }
 
-# ENV/VARIABLES/PROMPT_LINES ===================================================
+# ENV/VARIABLES/PROMPT_LINES ---------------------------------------------------
 
 # PS1 arrow - green # PS2 arrow - cyan # PS3 arrow - white
 
@@ -122,7 +134,7 @@ PS2="%F{black} %_ %f%F{cyan}${char_arrow} "
 # select x in foo bar baz; do echo $x; done
 PS3=" ${char_arrow} "
 
-# ENV/HOOKS ==================================================================== 
+# ENV/HOOKS --------------------------------------------------------------------
 
 precmd() {
   if [[ $VCS != "" ]]; then
@@ -131,7 +143,7 @@ precmd() {
   printPsOneLimiter
 }
 
-# ENV/VARIABLES/LS_COLORS ======================================================
+# ENV/VARIABLES/LS_COLORS ------------------------------------------------------
 
 LSCOLORS=gxafexdxfxagadabagacad
 export LSCOLORS                                                             #BSD
@@ -139,7 +151,7 @@ export LSCOLORS                                                             #BSD
 LS_COLORS="di=36:ln=30;45:so=34:pi=33:ex=35:bd=30;46:cd=30;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
 export LS_COLORS                                                            #GNU
 
-# ENV/VARIABLES/LESS AND MAN ===================================================
+# ENV/VARIABLES/LESS AND MAN ---------------------------------------------------
 
 export LESS='--quit-if-one-screen --ignore-case --status-column --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init --window=-4'
 export LESS_TERMCAP_mb=$'\x1b[0;36m'                                # begin bold
@@ -151,7 +163,7 @@ export LESS_TERMCAP_us=$'\x1b[0m\x1b[0;32m'                    # begin underline
 export LESS_TERMCAP_ue=$'\x1b[0m'                              # reset underline
 export GROFF_NO_SGR=1     
 
-# SEGMENT/COMPLETION ===========================================================
+# SEGMENT/COMPLETION -----------------------------------------------------------
 
 setopt MENU_COMPLETE
 
@@ -184,4 +196,5 @@ zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f
 zstyle ':completion:*:parameters' list-colors '=*=34'
 zstyle ':completion:*:options' list-colors '=^(-- *)=34'
 zstyle ':completion:*:commands' list-colors '=*=1;34'
-# ==============================================================================
+
+# ------------------------------------------------------------------------------
