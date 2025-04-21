@@ -16,7 +16,6 @@
 
 ## Features
 
-- **Minimalistic Configuration**: The theme provides a minimalistic `.zshrc` configuration that includes all necessary settings for a comfortable terminal experience.
 - **Multi-Line Prompt**: The prompt is divided into three lines for better readability. The first line separates the previous command's output from the prompt, the second line provides detailed path information, and the third line is for input.
 - **Multiple Prompt Levels**: Provides configurations for secondary and tertiary prompt levels (`PS2` and `PS3`).
 - **SSH Status Indicator**: Displays an indicator when an SSH connection is established.
@@ -30,6 +29,8 @@
 These features make the `ultima.zsh-theme` a powerful and versatile theme for Z shell users, enhancing both functionality and aesthetics.
 
 ---
+
+<!-- 
 
 ## Multi-Line Prompt
 
@@ -85,6 +86,8 @@ The prompt also includes a segment dedicated to displaying the status of the ver
   - **Repository Status**: Shows the overall status of the repository.
 
 ---
+
+-->
 
 ## **Installation**
 
@@ -175,8 +178,6 @@ If you find any bugs or have feature requests, please open an issue on the GitHu
 ### Getting Help
 
 If you need any help, feel free to reach out by opening an issue or starting a discussion in the repository.
-
-Thank you for contributing to `ultima.zsh-theme`!
 
 ---
 
