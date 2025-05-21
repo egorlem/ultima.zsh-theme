@@ -106,7 +106,7 @@ git clone https://github.com/egorlem/ultima.zsh-theme ~/ultima-shell
 echo 'source ~/ultima-shell/ultima.zsh-theme' >> ~/.zshrc
 ```
 
-### **Oh My Zsh**
+### **[Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh)**
 
 1. Clone the repository:
 
@@ -121,6 +121,14 @@ mv ~/ultima-shell/ultima.zsh-theme $ZSH/themes/ultima.zsh-theme
 ```
 
 3. Go to your `~/.zshrc` file and set `ZSH_THEME=ultima`
+
+### **[ZIM:FW](https://github.com/zimfw/zimfw)**
+
+1. Update your .zimrc file:
+
+```shell
+echo 'zmodule egorlem/ultima.zsh-theme -n ultima' >> ~/.zimrc
+```
 
 ---
 
