@@ -5,9 +5,6 @@
 ![GitHub Release](https://img.shields.io/github/v/release/egorlem/ultima.zsh-theme?style=for-the-badge&color=7CD996&labelColor=212121)
 ![Static Badge](https://img.shields.io/badge/License-WTFPL-blue?style=for-the-badge&labelColor=212121&color=59D9D0&link=https%3A%2F%2Fgithub.com%2Fegorlem%2Fultima.zsh-theme%2Fblob%2Ff8a01d549ee38e720a597f9632ccf7960c7b9c8e%2FLICENSE)
 
-
-<!-- ![GitHub Repo stars](https://img.shields.io/github/stars/egorlem/ultima.zsh-theme?style=for-the-badge&labelColor=212121&color=59D9D0) -->
-
 ---
 
 ![item zsh prompt](https://github.com/egorlem/021011/blob/main/demos/zsh-theme-demo-min.png?raw=true) 
@@ -29,65 +26,6 @@
 These features make the `ultima.zsh-theme` a powerful and versatile theme for Z shell users, enhancing both functionality and aesthetics.
 
 ---
-
-<!-- 
-
-## Multi-Line Prompt
-
-The Multi-Line prompt is designed to enhance readability and provide useful information in a structured manner. It splits the shell prompt into three distinct lines, each serving a specific purpose. Let's break down each line:
-
-### First Line: Separator
-
-The first line acts as a visual separator. It helps to clearly distinguish the output of the previous command from the next prompt. This makes it easier to read the terminal output, especially when dealing with long or complex commands.
-
-
-### Second Line: Information Line
-
-The second line is divided into three segments and provides essential information about the current state of the terminal. This line typically includes details such as the SSH connection status, the current working directory, and the version control system (VCS) status.
-
-#### SSH Connection Segment
-
-- **Purpose:** Indicates whether an SSH connection is currently established.
-- **Display:** A badge or icon that changes based on the SSH connection status.
-
-#### Directory Segment
-
-- **Purpose:** Displays the current working directory.
-- **Display:** The full path to the current directory, often abbreviated to show only the necessary parts.
-
-#### VCS Status Segment
-
-- **Purpose:** Shows the version control system status for the current directory, typically for Git repositories.
-- **Display:** Information about the current branch, staged changes, and uncommitted changes.
-
-### Third Line: Input Line
-
-The third line is for command input, providing a clear space for entering new commands.
-
----
-
-## VCS Integration
-
-The prompt also includes a segment dedicated to displaying the status of the version control system (VCS). This allows users to quickly see the current state of the repository directly in the terminal. Here's a breakdown of this segment:
-
-#### VCS Status Segment
-
-- **Purpose**: Displays the status of the version control system for the current directory, supporting Git, SVN, and Mercurial.
-- **Display**: Includes information about the current branch, staged changes, uncommitted changes, and untracked files.
-
-- **Git Integration**:
-  - **Branch Name**: Displays the current branch of the repository.
-  - **Staged Changes**: Shows the count and type of changes that are staged.
-  - **Uncommitted Changes**: Indicates the presence of uncommitted changes.
-  - **Untracked Files**: Informs about the presence of untracked files in the current directory.
-
-- **SVN and Mercurial Integration**:
-  - **Branch Name**: Displays the current branch of the repository.
-  - **Repository Status**: Shows the overall status of the repository.
-
----
-
--->
 
 ## **Installation**
 
@@ -122,7 +60,7 @@ mv ~/ultima-shell/ultima.zsh-theme $ZSH/themes/ultima.zsh-theme
 
 3. Go to your `~/.zshrc` file and set `ZSH_THEME=ultima`
 
-### **[ZIM:FW](https://github.com/zimfw/zimfw)**
+### **[Zim](https://github.com/zimfw/zimfw)**
 
 1. Update your .zimrc file:
 
