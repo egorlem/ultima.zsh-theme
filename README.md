@@ -68,6 +68,12 @@ mv ~/ultima-shell/ultima.zsh-theme $ZSH/themes/ultima.zsh-theme
 echo 'zmodule egorlem/ultima.zsh-theme -n ultima' >> ~/.zimrc
 ```
 
+### **[zcomet](https://github.com/agkozak/zcomet)**
+
+1. Add `zcomet load egorlem/ultima.zsh-theme` to ~/.zshrc file.
+
+_Make sure you have `zcomet compinit` somewhere after it._
+
 ---
 
 ## **Recommended settings and compatibility**
