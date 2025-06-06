@@ -16,11 +16,11 @@
 - **Multi-Line Prompt:** The prompt is divided into three lines for better readability. The first line separates the previous command's output from the prompt, the second line provides detailed path information, and the third line is for input.
 - **Multiple Prompt Levels:** Configurations for secondary and tertiary prompt levels (`PS2` and `PS3`) are included.
 - **SSH Status Indicator:** Displays an indicator when an SSH connection is established.
-- **VCS (Version Control System) Integration:** Supports Git, SVN, and Mercurial for showing branch and repository status directly in the prompt.
+- **VCS (Version Control System) Integration:** Supports **Git**, **SVN**, and **Mercurial** for showing branch and repository status directly in the prompt.
     - **Git Integration:** Shows branch name, staged and unstaged changes, and untracked files.
     - **SVN and Mercurial Integration:** Shows branch name and repository status.
 - **Completion Enhancements:** Advanced completion settings, including menu completion, caching, and various completion styles and formats.
-- **LS_COLORS Configuration:** Configures `LS_COLORS` for both BSD and GNU systems to enhance directory listings.
+- **LS_COLORS Configuration:** Configures `LS_COLORS` for both **BSD** and **GNU** systems to enhance directory listings.
 - **LESS and MAN Configuration:** Customizes the behavior and appearance of `less` and `man` pages.
 
 These features make `ultima.zsh-theme` a powerful and versatile theme for Z shell users, enhancing both functionality and aesthetics.
@@ -86,12 +86,11 @@ _Requires [git](https://git-scm.com/)_
 
 For the best experience, use the **Ghostty** terminal together with the **Guezwhoz** color scheme.
 
-**About the color scheme:**  
 **Guezwhoz** is a balanced color scheme designed with a focus on visual comfort and readability.  
 The theme meets the WCAG 2.1 AA accessibility standard and is based on the principles of analogous color harmony, providing a pleasant, cohesive color experience during long terminal sessions.
 
 **For [Ghostty](https://github.com/ghostty-org/ghostty) and [Wezterm](https://github.com/wezterm/wezterm) users:**  
-Set the color scheme to `guezwhoz` in your terminal configuration. **Guezwhoz** is bundled by default with Ghostty and Wezterm—no additional installation required.
+Set the color scheme to `guezwhoz` in your terminal configuration. **Guezwhoz** is bundled by default with **Ghostty** and **Wezterm**—no additional installation required.
 
 **For other terminals:**  
 You can install the **Guezwhoz** theme from the [@mbadolato/iTerm2-Color-Schemes](https://github.com/mbadolato/iTerm2-Color-Schemes) repository.
