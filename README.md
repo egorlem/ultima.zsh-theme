@@ -87,7 +87,7 @@ _Requires [git](https://git-scm.com/)_
 For the best experience, use the **Ghostty** terminal together with the **Guezwhoz** color scheme.
 
 **Guezwhoz** is a balanced dark color scheme designed with a focus on visual comfort and readability.  
-The theme meets the WCAG accessibility standard and is based on the principles of analogous color harmony, providing a pleasant, cohesive color experience during long terminal sessions.
+The theme meets the WCAG 2.1 AA accessibility standard and is based on the principles of analogous color harmony, providing a pleasant, cohesive color experience during long terminal sessions.
 
 **For [Ghostty](https://github.com/ghostty-org/ghostty) and [Wezterm](https://github.com/wezterm/wezterm) users:**  
 Set the color scheme to `guezwhoz` in your terminal configuration. **Guezwhoz** is bundled by default with **Ghostty** and **Wezterm**—no additional installation required.
