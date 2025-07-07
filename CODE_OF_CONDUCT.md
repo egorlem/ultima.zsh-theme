@@ -1,1 +1,3 @@
-# Code of Conduct: Don’t ruin the vibe.  
+# Code of Conduct
+
+**I. Don’t ruin the vibe.**
