@@ -25,4 +25,4 @@ jobs:
           git remote add sourcecraft https://guezwhoz:${SOURCECRAFT_TOKEN}@git.sourcecraft.dev/egorlem/ultima-zsh-theme.git
           git add README.md
           git commit -m "Sync Russian README to Sourcecraft" || echo "No changes to commit"
-          git push sourcecraft main
+          git push --forse sourcecraft main
