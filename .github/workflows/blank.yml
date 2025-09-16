@@ -9,7 +9,7 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-    teps:
+    steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
