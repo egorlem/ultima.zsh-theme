@@ -22,7 +22,7 @@ jobs:
         run: |
           git config --global user.email "torridtime@gmail.com"
           git config --global user.name "Egor Lem"
-          git remote add sourcecraft https://<guez-whoz>:${SOURCECRAFT_TOKEN}@git.sourcecraft.dev/egorlem/ultima-zsh-theme.git
+          git remote add sourcecraft https://guez-whoz:${SOURCECRAFT_TOKEN}@git.sourcecraft.dev/egorlem/ultima-zsh-theme.git
           git add .
           git commit -m "Sync all changes with Russian README to Sourcecraft" || echo "Nothing to commit"
           git push --force sourcecraft main
