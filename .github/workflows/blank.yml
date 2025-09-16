@@ -1,0 +1,28 @@
+name: Sync to Sourcecraft
+
+on:
+  push:
+    branches:
+      - main         # или ваша основная ветка
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set Russian README for Sourcecraft
+        run: |
+          cp README.ru.md README.md
+
+      - name: Push to Sourcecraft
+        env:
+          SOURCECRAFT_TOKEN: ${{ secrets.SOURCECRAFT_TOKEN }}
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git remote add sourcecraft https://<sourcecraft_user>:${SOURCECRAFT_TOKEN}@sourcecraft.com/<owner>/<repo>.git
+          git add README.md
+          git commit -m "Sync Russian README to Sourcecraft" || echo "No changes to commit"
+          git push sourcecraft main
