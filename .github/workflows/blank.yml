@@ -9,6 +9,7 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
+    teps:
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -16,13 +17,13 @@ jobs:
         run: |
           cp README.ru.md README.md
 
-      - name: Push to Sourcecraft
+      - name: Push all changes to Sourcecraft
         env:
           SOURCECRAFT_TOKEN: ${{ secrets.SOURCECRAFT_TOKEN }}
         run: |
           git config --global user.email "torridtime@gmail.com"
           git config --global user.name "Egor Lem"
           git remote add sourcecraft https://guezwhoz:${SOURCECRAFT_TOKEN}@git.sourcecraft.dev/egorlem/ultima-zsh-theme.git
-          git add README.md
-          git commit -m "Sync Russian README to Sourcecraft" || echo "No changes to commit"
-          git push --forse sourcecraft main
+          git add .
+          git commit -m "Sync all changes with Russian README to Sourcecraft" || echo "Nothing to commit"
+          git push --force sourcecraft main
