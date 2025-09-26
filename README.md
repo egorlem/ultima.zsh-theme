@@ -153,6 +153,16 @@ If you need any help, feel free to reach out by opening an issue or starting a d
 
 ---
 
+## Acknowledgments
+
+Special thanks to the ZSH community for their support and contributions. Ultima's design has inspired a small ecosystem of derivative themes:
+
+- **[Suprima ASRA](https://github.com/mohdismailmatasin/suprima-asra)** - Expands on Ultima's minimalism with practical status indicators — battery level, active Python venv, Node.js version, Docker context, command execution time, etc.
+
+It's rewarding to see the project's ideas extended by the community.
+
+---
+
 ## License
 
 This project is licensed under the __Do What The F*ck You Want To Public License__. See the [LICENSE](https://github.com/egorlem/ultima.zsh-theme/blob/f8a01d549ee38e720a597f9632ccf7960c7b9c8e/LICENSE) file for details.
