@@ -161,6 +161,15 @@ Special thanks to the ZSH community for their support and contributions. Ultima'
 
 It's rewarding to see the project's ideas extended by the community.
 
+
+## Acknowledgments
+
+Special thanks to the ZSH community for their support and contributions. Ultima's minimalistic approach has inspired derivative works, including:
+
+- **[Suprima ASRA](https://github.com/mohdismailmatasin/suprima-asra)** — expands on Ultima's minimalism with practical status indicators: battery level, active Python venv, Node.js version, Docker status, and more.
+
+It's rewarding to see the project's ideas extended by the community. I’m always open to new ideas, improvements, and derivative works—feel free to share and build.
+
 ---
 
 ## License
