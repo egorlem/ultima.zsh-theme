@@ -155,7 +155,7 @@ If you need any help, feel free to reach out by opening an issue or starting a d
 
 ## Acknowledgments
 
-Special thanks to the ZSH community for their support and contributions. Ultima's design has inspired a small ecosystem of derivative themes:
+Special thanks to the ZSH community for their support and contributions. Ultima's minimalistic approach has inspired derivative works, including:
 
 - **[Suprima ASRA](https://github.com/mohdismailmatasin/suprima-asra)** - Expands on Ultima's minimalism with practical status indicators — battery level, active Python venv, Node.js version, Docker context, command execution time, etc.
 
