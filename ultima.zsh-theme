@@ -22,7 +22,7 @@ ULTIMA_MODULES_DIR="$ULTIMA_DIR/modules"
 ULTIMA_MODULES=("less" "ls" "completion")
 
 # Загрузка модулей
-ultima_load_module() {
+ultimaLoadModule() {
   local module_file="$ULTIMA_MODULES_DIR/$1.zsh"
   if [[ -f "$module_file" ]]; then
     source "$module_file"
@@ -35,7 +35,7 @@ ultima_load_module() {
 if [[ -d "$ULTIMA_MODULES_DIR" ]]; then
   # Загружаем все указанные модули
   for module in $ULTIMA_MODULES; do
-    ultima_load_module "$module"
+    ultimaLoadModule "$module"
   done
 else
   echo "Ultima: running in minimal mode without modules"

@@ -1,7 +1,4 @@
-# Ultima LESS Configuration Module
-# Источник: ${${(%):-%x}:A}
-
-# Ultima Completion Module
+# Ultima Completion Configuration Module
 #
 # This code doesn't provide much value, but it will make using zsh a little more
 # enjoyable.

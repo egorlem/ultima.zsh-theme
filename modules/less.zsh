@@ -1,7 +1,4 @@
-# Ultima LESS Configuration Module
-# Источник: ${${(%):-%x}:A}
-
-# Ultima LESS Configuration Module
+# Ultima Completion Configuration Module
 #
 # This code doesn't provide much value, but it will make using zsh a little more
 # enjoyable.
@@ -26,7 +23,7 @@ initLessSettings() {
   export GROFF_NO_SGR=1
   
   # Регистрируем модуль
-  ULTIMA_LOADED_MODULES+=(less)
+  # ULTIMA_LOADED_MODULES+=(less)
 
   echo "Ultima: less module initialized"
 }

@@ -1,5 +1,15 @@
-# Ultima LS Colors Module
-# Настройки цветов для ls команды
+# Ultima LS Configuration Module
+#
+# This code doesn't provide much value, but it will make using zsh a little more
+# enjoyable.
+#
+# ------------------------------------------------------------------------------
+# Authors
+# -------
+#
+#  * Egor Lem <guezwhoz@gmail.com> / egorlem.com
+#
+# ------------------------------------------------------------------------------
 
 initLsSettings() {
   LSCOLORS=gxafexdxfxagadabagacad
