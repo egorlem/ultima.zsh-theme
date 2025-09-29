@@ -3,9 +3,6 @@
 # Minimalistic .zshrc config contains all of the settings required for 
 # comfortable terminal use.
 #
-# This code doesn't provide much value, but it will make using zsh a little more
-# enjoyable.
-#
 # ------------------------------------------------------------------------------
 # Authors
 # -------
@@ -14,14 +11,49 @@
 #
 # ------------------------------------------------------------------------------
 
-autoload -Uz compinit; compinit
+# ==============================================================================
+# LAZY LOADING
+# ==============================================================================
 
-# Простой и надежный подход - модули ищутся только рядом с темой
+autoload -Uz compinit
+if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
+
+# ==============================================================================
+# CORE CONFIGURATION
+# ==============================================================================
+
+ULTIMA_VERSION="p2.c8"
 ULTIMA_DIR="${0:A:h}"
 ULTIMA_MODULES_DIR="$ULTIMA_DIR/modules"
 ULTIMA_MODULES=("less" "ls" "completion")
 
-# Загрузка модулей
+# ==============================================================================
+# SHARED VARIABLES (available to all modules)
+# ==============================================================================
+
+# Color schemes for LS and completion
+LSCOLORS="gxafexdxfxagadabagacad"                                                                   # BSD
+LS_COLORS="di=36:ln=30;45:so=34:pi=33:ex=35:bd=30;46:cd=30;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"  # GNU
+export LSCOLORS LS_COLORS
+
+# Graphic characters for consistent UI
+CHAR_ARROW="›"                                                 # Unicode: \u203a
+CHAR_UP_AND_RIGHT_DIVIDER="└"                                  # Unicode: \u2514  
+CHAR_DOWN_AND_RIGHT_DIVIDER="┌"                                # Unicode: \u250c
+CHAR_VERTICAL_DIVIDER="─"                                      # Unicode: \u2500
+
+# ANSI color codes
+ANSI_RESET="\x1b[0m"
+ANSI_DIM_BLACK="\x1b[0;30m"
+
+# ==============================================================================
+# MODULE SYSTEM
+# ==============================================================================
+
 ultimaLoadModule() {
   local module_file="$ULTIMA_MODULES_DIR/$1.zsh"
   if [[ -f "$module_file" ]]; then
@@ -31,9 +63,8 @@ ultimaLoadModule() {
   fi
 }
 
-# Проверяем наличие модулей и загружаем
+# Load modules if available
 if [[ -d "$ULTIMA_MODULES_DIR" ]]; then
-  # Загружаем все указанные модули
   for module in $ULTIMA_MODULES; do
     ultimaLoadModule "$module"
   done
@@ -41,132 +72,94 @@ else
   echo "Ultima: running in minimal mode without modules"
 fi
 
-# ПОСЛЕ загрузки всех модулей устанавливаем флаг
 ULTIMA_CORE_LOADED=1
 
-# LOCAL/VARIABLES/ANSI ---------------------------------------------------------
-
-ANSI_reset="\x1b[0m"
-ANSI_dim_black="\x1b[0;30m"
-
-# LOCAL/VARIABLES/GRAPHIC ------------------------------------------------------
-
-char_arrow="›"                                                  #Unicode: \u203a
-char_up_and_right_divider="└"                                   #Unicode: \u2514
-char_down_and_right_divider="┌"                                 #Unicode: \u250c
-char_vertical_divider="─"                                       #Unicode: \u2500
-
-# SEGMENT/VCS_STATUS_LINE ------------------------------------------------------
+# ==============================================================================
+# PROMPT CONFIGURATION
+# ==============================================================================
 
 export VCS="git"
 
-current_vcs="\":vcs_info:*\" enable $VCS"
-char_badge="%F{black} on %f%F{black}${char_arrow}%f"
-vc_branch_name="%F{green}%b%f"
+# VCS Info setup
+CURRENT_VCS="\":vcs_info:*\" enable $VCS"
+CHAR_BADGE="%F{black} on %f%F{black}${CHAR_ARROW}%f"
+VC_BRANCH_NAME="%F{green}%b%f"
 
-vc_action="%F{black}%a %f%F{black}${char_arrow}%f"
-vc_unstaged_status="%F{cyan} M ${char_arrow}%f"
-
-vc_git_staged_status="%F{green} A ${char_arrow}%f"
-vc_git_hash="%F{green}%6.6i%f %F{black}${char_arrow}%f"
-vc_git_untracked_status="%F{blue} U ${char_arrow}%f"
+VC_ACTION="%F{black}%a %f%F{black}${CHAR_ARROW}%f"
+VC_UNSTAGED_STATUS="%F{cyan} M ${CHAR_ARROW}%f"
+VC_GIT_STAGED_STATUS="%F{green} A ${CHAR_ARROW}%f"
+VC_GIT_HASH="%F{green}%6.6i%f %F{black}${CHAR_ARROW}%f"
+VC_GIT_UNTRACKED_STATUS="%F{blue} U ${CHAR_ARROW}%f"
 
 if [[ $VCS != "" ]]; then
   autoload -Uz vcs_info
-  eval zstyle $current_vcs
+  eval zstyle $CURRENT_VCS
   zstyle ':vcs_info:*' get-revision true
   zstyle ':vcs_info:*' check-for-changes true
 fi
 
 case "$VCS" in 
-   "git")
-    # git sepecific 
-    zstyle ':vcs_info:git*+set-message:*' hooks use_git_untracked
-    zstyle ':vcs_info:git:*' stagedstr $vc_git_staged_status
-    zstyle ':vcs_info:git:*' unstagedstr $vc_unstaged_status
-    zstyle ':vcs_info:git:*' actionformats "  ${vc_action} ${vc_git_hash}%m%u%c${char_badge} ${vc_branch_name}"
-    zstyle ':vcs_info:git:*' formats " %c%u%m${char_badge} ${vc_branch_name}"
-  ;;
-
-  # svn sepecific 
+  "git")
+    zstyle ':vcs_info:git*+set-message:*' hooks useGitUntracked
+    zstyle ':vcs_info:git:*' stagedstr $VC_GIT_STAGED_STATUS
+    zstyle ':vcs_info:git:*' unstagedstr $VC_UNSTAGED_STATUS
+    zstyle ':vcs_info:git:*' actionformats "  ${VC_ACTION} ${VC_GIT_HASH}%m%u%c${CHAR_BADGE} ${VC_BRANCH_NAME}"
+    zstyle ':vcs_info:git:*' formats " %c%u%m${CHAR_BADGE} ${VC_BRANCH_NAME}"
+    ;;
   "svn")
     zstyle ':vcs_info:svn:*' branchformat "%b"
-    zstyle ':vcs_info:svn:*' formats " ${char_badge} ${vc_branch_name}"
-  ;;
-
-  # hg sepecific 
+    zstyle ':vcs_info:svn:*' formats " ${CHAR_BADGE} ${VC_BRANCH_NAME}"
+    ;;
   "hg")
     zstyle ':vcs_info:hg:*' branchformat "%b"
-    zstyle ':vcs_info:hg:*' formats " ${char_badge} ${vc_branch_name}"
-  ;;
+    zstyle ':vcs_info:hg:*' formats " ${CHAR_BADGE} ${VC_BRANCH_NAME}"
+    ;;
 esac
 
-# Show untracked file status char on git status line
-+vi-use_git_untracked() {
++vi-useGitUntracked() {
   if [[ $(git rev-parse --is-inside-work-tree 2>/dev/null) == "true" ]] &&
     git status --porcelain | grep -m 1 "^??" &>/dev/null; then
-    hook_com[misc]=$vc_git_untracked_status
+    hook_com[misc]=$VC_GIT_UNTRACKED_STATUS
   else
     hook_com[misc]=""
   fi
 }
 
-# SEGMENT/SSH_STATUS -----------------------------------------------------------
+# SSH indicator
+SSH_MARKER=""
+[[ -n "$SSH_CLIENT" || -n "$SSH2_CLIENT" ]] && SSH_MARKER="%F{green}SSH%f%F{black}:%f"
 
-ssh_marker=""
-
-if [[ -n "$SSH_CLIENT" || -n "$SSH2_CLIENT" ]]; then
- ssh_marker="%F{green}SSH%f%F{black}:%f"
-fi
-
-# UTILS ------------------------------------------------------------------------
+# ==============================================================================
+# PROMPT DEFINITION
+# ==============================================================================
 
 setopt PROMPT_SUBST
 
-# Prepare git status line
 prepareGitStatusLine() {
   echo '${vcs_info_msg_0_}'
 } 
 
-# Prepare prompt line limiter
 printPsOneLimiter() {
-  local termwidth
-  local spacing=""
-  
+  local termwidth spacing=""
   ((termwidth = ${COLUMNS} - 1))
-  
   for i in {1..$termwidth}; do
-    spacing="${spacing}${char_vertical_divider}"
+    spacing="${spacing}${CHAR_VERTICAL_DIVIDER}"
   done
-  
-  echo $ANSI_dim_black$char_down_and_right_divider$spacing$ANSI_reset
+  echo $ANSI_DIM_BLACK$CHAR_DOWN_AND_RIGHT_DIVIDER$spacing$ANSI_RESET
 }
 
-# ENV/VARIABLES/PROMPT_LINES ---------------------------------------------------
-
-# PS1 arrow - green # PS2 arrow - cyan # PS3 arrow - white
-
-PROMPT="%F{black}${char_up_and_right_divider} ${ssh_marker} %f%F{cyan}%~%f$(prepareGitStatusLine)
-%F{green} ${char_arrow}%f "
+PROMPT="%F{black}${CHAR_UP_AND_RIGHT_DIVIDER} ${SSH_MARKER} %f%F{cyan}%~%f$(prepareGitStatusLine)
+%F{green} ${CHAR_ARROW}%f "
 
 RPROMPT=""
+PS2="%F{black} %_ %f%F{cyan}${CHAR_ARROW} "
+PS3=" ${CHAR_ARROW} "
 
-# PS2 Example 
-# wc << EOF 
-# wc << HEAR 
-PS2="%F{black} %_ %f%F{cyan}${char_arrow} "
-
-# PS3 The value of this parameter is used as the prompt for the select
-# command (see SHELL GRAMMAR above).
-# PS3 Example 
-# select x in foo bar baz; do echo $x; done
-PS3=" ${char_arrow} "
-
-# ENV/HOOKS --------------------------------------------------------------------
+# ==============================================================================
+# HOOKS
+# ==============================================================================
 
 precmd() {
-  if [[ $VCS != "" ]]; then
-    vcs_info
-  fi
+  [[ $VCS != "" ]] && vcs_info
   printPsOneLimiter
-}
+} 
