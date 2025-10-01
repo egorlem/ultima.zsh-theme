@@ -1,4 +1,4 @@
-# Ultima Zsh Theme p2.c8 - https://github.com/egorlem/ultima.zsh-theme
+# Ultima Zsh Theme p3.c8 - https://github.com/egorlem/ultima.zsh-theme
 #
 # Minimalistic .zshrc config contains all of the settings required for 
 # comfortable terminal use.
@@ -26,10 +26,26 @@ fi
 # CORE CONFIGURATION
 # ==============================================================================
 
-ULTIMA_VERSION="p2.c8"
+ULTIMA_VERSION="p3.c8"
 ULTIMA_DIR="${0:A:h}"
 ULTIMA_MODULES_DIR="$ULTIMA_DIR/modules"
-ULTIMA_MODULES=("less" "ls" "completion")
+
+# Устанавливаем путь к модулям: кастомный путь имеет приоритет, иначе используется путь по умолчанию
+if [[ -z "$ULTIMA_CUSTOM_MODULES_DIR" ]]; then
+    MODULES_DIR="$ULTIMA_MODULES_DIR"
+else
+    MODULES_DIR="$ULTIMA_CUSTOM_MODULES_DIR"
+fi
+
+# Поддержка кастомного списка модулей
+# Если ULTIMA_MODULES уже установлена (через экспорт), используем ее
+# Иначе устанавливаем значения по умолчанию
+if [[ -z "$ULTIMA_MODULES" ]]; then
+    ULTIMA_MODULES=("less" "ls" "completion")
+else
+    # Разбиваем строку с модулями на массив (если передана как строка)
+    ULTIMA_MODULES=(${(@s: :)ULTIMA_MODULES})
+fi
 
 # ==============================================================================
 # SHARED VARIABLES (available to all modules)
@@ -55,7 +71,7 @@ ANSI_DIM_BLACK="\x1b[0;30m"
 # ==============================================================================
 
 ultimaLoadModule() {
-  local module_file="$ULTIMA_MODULES_DIR/$1.zsh"
+  local module_file="$MODULES_DIR/$1.zsh"
   if [[ -f "$module_file" ]]; then
     source "$module_file"
   else
@@ -64,7 +80,7 @@ ultimaLoadModule() {
 }
 
 # Load modules if available
-if [[ -d "$ULTIMA_MODULES_DIR" ]]; then
+if [[ -d "$MODULES_DIR" ]]; then
   for module in $ULTIMA_MODULES; do
     ultimaLoadModule "$module"
   done
