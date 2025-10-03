@@ -1,7 +1,7 @@
 # Ultima Zsh Theme p3.c8 - https://github.com/egorlem/ultima.zsh-theme
 #
-# Prompt configuration for Ultima Zsh theme
-# Requires ultima.zsh core to be loaded first
+# Minimalistic .zshrc config contains all of the settings required for 
+# comfortable terminal use.
 #
 # ------------------------------------------------------------------------------
 # Authors
@@ -12,30 +12,100 @@
 # ------------------------------------------------------------------------------
 
 # ==============================================================================
-# PROMPT VARIABLES
+# LAZY LOADING
 # ==============================================================================
 
-if [[ -z "$VCS" ]]; then
-    VCS="git"
+autoload -Uz compinit
+if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
 fi
 
+# ==============================================================================
+# CORE CONFIGURATION
+# ==============================================================================
+
+ULTIMA_VERSION="p3.c8"
+ULTIMA_DIR="${0:A:h}"
+ULTIMA_MODULES_DIR="$ULTIMA_DIR/modules"
+
+# Устанавливаем путь к модулям: кастомный путь имеет приоритет, иначе используется путь по умолчанию
+if [[ -z "$ULTIMA_CUSTOM_MODULES_DIR" ]]; then
+    MODULES_DIR="$ULTIMA_MODULES_DIR"
+else
+    MODULES_DIR="$ULTIMA_CUSTOM_MODULES_DIR"
+fi
+
+# Поддержка кастомного списка модулей
+# Если ULTIMA_MODULES уже установлена (через экспорт), используем ее
+# Иначе устанавливаем значения по умолчанию
+if [[ -z "$ULTIMA_MODULES" ]]; then
+    ULTIMA_MODULES=("less" "ls" "completion")
+else
+    # Разбиваем строку с модулями на массив (если передана как строка)
+    ULTIMA_MODULES=(${(@s: :)ULTIMA_MODULES})
+fi
+
+# ==============================================================================
+# SHARED VARIABLES (available to all modules)
+# ==============================================================================
+
+# Color schemes for LS and completion
+LSCOLORS="gxafexdxfxagadabagacad"                                                                   # BSD
+LS_COLORS="di=36:ln=30;45:so=34:pi=33:ex=35:bd=30;46:cd=30;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"  # GNU
+export LSCOLORS LS_COLORS
+
+# Graphic characters for consistent UI
 CHAR_ARROW="›"                                                 # Unicode: \u203a
 CHAR_UP_AND_RIGHT_DIVIDER="└"                                  # Unicode: \u2514  
 CHAR_DOWN_AND_RIGHT_DIVIDER="┌"                                # Unicode: \u250c
 CHAR_VERTICAL_DIVIDER="─"                                      # Unicode: \u2500
 
+# ANSI color codes
 ANSI_RESET="\x1b[0m"
 ANSI_DIM_BLACK="\x1b[0;30m"
 
+# ==============================================================================
+# MODULE SYSTEM
+# ==============================================================================
+
+ultimaLoadModule() {
+  local module_file="$MODULES_DIR/$1.zsh"
+  if [[ -f "$module_file" ]]; then
+    source "$module_file"
+  else
+    echo "Ultima: module $1 not found at $module_file"
+  fi
+}
+
+# Load modules if available
+if [[ -d "$MODULES_DIR" ]]; then
+  for module in $ULTIMA_MODULES; do
+    ultimaLoadModule "$module"
+  done
+else
+  echo "Ultima: running in minimal mode without modules"
+fi
+
+ULTIMA_CORE_LOADED=1
+
+# ==============================================================================
+# PROMPT CONFIGURATION
+# ==============================================================================
+
+export VCS="git"
+
+# VCS Info setup
+CURRENT_VCS="\":vcs_info:*\" enable $VCS"
 CHAR_BADGE="%F{black} on %f%F{black}${CHAR_ARROW}%f"
 VC_BRANCH_NAME="%F{green}%b%f"
+
 VC_ACTION="%F{black}%a %f%F{black}${CHAR_ARROW}%f"
 VC_UNSTAGED_STATUS="%F{cyan} M ${CHAR_ARROW}%f"
 VC_GIT_STAGED_STATUS="%F{green} A ${CHAR_ARROW}%f"
 VC_GIT_HASH="%F{green}%6.6i%f %F{black}${CHAR_ARROW}%f"
 VC_GIT_UNTRACKED_STATUS="%F{blue} U ${CHAR_ARROW}%f"
-
-CURRENT_VCS="\":vcs_info:*\" enable $VCS"
 
 if [[ $VCS != "" ]]; then
   autoload -Uz vcs_info
@@ -108,4 +178,4 @@ PS3=" ${CHAR_ARROW} "
 precmd() {
   [[ $VCS != "" ]] && vcs_info
   printPsOneLimiter
-}
+} 
