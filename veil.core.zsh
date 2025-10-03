@@ -10,24 +10,13 @@
 #
 # ------------------------------------------------------------------------------
 
-# # ==============================================================================
-# # LAZY LOADING
-# # ==============================================================================
-
-# autoload -Uz compinit
-# if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
-#   compinit
-# else
-#   compinit -C
-# fi
-
 # ==============================================================================
 # CORE CONFIGURATION
 # ==============================================================================
 
 ULTIMA_VERSION="p3.c8"
 ULTIMA_DIR="${0:A:h}"
-ULTIMA_MODULES_DIR="$ULTIMA_DIR/modules"
+ULTIMA_MODULES_DIR="$ULTIMA_DIR/veil/modules"
 
 # Поддержка кастомного пути к модулям
 if [[ -z "$ULTIMA_CUSTOM_MODULES_DIR" ]]; then
@@ -65,22 +54,12 @@ LSCOLORS="gxafexdxfxagadabagacad"                                               
 LS_COLORS="di=36:ln=30;45:so=34:pi=33:ex=35:bd=30;46:cd=30;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"  # GNU
 export LSCOLORS LS_COLORS
 
-# Graphic characters for consistent UI
-CHAR_ARROW="›"                                                 # Unicode: \u203a
-CHAR_UP_AND_RIGHT_DIVIDER="└"                                  # Unicode: \u2514  
-CHAR_DOWN_AND_RIGHT_DIVIDER="┌"                                # Unicode: \u250c
-CHAR_VERTICAL_DIVIDER="─"                                      # Unicode: \u2500
-
-# ANSI color codes
-ANSI_RESET="\x1b[0m"
-ANSI_DIM_BLACK="\x1b[0;30m"
-
 # ==============================================================================
 # MODULE SYSTEM
 # ==============================================================================
 
 ultimaLoadModule() {
-  local module_file="$MODULES_DIR/$1.zsh"
+  local module_file="$MODULES_DIR/$1.module.zsh"
   if [[ -f "$module_file" ]]; then
     source "$module_file"
   else
