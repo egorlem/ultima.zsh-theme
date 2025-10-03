@@ -26,10 +26,10 @@ __ultimaCompletionInitSystem() {
   # Оптимизированная инициализация completion
   if [[ -n "$COMPDUMP"(#qN.mh+24) ]]; then
     # Файл старше 24 часов - перекомпилируем
-    compinit
+    compinit -d "$COMPDUMP"
   else
     # Используем кеш
-    compinit -C
+    compinit -d "$COMPDUMP" -C
   fi
   
   if [[ $? -ne 0 ]]; then
@@ -50,8 +50,8 @@ __ultimaCompletionSetupOptions() {
 }
 
 __ultimaCompletionSetupStyles() {
-  # Настройка стилей completion с проверкой доступности
-  local COMPLETION_ARROW="${CHAR_ARROW:-›}"
+  # Настройка стилей completion с использованием безопасных значений по умолчанию
+  local COMPLETION_ARROW="›"  # Используем значение по умолчанию вместо CHAR_ARROW
   local COMPLETION_INDICATOR="%F{blue} ${COMPLETION_ARROW} %f"
   local WARNING_INDICATOR="%F{yellow} ${COMPLETION_ARROW} %f"
   local ERROR_INDICATOR="%B%F{red} ${COMPLETION_ARROW} %f"
@@ -61,19 +61,22 @@ __ultimaCompletionSetupStyles() {
   zstyle ':completion:*' use-cache on
   zstyle ':completion:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/.zcompcache"
   zstyle ':completion:*' verbose yes
-  zstyle ':completion:*' menu select
+  zstyle ':completion:*' menu select=2
   zstyle ':completion:*' matcher-list "m:{a-z}={A-Z}"
   zstyle ':completion:*' group-name ''
   
   # Форматы сообщений
   zstyle ':completion:*:*:*:*:descriptions' format "${COMPLETION_INDICATOR}%F{green}%d%f"
-  zstyle ':completion:*:*:*:*:corrections' format "${ERROR_INDICATOR}%e %d error"
-  zstyle ':completion:*:*:*:*:warnings' format "${WARNING_INDICATOR}no matches for %F{green}%d%f"
+  zstyle ':completion:*:*:*:*:corrections' format "${ERROR_INDICATOR}%F{yellow}%d%f (errors: %e%)"
+  zstyle ':completion:*:*:*:*:warnings' format "${WARNING_INDICATOR}%F{red}no matches for: %d%f"
   zstyle ':completion:*:*:*:*:messages' format "%d"
   
   # Цвета
   if [[ -n "$LS_COLORS" ]]; then
     zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS}
+  else
+    # Fallback colors если LS_COLORS не установлен
+    zstyle ':completion:*:*:*:*:default' list-colors 'di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
   fi
   
   zstyle ':completion:*:parameters' list-colors '=*=34'
@@ -95,7 +98,12 @@ __ultimaCompletionSetupStyles() {
 
 __ultimaCompletionSetupHosts() {
   # Настройка дополнения для хостов с обработкой ошибок
-  local HOST_FILES=("/etc/ssh_hosts" "$HOME/.ssh/known_hosts" "$HOME/.ssh/known_hosts2")
+  local HOST_FILES=(
+    "/etc/ssh/ssh_known_hosts"
+    "/etc/ssh/ssh_known_hosts2" 
+    "$HOME/.ssh/known_hosts"
+    "$HOME/.ssh/known_hosts2"
+  )
   local FOUND_FILES=()
   
   for file in $HOST_FILES; do
@@ -106,9 +114,7 @@ __ultimaCompletionSetupHosts() {
   
   if [[ ${#FOUND_FILES} -gt 0 ]]; then
     zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts \
-      'reply=(${=${${(f)"$(cat ${FOUND_FILES} 2>/dev/null)"}%%[# ]*}//,/ })'
-  else
-    echo "Ultima: warning - no host files found for completion" >&2
+      'reply=(${=${${(f)"$(cat ${^FOUND_FILES} 2>/dev/null)"}%%[# ]*}//,/ })'
   fi
   
   return 0
@@ -124,9 +130,25 @@ __ultimaCompletionVerify() {
   return 0
 }
 
+
+# ultimaCompletionInit() {
+#     # Защита от повторной инициализации
+#     if [[ -n "$ULTIMA_COMPLETION_INITIALIZED" ]]; then
+#         return 0
+#     fi
+    
+#     # ... остальная логика инициализации ...
+    
+#     ULTIMA_COMPLETION_INITIALIZED=1
+#     return $EXIT_CODE
+# }
+
+
 ultimaCompletionInit() {
   # Основная функция инициализации completion
   local EXIT_CODE=0
+  
+  echo "Ultima: initializing completion module..."
   
   if ! __ultimaCompletionDeps; then
     return 1
@@ -153,7 +175,7 @@ ultimaCompletionInit() {
   fi
   
   if [[ $EXIT_CODE -eq 0 ]]; then
-    echo "Ultima: completion module initialized"
+    echo "Ultima: completion module initialized successfully"
   else
     echo "Ultima: completion module initialized with warnings" >&2
   fi
@@ -167,7 +189,7 @@ ultimaCompletionStatus() {
     echo "loaded"
     return 0
   else
-    echo "failed"
+    echo "failed" 
     return 1
   fi
 }
@@ -177,4 +199,4 @@ if [[ -z "$ULTIMA_CORE_LOADED" ]]; then
   if ! ultimaCompletionInit; then
     echo "Ultima: critical - completion module failed to load" >&2
   fi
-fi
+fi  
