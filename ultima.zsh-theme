@@ -1,7 +1,9 @@
 # Ultima Zsh Theme p3.c8 - https://github.com/egorlem/ultima.zsh-theme
 #
-# Prompt configuration for Ultima Zsh theme
-# Requires ultima.zsh core to be loaded first
+# Yet another Ultima
+# 
+# This project won't get you from point A to point B, but it will give you a 
+# pleasant experience working in the terminal.
 #
 # ------------------------------------------------------------------------------
 # Authors
@@ -10,6 +12,18 @@
 #  * Egor Lem <guezwhoz@gmail.com> / egorlem.com
 #
 # ------------------------------------------------------------------------------
+
+if [[ -n "$ULTIMA_THEME_LOADED" ]]; then
+    return 0
+fi
+
+ULTIMA_THEME_LOADED=1
+
+# ==============================================================================
+# INITIALIZATION
+# ==============================================================================
+
+autoload -Uz add-zsh-hook
 
 # ==============================================================================
 # PROMPT VARIABLES
@@ -85,7 +99,7 @@ prepareGitStatusLine() {
   echo '${vcs_info_msg_0_}'
 } 
 
-printPsOneLimiter() {
+_printPsOneLimiter() {
   local termwidth spacing=""
   ((termwidth = ${COLUMNS} - 1))
   for i in {1..$termwidth}; do
@@ -105,7 +119,16 @@ PS3=" ${CHAR_ARROW} "
 # HOOKS
 # ==============================================================================
 
-precmd() {
+_ultimaPrecmd() {
   [[ $VCS != "" ]] && vcs_info
-  printPsOneLimiter
+  _printPsOneLimiter
 }
+
+_ultimaSetupHooks() {
+  add-zsh-hook precmd _ultimaPrecmd
+}
+
+_ultimaSetupHooks
+unset _ultimaSetupHooks
+
+echo 'ultima loaded'
