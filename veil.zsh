@@ -14,6 +14,11 @@
 # CORE CONFIGURATION
 # ==============================================================================
 
+# Защита от повторной загрузки
+if [[ -n "$VEIL_CORE_LOADED" ]]; then
+    return 0
+fi
+
 VEIL_VERSION="p3.c8"
 VEIL_DIR="${0:A:h}"
 DEFAULT_VEIL_MODULES_DIR="$VEIL_DIR/veil/modules"
@@ -31,6 +36,14 @@ if [[ -z "$VEIL_MODULES" ]]; then
 else
     # Разбиваем строку с модулями на массив (если передана как строка)
     VEIL_MODULES=(${(@s: :)VEIL_MODULES})
+fi
+
+# Удаляем дубликаты модулей
+typeset -U VEIL_MODULES
+
+# Проверка на пустой массив модулей
+if [[ ${#VEIL_MODULES[@]} -eq 0 ]]; then
+    echo "Veil: warning - no modules specified" >&2
 fi
 
 # Поддержка кастомного пути к темам
@@ -58,15 +71,40 @@ export LSCOLORS LS_COLORS
 # MODULE SYSTEM
 # ==============================================================================
 
+# Ассоциативный массив для отслеживания загруженных модулей
+typeset -gA VEIL_MODULE_LOADED
+
 _veilLoadModule() {
   local module_file="$MODULES_DIR/$1.module.zsh"
-  if [[ -f "$module_file" ]]; then
-    source "$module_file"
+  
+  # Проверяем существование файла модуля
+  if [[ ! -f "$module_file" ]]; then
+    echo "Veil: module $1 not found at $module_file" >&2
+    return 1
+  fi
+  
+  # Проверяем возможность чтения файла
+  if [[ ! -r "$module_file" ]]; then
+    echo "Veil: cannot read module $1" >&2
+    return 1
+  fi
+  
+  # Проверяем, не загружен ли уже модуль
+  if [[ -n "${VEIL_MODULE_LOADED[$1]}" ]]; then
+    [[ -n "$VEIL_VERBOSE" ]] && echo "Veil: module '$1' already loaded" >&2
+    return 0
+  fi
+  
+  # Загружаем модуль
+  if source "$module_file"; then
+    VEIL_MODULE_LOADED[$1]=1
+    [[ -n "$VEIL_VERBOSE" ]] && echo "Veil: module '$1' loaded successfully"
+    return 0
   else
-    echo "Veil: module $1 not found at $module_file"
+    echo "Veil: failed to load module '$1'" >&2
+    return 1
   fi
 }
-
 
 _veilLoadTheme() {
   local THEME_FILE="$THEMES_DIR/${THEME_NAME}.zsh-theme"
@@ -99,7 +137,7 @@ if [[ -d "$MODULES_DIR" ]]; then
     _veilLoadModule "$module"
   done
 else
-  echo "Veil: running in minimal mode without modules"
+  echo "Veil: running in minimal mode without modules" >&2
 fi
 
 VEIL_CORE_LOADED=1
