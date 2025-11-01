@@ -1,6 +1,7 @@
-# Veil - https://github.com/egorlem/ultima.zsh-theme
+# Veil - https://github.com/egorlem/ultima.zsh-theme/tree/main/vail
 #
-# Modular Z Shell Configuration System
+# A zsh configuration organization system that splits settings into logical 
+# modules and gives full control over what and how gets loaded.
 #
 # ------------------------------------------------------------------------------
 # Authors
@@ -146,22 +147,3 @@ VEIL_CORE_LOADED=1
 if ! _veilLoadTheme; then
     echo "Veil: warning - theme loading failed, continuing without theme" >&2
 fi
-
-
-# ==============================================================================
-# CLI LOADING
-# ==============================================================================
-
-# Загружаем CLI если он доступен
-# ULTIMA_CLI_FILE="$ULTIMA_DIR/veil/_cli.zsh"
-
-# if [[ -f "$ULTIMA_CLI_FILE" && -r "$ULTIMA_CLI_FILE" ]]; then
-#     if source "$ULTIMA_CLI_FILE"; then
-#         [[ -n "$VEIL_VERBOSE" ]] && echo "Ultima: CLI loaded successfully"
-#     else
-#         echo "Ultima: warning - failed to load CLI" >&2
-#     fi
-# else
-#     echo "Ultima: CLI file not found at $ULTIMA_CLI_FILE" >&2
-# fi
-
