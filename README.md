@@ -1,6 +1,6 @@
 # Ultima [ˈultima] — Minimalist Theme for Z Shell
 
-### A minimalist zsh theme with all essential settings for a comfortable and productive terminal experience.
+### Delivers comfortable terminal experience with essential settings
 
 ![GitHub Release](https://img.shields.io/github/v/release/egorlem/ultima.zsh-theme?style=for-the-badge&color=7CD996&labelColor=212121)
 ![Static Badge](https://img.shields.io/badge/License-WTFPL-blue?style=for-the-badge&labelColor=212121&color=59D9D0&link=https%3A%2F%2Fgithub.com%2Fegorlem%2Fultima.zsh-theme%2Fblob%2Ff8a01d549ee38e720a597f9632ccf7960c7b9c8e%2FLICENSE)
