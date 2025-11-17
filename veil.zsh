@@ -3,7 +3,7 @@
 # Modular Z Shell Configuration System
 # Takes full control of zsh configuration through logical modules
 # ------------------------------------------------------------------------------
-# License: WTFPL - https://github.com/egorlem/ultima.zsh-theme/blob/main/LICENSE 
+# License: WTFPL – https://github.com/egorlem/ultima.zsh-theme/blob/main/LICENSE 
 # ------------------------------------------------------------------------------
 # Authors
 # -------

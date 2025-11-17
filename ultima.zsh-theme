@@ -1,11 +1,11 @@
-# Ultima Zsh Theme p3.c8 — https://github.com/egorlem/ultima.zsh-theme
+# Ultima Zsh Theme p3.c8 – https://github.com/egorlem/ultima.zsh-theme
 #
 # Yet Another Ultima
 # 
 # This project won't get you from point A to point B, but it will give you a 
 # pleasant experience working in the terminal.
 # ------------------------------------------------------------------------------
-# License: WTFPL - https://github.com/egorlem/ultima.zsh-theme/blob/main/LICENSE 
+# License: WTFPL – https://github.com/egorlem/ultima.zsh-theme/blob/main/LICENSE 
 # ------------------------------------------------------------------------------
 # Authors
 # -------

@@ -1,8 +1,7 @@
 # Vail Completion Module
 #
-# Enhanced Zsh completion system with caching and customizable styles
 # ------------------------------------------------------------------------------
-# License: WTFPL - https://github.com/egorlem/ultima.zsh-theme/blob/main/LICENSE 
+# License: WTFPL – https://github.com/egorlem/ultima.zsh-theme/blob/main/LICENSE 
 # ------------------------------------------------------------------------------
 # Authors
 # -------

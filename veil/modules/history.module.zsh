@@ -1,7 +1,7 @@
 # Vail History Module
 #
 # ------------------------------------------------------------------------------
-# License: WTFPL - https://github.com/egorlem/ultima.zsh-theme/blob/main/LICENSE 
+# License: WTFPL – https://github.com/egorlem/ultima.zsh-theme/blob/main/LICENSE 
 # ------------------------------------------------------------------------------
 # Authors
 # -------

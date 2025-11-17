@@ -1,7 +1,7 @@
-# Vail Evn Module
+# Vail Сursor Module
 #
 # ------------------------------------------------------------------------------
-# License: WTFPL - https://github.com/egorlem/ultima.zsh-theme/blob/main/LICENSE 
+# License: WTFPL – https://github.com/egorlem/ultima.zsh-theme/blob/main/LICENSE 
 # ------------------------------------------------------------------------------
 # Authors
 # -------
