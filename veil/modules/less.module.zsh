@@ -1,5 +1,14 @@
-# modules/less.zsh
-# Ultima LESS Module
+# Vail Less Module
+#
+# ------------------------------------------------------------------------------
+# License: WTFPL - https://github.com/egorlem/ultima.zsh-theme/blob/main/LICENSE 
+# ------------------------------------------------------------------------------
+# Authors
+# -------
+#
+#  * Egor Lem <guezwhoz@gmail.com> / egorlem.com
+#
+# ------------------------------------------------------------------------------
 
 __ultimaLessDeps() {
   # Проверка зависимостей

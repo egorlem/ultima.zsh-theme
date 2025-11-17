@@ -1,5 +1,5 @@
 # test-theme.zsh-theme
-# Simple test theme for Ultima Zsh Framework
+# Simple test theme for Vail
 #
 # Usage: export THEME_NAME="test-theme" before loading ultima.zsh
 

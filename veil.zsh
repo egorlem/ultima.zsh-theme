@@ -1,8 +1,9 @@
-# Veil - https://github.com/egorlem/ultima.zsh-theme/tree/main/vail
+# Veil — https://github.com/egorlem/ultima.zsh-theme/tree/main/vail
 #
-# A zsh configuration organization system that splits settings into logical 
-# modules and gives full control over what and how gets loaded.
-#
+# Modular Z Shell Configuration System
+# Takes full control of zsh configuration through logical modules
+# ------------------------------------------------------------------------------
+# License: WTFPL - https://github.com/egorlem/ultima.zsh-theme/blob/main/LICENSE 
 # ------------------------------------------------------------------------------
 # Authors
 # -------

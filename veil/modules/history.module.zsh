@@ -1,5 +1,14 @@
-# modules/history.zsh
-# Ultima History Module
+# Vail History Module
+#
+# ------------------------------------------------------------------------------
+# License: WTFPL - https://github.com/egorlem/ultima.zsh-theme/blob/main/LICENSE 
+# ------------------------------------------------------------------------------
+# Authors
+# -------
+#
+#  * Egor Lem <guezwhoz@gmail.com> / egorlem.com
+#
+# ------------------------------------------------------------------------------
 
 __ultimaHistorySetupEnv() {
   # Настройка переменных окружения для истории

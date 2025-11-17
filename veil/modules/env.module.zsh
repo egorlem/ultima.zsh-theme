@@ -1,7 +1,18 @@
-# modules/environment.zsh
+# Vail Evn Module
+#
+# ------------------------------------------------------------------------------
+# License: WTFPL - https://github.com/egorlem/ultima.zsh-theme/blob/main/LICENSE 
+# ------------------------------------------------------------------------------
+# Authors
+# -------
+#
+#  * Egor Lem <guezwhoz@gmail.com> / egorlem.com
+#
+# ------------------------------------------------------------------------------
+
 initEnvironmentSettings() {
-  export EDITOR='nano'  # или vim, если предпочитаете
-  export VISUAL='nano'
+  export EDITOR='vim' 
+  export VISUAL='vim'
   export PAGER='less'
   
   # Locale
@@ -15,5 +26,5 @@ initEnvironmentSettings() {
   # Path
   export PATH="$HOME/.local/bin:$PATH"
   
-  echo "Ultima: environment module initialized"
+  echo "Vail: environment module initialized"
 }
