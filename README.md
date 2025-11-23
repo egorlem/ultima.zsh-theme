@@ -1,6 +1,6 @@
-# Ultima [ˈultima] — Minimalist Theme for Z Shell
+# Ultima [ˈultima] — Minimalist Zsh theme
 
-### Delivers comfortable terminal experience with essential settings
+### Offers a comfortable, ready-to-use terminal environment. Everything you need, nothing you don't.
 
 ![GitHub Release](https://img.shields.io/github/v/release/egorlem/ultima.zsh-theme?style=for-the-badge&color=7CD996&labelColor=212121)
 ![Static Badge](https://img.shields.io/badge/License-WTFPL-blue?style=for-the-badge&labelColor=212121&color=59D9D0&link=https%3A%2F%2Fgithub.com%2Fegorlem%2Fultima.zsh-theme%2Fblob%2Ff8a01d549ee38e720a597f9632ccf7960c7b9c8e%2FLICENSE)
@@ -17,8 +17,8 @@
 - **Multiple Prompt Levels:** Configurations for secondary and tertiary prompt levels (`PS2` and `PS3`) are included.
 - **SSH Status Indicator:** Displays an indicator when an SSH connection is established.
 - **VCS (Version Control System) Integration:** Supports **Git**, **SVN**, and **Mercurial** for showing branch and repository status directly in the prompt.
-    - **Git Integration:** Shows branch name, staged and unstaged changes, and untracked files.
-    - **SVN and Mercurial Integration:** Shows branch name and repository status.
+  - **Git Integration:** Shows branch name, staged and unstaged changes, and untracked files.
+  - **SVN and Mercurial Integration:** Shows branch name and repository status.
 - **Completion Enhancements:** Advanced completion settings, including menu completion, caching, and various completion styles and formats.
 - **LS_COLORS Configuration:** Configures `LS_COLORS` for both **BSD** and **GNU** systems to enhance directory listings.
 - **LESS and MAN Configuration:** Customizes the behavior and appearance of `less` and `man` pages.
@@ -35,9 +35,10 @@ _Requires [git](https://git-scm.com/)_
 
 1. Clone the repository:
 
-    ```shell
-    git clone https://github.com/egorlem/ultima.zsh-theme ~/ultima-shell
-    ```
+```shell
+    git clone https://github.com/egorlem/ultima.zsh-theme ~ ultima-shell
+```
+
 2. Update your `.zshrc` file:
 
     ```shell
