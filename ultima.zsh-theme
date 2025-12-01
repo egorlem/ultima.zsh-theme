@@ -30,9 +30,8 @@ autoload -Uz add-zsh-hook
 # PROMPT VARIABLES
 # ------------------------------------------------------------------------------
 
-if [[ -z "$VCS" ]]; then
-    VCS="git"
-fi
+# Set default VCS with validation
+VCS="${VCS:-git}"
 
 CHAR_ARROW="›"                                                 # Unicode: \u203a
 CHAR_UP_AND_RIGHT_DIVIDER="└"                                  # Unicode: \u2514  
