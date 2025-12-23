@@ -1,5 +1,3 @@
-<!-- Utlima zsh theme verision p3.c8 -->
-
 # Ultima [ˈultima] — Minimalist Zsh theme
 
 ### Clean, clear, and visually structured.
@@ -13,26 +11,18 @@
 
 ---
 
-## Features
-
-**A minimalist Zsh theme showing only essential information: current path, repository status, file changes, branch, and SSH connection.**
+## Features And Prompt
 
 ### Prompt Structure
 
-- **Three-level prompt** — the top line separates previous output, the middle shows all key information, and the bottom is for command input.
+* **Three-level prompt** — top line separates previous output, middle shows key information (working directory, SSH, VCS), bottom is for command input.
+* **Unified sigil (`›`)** — used consistently across all input lines (`PS1`, `PS2`, `PS3`). The sigil marks the beginning of the input line and indicates the prompt is ready for a new command.
 
-- **Unified sigil (`›`)** — used consistently across all prompt levels (`PS1`, `PS2`, `PS3`) to create a clean and rhythmic style.
+### Key Features
 
-> The **input sigil** is the visual marker at the beginning of the input line. It indicates that the prompt is idle and ready to accept a command.
-
-
-### Core Elements
-
-- **Working directory** — always visible to indicate your current location.
-
-- **VCS status** — displayed only inside a repository: current action (e.g., `rebase` or `merge`), short commit hash, file changes (`A` — added, `M` — modified, `U` — untracked), and branch.
-
-- **SSH indicator** — shown only during remote sessions, making it easy to distinguish between local and remote terminals.
+* **Working directory** — shows the current path.
+* **VCS status** — displayed only inside a repository: current action (e.g., `rebase` or `merge`), short commit hash, file changes (`A` — added, `M` — modified, `U` — untracked), and branch.
+* **SSH indicator** — shown only during remote sessions.
 
 ---
 
