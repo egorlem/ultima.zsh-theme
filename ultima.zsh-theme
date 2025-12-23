@@ -39,7 +39,12 @@ typeset -gr SCI_RST="\x1b[0m"                              #   SGR 0 - Reset all
 typeset -gr SCI_BLACK="\x1b[0;30m"                         # SGR 0;30 - black FG
 
 typeset -g VCS="${VCS:-git}"
-typeset -g ULTIMA_GIT_NO_UNTRACKED="${ULTIMA_GIT_NO_UNTRACKED:-0}"
+typeset -g ULTIMA_GIT_NO_UNTRACKED="${ULTIMA_GIT_NO_UNTRACKED:-0}" 
+
+# Сache 
+typeset -gi U_CACHED_COLUMNS=0 
+typeset -g U_CACHED_SEPARATOR=""
+
 
 # ------------------------------------------------------------------------------
 # VCS SETUP FUNCTIONS
@@ -57,7 +62,7 @@ __ultimaSetupVCS() {
   
   # Core prompt elements
   local badgeFormat="%F{0} on %f%F{0}›%f"                     # "on ›" separator
-  local branchFormat="%F{2}%b%f"                          # Branch name in green
+  local branchFormat="%F{85}%b%f"                         # Branch name in green
   local actionFormat="%F{0}%a %f%F{0}›%f"                   # Git action display
 
   # Git status indicators  
@@ -138,16 +143,31 @@ __u_vcs() {
   return 1
 }
 
-# Draws the horizontal line separator at the top of each prompt
-__ultimaPrintPsOneLimiter() {
-  local termwidth spacing="" i
-  (( termwidth = COLUMNS - 1 ))
+__ultimaBuildSeparator() {
+  local width spacing="" i
 
-  for (( i = 1; i <= termwidth; i++ )); do
+  (( width = COLUMNS - 1 ))
+  (( U_CACHED_COLUMNS = COLUMNS ))
+
+  (( width <= 0 )) && {
+    U_CACHED_SEPARATOR="${SCI_BLACK}${BOX_L}${SCI_RST}"
+    return 0
+  }
+  
+  for (( i = 1; i <= width; i++ )); do
     spacing+=$BOX_H
   done
+  
+  U_CACHED_SEPARATOR="${SCI_BLACK}${BOX_L}${spacing}${SCI_RST}"
+  return 0
+}
 
-  echo "${SCI_BLACK}${BOX_L}${spacing}${SCI_RST}"
+__ultimaPrintSeparator() {
+  if (( COLUMNS != U_CACHED_COLUMNS )) || [[ -z "$U_CACHED_SEPARATOR" ]]; then
+    __ultimaBuildSeparator
+  fi
+  
+  echo "$U_CACHED_SEPARATOR"
   return 0
 }
 
@@ -175,7 +195,7 @@ __ultimaPrecmd() {
   if [[ $VCS != "" ]]; then
     vcs_info || return 1
   fi
-  __ultimaPrintPsOneLimiter
+  __ultimaPrintSeparator
   return 0
 }
 
