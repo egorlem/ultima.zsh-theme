@@ -18,11 +18,11 @@
 # INITIALIZATION
 # ------------------------------------------------------------------------------
 
-if [[ -n "$ULTIMA_THEME_LOADED" ]]; then
+if [[ -n "$_ULTIMA_THEME_LOADED" ]]; then
   return 0
 fi
 
-typeset -gr ULTIMA_THEME_LOADED=1
+typeset -gr _ULTIMA_THEME_LOADED=1
 
 autoload -Uz add-zsh-hook
 
@@ -31,19 +31,19 @@ autoload -Uz add-zsh-hook
 # ------------------------------------------------------------------------------
 
 # Box drawing characters for prompt design
-typeset -gr BOX_L="┌"      # Limiter corner (starts top line)    Unicode: \u250c
-typeset -gr BOX_P="└"      # Prompt corner (starts prompt line)  Unicode: \u2514
-typeset -gr BOX_H="─"      # Horizontal line (fills top limiter) Unicode: \u2500
+typeset -gr _BOX_L="┌"      # Limiter corner (starts top line)    Unicode: \u250c
+typeset -gr _BOX_P="└"      # Prompt corner (starts prompt line)  Unicode: \u2514
+typeset -gr _BOX_H="─"      # Horizontal line (fills top limiter) Unicode: \u2500
 
-typeset -gr SCI_RST="\x1b[0m"                              #   SGR 0 - Reset all
-typeset -gr SCI_BLACK="\x1b[0;30m"                         # SGR 0;30 - black FG
+typeset -gr _SCI_RST="\x1b[0m"                              #   SGR 0 - Reset all
+typeset -gr _SCI_BLACK="\x1b[0;30m"                         # SGR 0;30 - black FG
 
 typeset -g VCS="${VCS:-git}"
 typeset -g ULTIMA_GIT_NO_UNTRACKED="${ULTIMA_GIT_NO_UNTRACKED:-0}" 
 
 # Сache 
-typeset -gi U_CACHED_COLUMNS=0 
-typeset -g U_CACHED_SEPARATOR=""
+typeset -gi _U_CACHED_COLUMNS=0 
+typeset -g _U_CACHED_SEPARATOR=""
 
 
 # ------------------------------------------------------------------------------
@@ -62,7 +62,7 @@ __ultimaSetupVCS() {
   
   # Core prompt elements
   local badgeFormat="%F{0} on %f%F{0}›%f"                     # "on ›" separator
-  local branchFormat="%F{85}%b%f"                         # Branch name in green
+  local branchFormat="%F{2}%b%f"                          # Branch name in green
   local actionFormat="%F{0}%a %f%F{0}›%f"                   # Git action display
 
   # Git status indicators  
@@ -147,27 +147,27 @@ __ultimaBuildSeparator() {
   local width spacing="" i
 
   (( width = COLUMNS - 1 ))
-  (( U_CACHED_COLUMNS = COLUMNS ))
+  (( _U_CACHED_COLUMNS = COLUMNS ))
 
   (( width <= 0 )) && {
-    U_CACHED_SEPARATOR="${SCI_BLACK}${BOX_L}${SCI_RST}"
+    _U_CACHED_SEPARATOR="${_SCI_BLACK}${_BOX_L}${_SCI_RST}"
     return 0
   }
   
   for (( i = 1; i <= width; i++ )); do
-    spacing+=$BOX_H
+    spacing+=$_BOX_H
   done
   
-  U_CACHED_SEPARATOR="${SCI_BLACK}${BOX_L}${spacing}${SCI_RST}"
+  _U_CACHED_SEPARATOR="${_SCI_BLACK}${_BOX_L}${spacing}${_SCI_RST}"
   return 0
 }
 
 __ultimaPrintSeparator() {
-  if (( COLUMNS != U_CACHED_COLUMNS )) || [[ -z "$U_CACHED_SEPARATOR" ]]; then
+  if (( COLUMNS != _U_CACHED_COLUMNS )) || [[ -z "$_U_CACHED_SEPARATOR" ]]; then
     __ultimaBuildSeparator
   fi
   
-  echo "$U_CACHED_SEPARATOR"
+  echo "$_U_CACHED_SEPARATOR"
   return 0
 }
 
@@ -177,7 +177,7 @@ __ultimaPrintSeparator() {
 
 setopt PROMPT_SUBST
 
-PROMPT="%F{0}${BOX_P} $(__u_ssh) %f%F{6}%~%f$(__u_vcs)
+PROMPT="%F{0}${_BOX_P} $(__u_ssh) %f%F{6}%~%f$(__u_vcs)
 %F{2} ›%f "
 
 RPROMPT=""
@@ -209,9 +209,10 @@ __ultimaSetupHooks() {
 # MAIN EXECUTION
 # ------------------------------------------------------------------------------
 
-__ultimaSetupVCS
+typeset -a _ULTIMA_CLEANUP_FUNCS=(
+  __ultimaSetupVCS
+  __ultimaSetupHooks
+)
 
-__ultimaSetupHooks
-
-# Cleanup setup functions (no longer needed after execution)
-unset __ultimaSetupVCS __ultimaSetupHooks 
+unset -f $_ULTIMA_CLEANUP_FUNCS
+unset _ULTIMA_CLEANUP_FUNCS
