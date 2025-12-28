@@ -36,7 +36,7 @@ typeset -gr _BOX_P="└"      # Prompt corner (starts prompt line)  Unicode: \u2
 typeset -gr _BOX_H="─"      # Horizontal line (fills top limiter) Unicode: \u2500
 
 typeset -gr _SCI_RST="\x1b[0m"                              #   SGR 0 - Reset all
-typeset -gr _SCI_BLACK="\x1b[0;30m"                         # SGR 0;30 - black FG
+typeset -gr SCI_BLACK="\x1b[0;30m"                         # SGR 0;30 - black FG
 
 typeset -g VCS="${VCS:-git}"
 typeset -g ULTIMA_GIT_NO_UNTRACKED="${ULTIMA_GIT_NO_UNTRACKED:-0}" 
@@ -150,7 +150,7 @@ __ultimaBuildSeparator() {
   (( _U_CACHED_COLUMNS = COLUMNS ))
 
   (( width <= 0 )) && {
-    _U_CACHED_SEPARATOR="${_SCI_BLACK}${_BOX_L}${_SCI_RST}"
+    _U_CACHED_SEPARATOR="${SCI_BLACK}${_BOX_L}${_SCI_RST}"
     return 0
   }
   
@@ -158,7 +158,7 @@ __ultimaBuildSeparator() {
     spacing+=$_BOX_H
   done
   
-  _U_CACHED_SEPARATOR="${_SCI_BLACK}${_BOX_L}${spacing}${_SCI_RST}"
+  _U_CACHED_SEPARATOR="${SCI_BLACK}${_BOX_L}${spacing}${_SCI_RST}"
   return 0
 }
 
@@ -208,6 +208,10 @@ __ultimaSetupHooks() {
 # ------------------------------------------------------------------------------
 # MAIN EXECUTION
 # ------------------------------------------------------------------------------
+
+__ultimaSetupVCS
+
+__ultimaSetupHooks
 
 typeset -a _ULTIMA_CLEANUP_FUNCS=(
   __ultimaSetupVCS
