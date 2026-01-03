@@ -35,9 +35,6 @@ typeset -gr _BOX_L="┌"      # Limiter corner (starts top line)    Unicode: \u2
 typeset -gr _BOX_P="└"      # Prompt corner (starts prompt line)  Unicode: \u2514
 typeset -gr _BOX_H="─"      # Horizontal line (fills top limiter) Unicode: \u2500
 
-typeset -gr _SCI_RST="\x1b[0m"                              #   SGR 0 - Reset all
-typeset -gr _SCI_BLACK="\x1b[0;30m"                         # SGR 0;30 - black FG
-
 typeset -g VCS="${VCS:-git}"
 typeset -g ULTIMA_GIT_NO_UNTRACKED="${ULTIMA_GIT_NO_UNTRACKED:-0}" 
 
@@ -128,7 +125,7 @@ __ultimaSetupVCS() {
 # SSH marker - shows "SSH:" when connected via SSH
 __u_ssh() {
   if [[ -n "$SSH_CLIENT" || -n "$SSH2_CLIENT" ]]; then
-    echo "%F{2}SSH%f%F{0}:%f"
+    printf "%s" "%F{2}SSH%f%F{0}:%f"
     return 0
   fi
   return 1
@@ -137,7 +134,7 @@ __u_ssh() {
 # VCS status line - displays git/svn/hg information
 __u_vcs() {
   if [[ -n "$VCS" ]]; then
-    echo '${vcs_info_msg_0_}'
+    printf "%s" '${vcs_info_msg_0_}'
     return 0
   fi
   return 1
@@ -150,7 +147,7 @@ __ultimaBuildSeparator() {
   (( _U_CACHED_COLUMNS = COLUMNS ))
 
   (( width <= 0 )) && {
-    _U_CACHED_SEPARATOR="${_SCI_BLACK}${_BOX_L}${_SCI_RST}"
+    _U_CACHED_SEPARATOR="${_BOX_L}"
     return 0
   }
   
@@ -158,16 +155,30 @@ __ultimaBuildSeparator() {
     spacing+=$_BOX_H
   done
   
-  _U_CACHED_SEPARATOR="${_SCI_BLACK}${_BOX_L}${spacing}${_SCI_RST}"
+  _U_CACHED_SEPARATOR="${_BOX_L}${spacing}"
   return 0
 }
 
-__ultimaPrintSeparator() {
+__u_separator() {
   if (( COLUMNS != _U_CACHED_COLUMNS )) || [[ -z "$_U_CACHED_SEPARATOR" ]]; then
     __ultimaBuildSeparator
   fi
+  printf "%s" "$_U_CACHED_SEPARATOR"
+}
+
+# ------------------------------------------------------------------------------
+# EXIT STATUS FUNCTION
+# ------------------------------------------------------------------------------
+
+# Exit status indicator
+__ultimaExitStatus() {
+  local lastStatus=$1
   
-  echo "$_U_CACHED_SEPARATOR"
+  if (( lastStatus != 0 )); then
+    printf "%s" "%F{1}• ${lastStatus}%f"
+  else
+    printf "%s" "%F{2}•%f"
+  fi
   return 0
 }
 
@@ -176,8 +187,10 @@ __ultimaPrintSeparator() {
 # ------------------------------------------------------------------------------
 
 setopt PROMPT_SUBST
+setopt TRANSIENT_RPROMPT
 
-PROMPT="%F{0}${_BOX_P} $(__u_ssh) %f%F{6}%~%f$(__u_vcs)
+PROMPT="%F{0}$(__u_separator)
+${_BOX_P} $(__u_ssh) %f%F{6}%~%f$(__u_vcs)
 %F{2} ›%f "
 
 RPROMPT=""
@@ -189,19 +202,21 @@ PS3=" › "
 # HOOKS FUNCTIONS
 # ------------------------------------------------------------------------------
 
-# Called before each prompt display
-# Updates VCS info and draws the top separator line
 __ultimaPrecmd() {
+  local lastStatus=$?
+  
   if [[ $VCS != "" ]]; then
-    vcs_info || return 1
+    vcs_info
   fi
-  __ultimaPrintSeparator
+
+  # Set RPROMPT with exit status
+  RPROMPT="$(__ultimaExitStatus "$lastStatus")"
+
   return 0
 }
 
-# Sets up zsh hooks for prompt functionality
 __ultimaSetupHooks() {
-  add-zsh-hook precmd __ultimaPrecmd || return 1
+  add-zsh-hook precmd __ultimaPrecmd
   return 0
 }
 
