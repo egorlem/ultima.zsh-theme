@@ -23,6 +23,9 @@
 * **Working directory** — shows the current path.
 * **VCS status** — displayed only inside a repository: current action (e.g., `rebase` or `merge`), short commit hash, file changes (`A` — added, `M` — modified, `U` — untracked), and branch.
 * **SSH indicator** — shown only during remote sessions.
+* **Exit status indicator (RPROMPT)** — displayed on the right side of the prompt:
+  * green `•` — last command exited successfully (`0`)
+  * red `• <code>` — last command failed, showing its exit status code
 
 ---
 
