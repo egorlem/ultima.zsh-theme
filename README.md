@@ -1,6 +1,6 @@
-# ultima.zsh-theme — Theme and Settings for Z Shell
+# Ultima [ˈultima] — Minimalist Zsh theme
 
-**Minimalistic `.zshrc` configuration file designed to provide all the necessary settings for a comfortable terminal experience**
+### Clean, clear, and visually structured.
 
 ![GitHub Release](https://img.shields.io/github/v/release/egorlem/ultima.zsh-theme?style=for-the-badge&color=7CD996&labelColor=212121)
 ![Static Badge](https://img.shields.io/badge/License-WTFPL-blue?style=for-the-badge&labelColor=212121&color=59D9D0&link=https%3A%2F%2Fgithub.com%2Fegorlem%2Fultima.zsh-theme%2Fblob%2Ff8a01d549ee38e720a597f9632ccf7960c7b9c8e%2FLICENSE)
@@ -11,72 +11,90 @@
 
 ---
 
-## Features
+## Features And Prompt
 
-- **Multi-Line Prompt:** The prompt is divided into three lines for better readability. The first line separates the previous command's output from the prompt, the second line provides detailed path information, and the third line is for input.
-- **Multiple Prompt Levels:** Configurations for secondary and tertiary prompt levels (`PS2` and `PS3`) are included.
-- **SSH Status Indicator:** Displays an indicator when an SSH connection is established.
-- **VCS (Version Control System) Integration:** Supports **Git**, **SVN**, and **Mercurial** for showing branch and repository status directly in the prompt.
-    - **Git Integration:** Shows branch name, staged and unstaged changes, and untracked files.
-    - **SVN and Mercurial Integration:** Shows branch name and repository status.
-- **Completion Enhancements:** Advanced completion settings, including menu completion, caching, and various completion styles and formats.
-- **LS_COLORS Configuration:** Configures `LS_COLORS` for both **BSD** and **GNU** systems to enhance directory listings.
-- **LESS and MAN Configuration:** Customizes the behavior and appearance of `less` and `man` pages.
+### Prompt Structure
 
-These features make `ultima.zsh-theme` a powerful and versatile theme for Z shell users, enhancing both functionality and aesthetics.
+* **Three-level prompt** — top line separates previous output, middle shows key information (working directory, SSH, VCS), bottom is for command input.
+* **Unified sigil (`›`)** — used consistently across all input lines (`PS1`, `PS2`, `PS3`). The sigil marks the beginning of the input line and indicates the prompt is ready for a new command.
+
+### Key Features
+
+* **Working directory** — shows the current path.
+* **VCS status** — displayed only inside a repository: current action (e.g., `rebase` or `merge`), short commit hash, file changes (`A` — added, `M` — modified, `U` — untracked), and branch.
+* **SSH indicator** — shown only during remote sessions.
+* **Exit status indicator (RPROMPT)** — displayed on the right side of the prompt:
+  * green `•` — last command exited successfully (`0`)
+  * red `• <code>` — last command failed, showing its exit status code
 
 ---
 
 ## Installation
 
-_Requires [git](https://git-scm.com/)_
+Ultima Zsh theme can be installed in three ways: with **full module management via Veil**, manually for a **lightweight setup**, or through popular **Zsh frameworks and plugin managers**.
 
-### Manual
+---
 
-1. Clone the repository:
+### Recommended: Veil
 
-    ```shell
-    git clone https://github.com/egorlem/ultima.zsh-theme ~/ultima-shell
-    ```
-2. Update your `.zshrc` file:
+> Features like `less`, `ls`, completion, and other shell behavior are now part of **Veil**. Installing Veil automatically includes Ultima.
 
-    ```shell
-    echo 'source ~/ultima-shell/ultima.zsh-theme' >> ~/.zshrc
-    ```
+```shell
+# Clone Veil repository
+git clone https://github.com/egorlem/veil.zsh ~/.veil
 
-### [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh)
+# Source Veil in your .zshrc (includes Ultima theme)
+echo "source $HOME/.veil/veil.zsh" >> "$HOME/.zshrc"
+```
 
-1. Clone the repository:
+> For advanced module configuration, see [Veil Documentation](https://github.com/egorlem/veil.zsh).
 
-    ```shell
-    git clone https://github.com/egorlem/ultima.zsh-theme ~/ultima-shell
-    ```
+---
 
-2. Move the file to the Oh My Zsh theme folder:
+### Manual Installation
 
-    ```shell
-    mv ~/ultima-shell/ultima.zsh-theme $ZSH/themes/ultima.zsh-theme
-    ```
+> Include Ultima without Veil if you prefer minimal changes.
 
-3. Edit your `~/.zshrc` file and set `ZSH_THEME="ultima"`
+```shell
+# Clone Ultima repository
+git clone https://github.com/egorlem/ultima.zsh-theme ~/.ultima
 
-### [Zim](https://github.com/zimfw/zimfw)
+# Source Ultima in your .zshrc
+echo "source $HOME/.ultima/ultima.zsh-theme" >> "$HOME/.zshrc"
+```
 
-1. Update your `.zimrc` file:
+---
 
-    ```shell
-    echo 'zmodule egorlem/ultima.zsh-theme -n ultima' >> ~/.zimrc
-    ```
+### Integration with Zsh Frameworks and Plugin Managers
 
-### [zcomet](https://github.com/agkozak/zcomet)
+#### Zim
 
-1. Add the following to your `~/.zshrc` file:
+```shell
+# Add Ultima to your .zimrc
+echo 'zmodule egorlem/ultima.zsh-theme -n ultima' >> ~/.zimrc
+```
 
-    ```shell
-    zcomet load egorlem/ultima.zsh-theme
-    ```
+#### zcomet
 
-    _Make sure you have `zcomet compinit` somewhere after it._
+```shell
+# Load Ultima via zcomet
+zcomet load egorlem/ultima.zsh-theme
+
+# Ensure `zcomet compinit` is called after loading
+```
+
+#### Oh My Zsh
+
+```shell
+# Clone repository
+git clone https://github.com/egorlem/ultima.zsh-theme ~/ultima-shell
+
+# Move theme to Oh My Zsh theme folder
+mv ~/ultima-shell/ultima.zsh-theme $ZSH/themes/ultima.zsh-theme
+
+# Set theme in your .zshrc
+ZSH_THEME="ultima"
+```
 
 ---
 
@@ -104,69 +122,13 @@ Not all fonts include the U+203A Unicode character (Single Right-Pointing Angle 
 For comfortable work, I recommend [JetBrains Mono](https://www.jetbrains.com/lp/mono/).  
 This font already includes all the characters used in the theme and is ideal for full compatibility.
 
----
-
-## Contribution Guide
-
-We welcome contributions to improve `ultima.zsh-theme`! Here’s how you can help:
-
-### How to Contribute
-
-1. **Fork the Repository:** Click the "Fork" button at the top right of this repository to create a copy under your GitHub account.
-2. **Clone Your Fork:** Clone your forked repository to your local machine:
-
-    ```bash
-    git clone https://github.com/<your-username>/ultima.zsh-theme.git
-    ```
-    Replace `<your-username>` with your GitHub username.
-
-3. **Create a Branch:** Create a new branch for your changes:
-
-    ```bash
-    git checkout -b feature/your-feature-name
-    ```
-    Replace `your-feature-name` with a descriptive name for your feature or fix.
-
-4. **Make Changes:** Make your changes to the codebase. Ensure your code follows the project's coding standards and conventions.
-5. **Commit Changes:** Commit your changes with a descriptive commit message:
-
-    ```bash
-    git add .
-    git commit -m "Add feature: your feature description"
-    ```
-
-6. **Push Changes:** Push your changes to your forked repository:
-
-    ```bash
-    git push origin feature/your-feature-name
-    ```
-
-7. **Open a Pull Request:** Go to the original repository and click the "New Pull Request" button. Select your branch from the dropdown and create the pull request. Provide a clear and detailed description of your changes.
-
-### Reporting Issues
-
-If you find any bugs or have feature requests, please open an issue on the GitHub repository. Provide as much detail as possible to help us understand and resolve the issue.
-
-### Getting Help
-
-If you need any help, feel free to reach out by opening an issue or starting a discussion in the repository.
-
----
-
-## Acknowledgments
-
-Special thanks to the ZSH community for their support and contributions. Ultima's minimalistic approach has inspired derivative works, including:
-
-- **[Suprima ASRA](https://github.com/mohdismailmatasin/suprima-asra)** — expands on Ultima's minimalism with practical status indicators: battery level, active Python venv, Node.js version, Docker status, and more.
-
-Contributions, ideas, and derivative works are welcome.
+> This theme is developed and tested using Ghostty, JetBrains Mono, Veil, the Guezwhoz color scheme, and the standard zsh-users plugin set.
 
 ---
 
 ## License
 
-This project is licensed under the __Do What The F*ck You Want To Public License__. See the [LICENSE](https://github.com/egorlem/ultima.zsh-theme/blob/f8a01d549ee38e720a597f9632ccf7960c7b9c8e/LICENSE) file for details.
-
----
+**Do What The F*ck You Want To Public License, Version 2**
+See [LICENSE](https://github.com/egorlem/ultima.zsh-theme/blob/f8a01d549ee38e720a597f9632ccf7960c7b9c8e/LICENSE) for details.
 
 Maintained by [Egor Lem](https://egorlem.com/)
