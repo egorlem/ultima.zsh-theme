@@ -44,7 +44,7 @@ Ultima Zsh theme can be installed in three ways: with **full module management v
 git clone https://github.com/egorlem/veil.zsh ~/.veil
 
 # Source Veil in your .zshrc (includes Ultima theme)
-echo "source $HOME/.veil/veil.zsh" >> "$HOME/.zshrc"
+echo 'source ~/.veil/veil.zsh' >> ~/.zshrc
 ```
 
 > For advanced module configuration, see [Veil Documentation](https://github.com/egorlem/veil.zsh).
@@ -60,7 +60,7 @@ echo "source $HOME/.veil/veil.zsh" >> "$HOME/.zshrc"
 git clone https://github.com/egorlem/ultima.zsh-theme ~/.ultima
 
 # Source Ultima in your .zshrc
-echo "source $HOME/.ultima/ultima.zsh-theme" >> "$HOME/.zshrc"
+echo 'source ~/.ultima/ultima.zsh-theme' >> ~/.zshrc
 ```
 
 ---
