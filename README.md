@@ -16,7 +16,7 @@
 ### Prompt Structure
 
 * **Three-level prompt** — top line separates previous output, middle shows key information (working directory, SSH, VCS), bottom is for command input.
-* **Unified prompt symbol (`›`)** — used consistently across all input lines (`PS1`, `PS2`, `PS3`). The symbol marks the beginning of the input line and indicates the prompt is ready for a new command.
+* **Unified prompt symbol (`›`)** — used consistently across all input lines (`PS1`, `PS2`, `PS3`).
 
 ### Key Features
 
