@@ -41,10 +41,10 @@ Ultima Zsh theme can be installed in three ways: with **full module management v
 
 ```shell
 # Clone Veil repository
-git clone https://github.com/egorlem/veil.zsh ~/.veil
+git clone https://github.com/egorlem/veil.zsh "$HOME/.zsh/veil"
 
 # Source Veil in your .zshrc (includes Ultima theme)
-echo 'source ~/.veil/veil.zsh' >> ~/.zshrc
+echo 'source "$HOME/.zsh/veil/veil.zsh"' >> "${ZDOTDIR:-$HOME}/.zshrc"
 ```
 
 > For advanced module configuration, see [Veil Documentation](https://github.com/egorlem/veil.zsh).
@@ -57,10 +57,10 @@ echo 'source ~/.veil/veil.zsh' >> ~/.zshrc
 
 ```shell
 # Clone Ultima repository
-git clone https://github.com/egorlem/ultima.zsh-theme ~/.ultima
+git clone https://github.com/egorlem/ultima.zsh-theme "$HOME/.zsh/ultima"
 
 # Source Ultima in your .zshrc
-echo 'source ~/.ultima/ultima.zsh-theme' >> ~/.zshrc
+echo 'source "$HOME/.zsh/ultima/ultima.zsh-theme"' >> "${ZDOTDIR:-$HOME}/.zshrc"
 ```
 
 ---
