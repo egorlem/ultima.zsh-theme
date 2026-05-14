@@ -1,4 +1,4 @@
-# Ultima Zsh Theme p3.c8 – https://github.com/egorlem/ultima.zsh-theme
+# Ultima Zsh Theme p3.c9 – https://github.com/egorlem/ultima.zsh-theme
 #
 # Yet Another Ultima
 # 
@@ -14,224 +14,241 @@
 #
 # ------------------------------------------------------------------------------
 
-# ------------------------------------------------------------------------------
-# INITIALIZATION
-# ------------------------------------------------------------------------------
+[[ -n "$_U_FILE_GUARD" ]] && return
+typeset -gr _U_FILE_GUARD=1
 
-if [[ -n "$_ULTIMA_THEME_LOADED" ]]; then
-  return 0
-fi
+# CONSTANTS --------------------------------------------------------------------
 
-typeset -gr _ULTIMA_THEME_LOADED=1
+typeset -g ULTIMA_VCS="${ULTIMA_VCS:-git}"
+typeset -g ULTIMA_VCS_NO_UNTRACKED="${ULTIMA_VCS_NO_UNTRACKED:-1}"
 
-autoload -Uz add-zsh-hook
+typeset -g ULTIMA_XDG="${ULTIMA_XDG:-0}"
 
-# ------------------------------------------------------------------------------
-# CONSTANTS
-# ------------------------------------------------------------------------------
+typeset -gi _U_INIT_GUARD=0
 
-# Box drawing characters for prompt design
-typeset -gr _BOX_L="┌"      # Limiter corner (starts top line)    Unicode: \u250c
-typeset -gr _BOX_P="└"      # Prompt corner (starts prompt line)  Unicode: \u2514
-typeset -gr _BOX_H="─"      # Horizontal line (fills top limiter) Unicode: \u2500
-
-typeset -g VCS="${VCS:-git}"
-typeset -g ULTIMA_GIT_NO_UNTRACKED="${ULTIMA_GIT_NO_UNTRACKED:-0}" 
-
-# Сache 
-typeset -gi _U_CACHED_COLUMNS=0 
-typeset -g _U_CACHED_SEPARATOR=""
-
-
-# ------------------------------------------------------------------------------
-# VCS SETUP FUNCTIONS
-# ------------------------------------------------------------------------------
-
-__ultimaSetupVCS() {
-  # Validate VCS value
-  if [[ "$VCS" != "git" && "$VCS" != "svn" && "$VCS" != "hg" ]]; then
-    VCS=""
-    return 1
-  fi
-
-  # Configuration
-  local currentVCS="\":vcs_info:*\" enable $VCS"
-  
-  # Core prompt elements
-  local badgeFormat="%F{0} on %f%F{0}›%f"                     # "on ›" separator
-  local branchFormat="%F{2}%b%f"                          # Branch name in green
-  local actionFormat="%F{0}%a %f%F{0}›%f"                   # Git action display
-
-  # Git status indicators  
-  local unstagedFormat="%F{6} M ›%f"                          # Unstaged changes
-  local stagedFormat="%F{2} A ›%f"                              # Staged changes
-  local hashFormat="%F{2}%6.6i%f %F{0}›%f"                   # Short commit hash
-
-  if [[ $VCS != "" ]]; then
-    autoload -Uz vcs_info || return 1
-    eval zstyle $currentVCS
-    zstyle ':vcs_info:*' get-revision true
-    zstyle ':vcs_info:*' check-for-changes true
-  fi
-
-  case "$VCS" in 
-    "git")
-      if [[ "$ULTIMA_GIT_NO_UNTRACKED" != "1" ]]; then
-        zstyle ':vcs_info:git*+set-message:*' hooks useGitUntracked
-      fi
-      zstyle ':vcs_info:git:*' stagedstr $stagedFormat
-      zstyle ':vcs_info:git:*' unstagedstr $unstagedFormat
-      zstyle ':vcs_info:git:*' actionformats "  ${actionFormat} ${hashFormat}%m%u%c${badgeFormat} ${branchFormat}"
-      zstyle ':vcs_info:git:*' formats " %c%u%m${badgeFormat} ${branchFormat}"
-      ;;
-    "svn")
-      zstyle ':vcs_info:svn:*' branchformat "%b"
-      zstyle ':vcs_info:svn:*' formats " ${badgeFormat} ${branchFormat}"
-      ;;
-    "hg")
-      zstyle ':vcs_info:hg:*' branchformat "%b"
-      zstyle ':vcs_info:hg:*' formats " ${badgeFormat} ${branchFormat}"
-      ;;
-    *)
-      return 1
-      ;;
-  esac
-
-  return 0
-}
-
-# ------------------------------------------------------------------------------
-# GIT HOOK FUNCTIONS
-# ------------------------------------------------------------------------------
-
-+vi-useGitUntracked() {
-  local untrackedFormat="%F{4} U ›%f"                          # Untracked files
-
-  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-    if git status --porcelain=v1 2>/dev/null | grep -q "^??"; then
-      hook_com[misc]=$untrackedFormat
-      return 0
-    fi
-  fi
-
-  hook_com[misc]=""
-  return 1
-}
-
-# ------------------------------------------------------------------------------
-# PROMPT HELPER FUNCTIONS
-# ------------------------------------------------------------------------------
-
-# SSH marker - shows "SSH:" when connected via SSH
-__u_ssh() {
-  if [[ -n "$SSH_CLIENT" || -n "$SSH2_CLIENT" ]]; then
-    printf "%s" "%F{2}SSH%f%F{0}:%f"
-    return 0
-  fi
-  return 1
-}
-
-# VCS status line - displays git/svn/hg information
-__u_vcs() {
-  if [[ -n "$VCS" ]]; then
-    printf "%s" '${vcs_info_msg_0_}'
-    return 0
-  fi
-  return 1
-}
-
-__ultimaBuildSeparator() {
-  local width spacing="" i
-
-  (( width = COLUMNS - 1 ))
-  (( _U_CACHED_COLUMNS = COLUMNS ))
-
-  (( width <= 0 )) && {
-    _U_CACHED_SEPARATOR="${_BOX_L}"
-    return 0
-  }
-  
-  for (( i = 1; i <= width; i++ )); do
-    spacing+=$_BOX_H
-  done
-  
-  _U_CACHED_SEPARATOR="${_BOX_L}${spacing}"
-  return 0
-}
-
-__u_separator() {
-  if (( COLUMNS != _U_CACHED_COLUMNS )) || [[ -z "$_U_CACHED_SEPARATOR" ]]; then
-    __ultimaBuildSeparator
-  fi
-  printf "%s" "$_U_CACHED_SEPARATOR"
-}
-
-# ------------------------------------------------------------------------------
-# EXIT STATUS FUNCTION
-# ------------------------------------------------------------------------------
-
-# Exit status indicator
-__ultimaExitStatus() {
-  local lastStatus=$1
-  
-  if (( lastStatus != 0 )); then
-    printf "%s" "%F{1}• ${lastStatus}%f"
-  else
-    printf "%s" "%F{2}•%f"
-  fi
-  return 0
-}
-
-# ------------------------------------------------------------------------------
-# PROMPT DEFINITION
-# ------------------------------------------------------------------------------
-
-setopt PROMPT_SUBST
-setopt TRANSIENT_RPROMPT
-
-PROMPT="%F{0}$(__u_separator)
-${_BOX_P} $(__u_ssh) %f%F{6}%~%f$(__u_vcs)
-%F{2} ›%f "
-
-RPROMPT=""
-
-PS2="%F{0} %_ %f%F{6}› "
-PS3=" › "
-
-# ------------------------------------------------------------------------------
-# HOOKS FUNCTIONS
-# ------------------------------------------------------------------------------
-
-__ultimaPrecmd() {
-  local lastStatus=$?
-  
-  if [[ $VCS != "" ]]; then
-    vcs_info
-  fi
-
-  # Set RPROMPT with exit status
-  RPROMPT="$(__ultimaExitStatus "$lastStatus")"
-
-  return 0
-}
-
-__ultimaSetupHooks() {
-  add-zsh-hook precmd __ultimaPrecmd
-  return 0
-}
-
-# ------------------------------------------------------------------------------
-# MAIN EXECUTION
-# ------------------------------------------------------------------------------
-
-__ultimaSetupVCS
-
-__ultimaSetupHooks
-
-typeset -a _ULTIMA_CLEANUP_FUNCS=(
-  __ultimaSetupVCS
-  __ultimaSetupHooks
+typeset -gi _U_SEP_CACHED_WIDTH=0
+typeset -g  _U_SEP_CACHED_LINE=""
+typeset -gA _U_SEGMENTS=(
+  ssh __seg_ssh
+  dir __seg_dir
+  xdg __seg_xdg
+  vcs __seg_vcs
 )
 
-unset -f $_ULTIMA_CLEANUP_FUNCS
-unset _ULTIMA_CLEANUP_FUNCS
+typeset -ga _U_XDG_KEYS=()
+typeset -gA _U_XDG_PATHS=()
+typeset -g _U_CACHED_PWD=""
+typeset -g _U_XDG_INFO=""
+
+# SEGMENTS ---------------------------------------------------------------------
+
+__seg_ssh() {
+  [[ -n "$SSH_CLIENT" || -n "$SSH2_CLIENT" ]] && echo "%F{2}SSH%f%F{0}:%f"
+}
+
+__seg_dir() {
+  echo "%F{6}%~%f"
+}
+
+__seg_xdg() {
+  local pwd="${PWD:A}"
+  pwd="${pwd%/}"
+
+  if [[ "$pwd" == "$_U_CACHED_PWD" ]]; then
+    [[ -n "$_U_XDG_INFO" ]] && echo "$_U_XDG_INFO"
+    return
+  fi
+
+  _U_CACHED_PWD="$pwd"
+  _U_XDG_INFO=""
+
+  local key xdgPath
+
+  for key in $_U_XDG_KEYS; do
+    xdgPath="${_U_XDG_PATHS[$key]}"
+    [[ -z "$xdgPath" ]] && continue
+
+    if [[ "$pwd" == "$xdgPath" || "$pwd" == "$xdgPath"/* ]]; then
+      _U_XDG_INFO="%F{0}as ${key}%f"
+      break
+    fi
+  done
+
+  [[ -n "$_U_XDG_INFO" ]] && echo "$_U_XDG_INFO"
+}
+
+__seg_vcs() {
+  [[ -n "$vcs_info_msg_0_" ]] && echo "$vcs_info_msg_0_"
+}
+
+__seg_status() {
+  local sc=$1
+
+  if (( sc == 0 )); then
+    echo "%F{2}•%f"
+  else
+    echo "%F{1}• $sc%f"
+  fi
+}
+
+__seg_prompt_arrow() {
+  echo "%F{2} ›%f "
+}
+
+# XDG --------------------------------------------------------------------------
+
+__ultimaSetupXDG() {
+  local keys key path
+
+  keys=(
+    XDG_CONFIG_HOME
+    XDG_CACHE_HOME
+    XDG_DATA_HOME
+    XDG_STATE_HOME
+    ZDOTDIR
+  )
+
+  _U_XDG_KEYS=("${keys[@]}")
+
+  for key in $_U_XDG_KEYS; do
+    path="${(P)key}"
+    
+    [[ -z "$path" ]] && continue
+
+    path="${path:A}"
+    path="${path%/}"
+
+    _U_XDG_PATHS[$key]="$path"
+  done
+}
+
+# VCS --------------------------------------------------------------------------
+
+__ultimaSetupVCS() {
+  autoload -Uz vcs_info || return 1
+
+  local badge="%F{0} on %f%F{0}›%f"                           # "on ›" separator
+  local branch="%F{2}%b%f"                                # Branch name in green
+  local action=" %F{0}%a %f%F{0}›%f"                        # Git action display
+  local hash="%F{2}%6.6i%f %F{0}›%f"                         # Short commit hash
+
+  zstyle ':vcs_info:*' enable git
+  zstyle ':vcs_info:*' get-revision true
+  zstyle ':vcs_info:*' check-for-changes true
+
+  zstyle ':vcs_info:git:*' stagedstr "%F{2} A ›%f"
+  zstyle ':vcs_info:git:*' unstagedstr "%F{6} M ›%f"
+
+  zstyle ':vcs_info:git:*' formats "%c%u%m${badge} ${branch}"
+  zstyle ':vcs_info:git:*' actionformats "${action} ${hash}%m%u%c${badge} ${branch}"
+
+  if [[ "$ULTIMA_VCS_NO_UNTRACKED" != "0" ]]; then 
+    zstyle ':vcs_info:git*+set-message:*' hooks useGitUntracked
+  fi
+}
+
++vi-useGitUntracked() {
+  git rev-parse --is-inside-work-tree &>/dev/null || return 1
+
+  if git ls-files --others --exclude-standard -z | read -r -d '' _; then
+    hook_com[misc]="%F{4} U ›%f"
+  fi
+}
+
+# SEGMENT BUILDER --------------------------------------------------------------
+
+__ultimaBuildLine() {
+  local -a keys=("$@")
+  local -a out=()
+  local key fn val
+
+  for key in "${keys[@]}"; do
+    fn="${_U_SEGMENTS[$key]}"
+
+    [[ -z "$fn" ]] && continue
+    (( $+functions[$fn] )) || continue
+
+    val="$($fn 2>/dev/null)"
+    [[ -n "$val" ]] && out+=("$val")
+  done
+
+  echo "${(j: :)out}"
+}
+
+# HELPERS ----------------------------------------------------------------------
+
+__ultimaSeparator() {
+  local width=$(( COLUMNS - 1 ))
+
+  if (( width != _U_SEP_CACHED_WIDTH )); then
+    _U_SEP_CACHED_WIDTH=$width
+
+    local line=""
+    local i
+
+    for (( i = 0; i < width; i++ )); do
+      line+="─"
+    done
+
+    _U_SEP_CACHED_LINE="%F{0}┌${line}%f"
+  fi
+
+  echo "$_U_SEP_CACHED_LINE"
+}
+
+# PROMPT -----------------------------------------------------------------------
+
+__ultimaPrecmd() {
+  # return status code
+  local sc=$?
+
+  local -a segs=(ssh dir)
+
+  if [[ $ULTIMA_XDG != "0" ]]; then 
+    segs+=(xdg)
+  fi
+
+  if [[ "$ULTIMA_VCS" == "git" ]]; then
+    vcs_info
+    segs+=(vcs)
+  fi
+
+  local line1 line2
+  
+  line1=$(__ultimaSeparator)
+  line2=$(__ultimaBuildLine "${segs[@]}")
+
+  local promptLines=(
+    "$line1"
+    "%F{0}└%f  $line2"
+    "$(__seg_prompt_arrow)"
+  )
+
+  PROMPT="${(F)promptLines}"
+  RPROMPT="$(__seg_status "$sc")"
+}
+
+# INIT -------------------------------------------------------------------------
+
+prompt_ultima_setup() {
+  (( _U_INIT_GUARD )) && return 
+  _U_INIT_GUARD=1
+
+  autoload -Uz add-zsh-hook
+  setopt TRANSIENT_RPROMPT
+
+  if [[ "$ULTIMA_VCS" == "git" ]]; then
+    __ultimaSetupVCS
+  fi
+
+  if [[ "$ULTIMA_XDG" != "0" ]]; then
+    __ultimaSetupXDG
+  fi
+
+  add-zsh-hook precmd __ultimaPrecmd
+
+  PS2="%F{0} %_ %f%F{6}› "
+  PS3=" › "
+}
+
+prompt_ultima_setup "$@"
