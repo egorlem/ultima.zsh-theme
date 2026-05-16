@@ -7,7 +7,7 @@
 
 ---
 
-![item zsh prompt](https://github.com/egorlem/021011/blob/main/demos/zsh-theme-demo-min.png?raw=true) 
+![Demo of Ultima Zsh theme: minimalist prompt with Git status, running in Ghostty terminal with custom guezwhoz color scheme](https://github.com/egorlem/021011/blob/main/demos/zsh-theme-demo-min.png?raw=true) 
 
 ---
 
@@ -16,7 +16,7 @@
 ### Prompt Structure
 
 * **Three-level prompt** — top line separates previous output, middle shows key information (working directory, SSH, VCS), bottom is for command input.
-* **Unified sigil (`›`)** — used consistently across all input lines (`PS1`, `PS2`, `PS3`). The sigil marks the beginning of the input line and indicates the prompt is ready for a new command.
+* **Unified prompt symbol (`›`)** — used consistently across all input lines (`PS1`, `PS2`, `PS3`).
 
 ### Key Features
 
@@ -41,10 +41,10 @@ Ultima Zsh theme can be installed in three ways: with **full module management v
 
 ```shell
 # Clone Veil repository
-git clone https://github.com/egorlem/veil.zsh ~/.veil
+git clone https://github.com/egorlem/veil.zsh "$HOME/.zsh/veil"
 
 # Source Veil in your .zshrc (includes Ultima theme)
-echo 'source ~/.veil/veil.zsh' >> ~/.zshrc
+echo 'source "$HOME/.zsh/veil/veil.zsh"' >> "${ZDOTDIR:-$HOME}/.zshrc"
 ```
 
 > For advanced module configuration, see [Veil Documentation](https://github.com/egorlem/veil.zsh).
@@ -57,10 +57,10 @@ echo 'source ~/.veil/veil.zsh' >> ~/.zshrc
 
 ```shell
 # Clone Ultima repository
-git clone https://github.com/egorlem/ultima.zsh-theme ~/.ultima
+git clone https://github.com/egorlem/ultima.zsh-theme "$HOME/.zsh/ultima"
 
 # Source Ultima in your .zshrc
-echo 'source ~/.ultima/ultima.zsh-theme' >> ~/.zshrc
+echo 'source "$HOME/.zsh/ultima/ultima.zsh-theme"' >> "${ZDOTDIR:-$HOME}/.zshrc"
 ```
 
 ---
