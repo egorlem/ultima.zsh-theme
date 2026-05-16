@@ -21,8 +21,7 @@ typeset -gr _U_FILE_GUARD=1
 
 typeset -g ULTIMA_VCS="${ULTIMA_VCS:-git}"
 typeset -g ULTIMA_VCS_NO_UNTRACKED="${ULTIMA_VCS_NO_UNTRACKED:-1}"
-
-typeset -g ULTIMA_XDG="${ULTIMA_XDG:-0}"
+typeset -g ULTIMA_PATH_ANNOTATION="${ULTIMA_PATH_ANNOTATION:-0}"
 
 typeset -gi _U_INIT_GUARD=0
 
@@ -69,7 +68,7 @@ __seg_xdg() {
     [[ -z "$xdgPath" ]] && continue
 
     if [[ "$pwd" == "$xdgPath" || "$pwd" == "$xdgPath"/* ]]; then
-      _U_XDG_INFO="%F{0}as ${key}%f"
+      _U_XDG_INFO="%F{0}as %F{2}${key}%f"
       break
     fi
   done
@@ -204,7 +203,7 @@ __ultimaPrecmd() {
 
   local -a segs=(ssh dir)
 
-  if [[ $ULTIMA_XDG != "0" ]]; then 
+  if [[ $ULTIMA_PATH_ANNOTATION != "0" ]]; then 
     segs+=(xdg)
   fi
 
@@ -241,7 +240,7 @@ prompt_ultima_setup() {
     __ultimaSetupVCS
   fi
 
-  if [[ "$ULTIMA_XDG" != "0" ]]; then
+  if [[ "$ULTIMA_PATH_ANNOTATION" != "0" ]]; then
     __ultimaSetupXDG
   fi
 
