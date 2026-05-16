@@ -53,14 +53,25 @@ echo 'source "$HOME/.zsh/veil/veil.zsh"' >> "${ZDOTDIR:-$HOME}/.zshrc"
 
 ### Manual Installation
 
-> Include Ultima without Veil if you prefer minimal changes.
+> Clone only the theme, without Veil. Ultima works as a standard Zsh prompt theme. Two ways to load it: direct source or promptinit.
 
 ```shell
 # Clone Ultima repository
 git clone https://github.com/egorlem/ultima.zsh-theme "$HOME/.zsh/ultima"
+```
 
-# Source Ultima in your .zshrc
+**Direct source** (run in terminal)
+
+```shell
 echo 'source "$HOME/.zsh/ultima/ultima.zsh-theme"' >> "${ZDOTDIR:-$HOME}/.zshrc"
+```
+
+**Promptinit** (add to `.zshrc`)
+
+```shell
+fpath+=("$HOME/.zsh/ultima")
+autoload -Uz promptinit && promptinit
+prompt ultima
 ```
 
 ---
