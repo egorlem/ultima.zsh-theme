@@ -17,7 +17,7 @@
 [[ -n "$_U_FILE_GUARD" ]] && return
 typeset -gr _U_FILE_GUARD=1
 
-# CONSTANTS --------------------------------------------------------------------
+# Constants --------------------------------------------------------------------
 
 typeset -g ULTIMA_VCS="${ULTIMA_VCS:-git}"
 typeset -g ULTIMA_VCS_NO_UNTRACKED="${ULTIMA_VCS_NO_UNTRACKED:-1}"
@@ -39,7 +39,7 @@ typeset -gA _U_XDG_PATHS=()
 typeset -g _U_CACHED_PWD=""
 typeset -g _U_XDG_INFO=""
 
-# SEGMENTS ---------------------------------------------------------------------
+# Segments ---------------------------------------------------------------------
 
 __seg_ssh() {
   [[ -n "$SSH_CLIENT" || -n "$SSH2_CLIENT" ]] && echo "%F{2}SSH%f%F{0}:%f"
@@ -94,7 +94,7 @@ __seg_prompt_arrow() {
   echo "%F{2} ›%f "
 }
 
-# XDG --------------------------------------------------------------------------
+# Path annotation --------------------------------------------------------------
 
 __ultimaSetupXDG() {
   local keys key path
@@ -126,10 +126,10 @@ __ultimaSetupXDG() {
 __ultimaSetupVCS() {
   autoload -Uz vcs_info || return 1
 
-  local badge="%F{0} on %f%F{0}›%f"                           # "on ›" separator
-  local branch="%F{2}%b%f"                                # Branch name in green
-  local action=" %F{0}%a %f%F{0}›%f"                        # Git action display
-  local hash="%F{2}%6.6i%f %F{0}›%f"                         # Short commit hash
+  local badge="%F{0} on %f%F{0}›%f"
+  local branch="%F{2}%b%f"                      
+  local action=" %F{0}%a %f%F{0}›%f"
+  local hash="%F{2}%6.6i%f %F{0}›%f"                         
 
   zstyle ':vcs_info:*' enable git
   zstyle ':vcs_info:*' get-revision true
@@ -154,7 +154,7 @@ __ultimaSetupVCS() {
   fi
 }
 
-# SEGMENT BUILDER --------------------------------------------------------------
+# Segment builder --------------------------------------------------------------
 
 __ultimaBuildLine() {
   local -a keys=("$@")
@@ -174,7 +174,7 @@ __ultimaBuildLine() {
   echo "${(j: :)out}"
 }
 
-# HELPERS ----------------------------------------------------------------------
+# Helpers ----------------------------------------------------------------------
 
 __ultimaSeparator() {
   local width=$(( COLUMNS - 1 ))
@@ -227,7 +227,7 @@ __ultimaPrecmd() {
   RPROMPT="$(__seg_status "$sc")"
 }
 
-# INIT -------------------------------------------------------------------------
+# Init -------------------------------------------------------------------------
 
 prompt_ultima_setup() {
   (( _U_INIT_GUARD )) && return 
