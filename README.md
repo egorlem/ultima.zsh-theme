@@ -20,7 +20,7 @@
 
 ### Key Features
 
-* **Working directory** — shows the current path.
+* **Working directory** — shows the current path with **Path Annotation**: recognizes XDG Base Directory paths and `ZDOTDIR`, annotating them with their purpose (e.g., `~/.config/nvim as XDG_CONFIG_HOME`).
 * **VCS status** — displayed only inside a repository: current action (e.g., `rebase` or `merge`), short commit hash, file changes (`A` — added, `M` — modified, `U` — untracked), and branch.
 * **SSH indicator** — shown only during remote sessions.
 * **Exit status indicator (RPROMPT)** — displayed on the right side of the prompt:
@@ -97,6 +97,21 @@ ZSH_THEME="ultima"
 ```
 
 ---
+
+## Configuration
+
+Add these variables to your `.zshrc` before sourcing the theme:
+
+```bash
+# Theme Configuration
+
+ULTIMA_VCS="git"                      # only git is supported
+ULTIMA_VCS_NO_UNTRACKED=1             # 1 = show untracked (U), 0 = hide
+ULTIMA_PATH_ANNOTATION=0              # 1 = enable XDG/ZDOTDIR annotation
+```
+
+> Annotation only appears if the corresponding variables (e.g., XDG_CONFIG_HOME, ZDOTDIR) are actually set in your environment.
+
 
 ## Recommended Settings and Compatibility
 
