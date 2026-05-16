@@ -7,7 +7,7 @@
 
 ---
 
-![Demo of Ultima Zsh theme: minimalist prompt with Git status, running in Ghostty terminal with custom guezwhoz color scheme](https://github.com/egorlem/021011/blob/main/demos/zsh-theme-demo-min.png?raw=true) 
+![Demo of Ultima Zsh theme: minimalist prompt with Git status, running in Ghostty terminal with custom guezwhoz color scheme](https://raw.githubusercontent.com/egorlem/ultima.workspace/6fd5fb0d26d34bc68e3b7758f8dcf447fcf7cf93/demos/ultima-theme-p3.c9.png) 
 
 ---
 
