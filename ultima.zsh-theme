@@ -36,8 +36,6 @@ typeset -gA _U_SEGMENTS=(
 
 typeset -ga _U_XDG_KEYS=()
 typeset -gA _U_XDG_PATHS=()
-typeset -g _U_CACHED_PWD=""
-typeset -g _U_XDG_INFO=""
 
 # Segments ---------------------------------------------------------------------
 
@@ -50,30 +48,20 @@ __seg_dir() {
 }
 
 __seg_xdg() {
-  local pwd="${PWD:A}"
-  pwd="${pwd%/}"
-
-  if [[ "$pwd" == "$_U_CACHED_PWD" ]]; then
-    [[ -n "$_U_XDG_INFO" ]] && echo "$_U_XDG_INFO"
-    return
-  fi
-
-  _U_CACHED_PWD="$pwd"
-  _U_XDG_INFO=""
+  local currentPwd="${PWD:A}"
+  currentPwd="${currentPwd%/}"
 
   local key xdgPath
 
-  for key in $_U_XDG_KEYS; do
+  for key in "${_U_XDG_KEYS[@]}"; do
     xdgPath="${_U_XDG_PATHS[$key]}"
     [[ -z "$xdgPath" ]] && continue
 
-    if [[ "$pwd" == "$xdgPath" || "$pwd" == "$xdgPath"/* ]]; then
-      _U_XDG_INFO="%F{0}as %F{2}${key}%f"
-      break
+    if [[ "$currentPwd" == "$xdgPath" || "$currentPwd" == "$xdgPath"/* ]]; then
+      echo "%F{0}as %F{2}${key}%f"
+      return
     fi
   done
-
-  [[ -n "$_U_XDG_INFO" ]] && echo "$_U_XDG_INFO"
 }
 
 __seg_vcs() {
