@@ -89,16 +89,14 @@ __seg_prompt_arrow() {
 __ultimaSetupXDG() {
   local keys key path
 
-  keys=(
+  _U_XDG_KEYS=(
     XDG_CONFIG_HOME
     XDG_CACHE_HOME
     XDG_DATA_HOME
     XDG_STATE_HOME
     ZDOTDIR
   )
-
-  _U_XDG_KEYS=("${keys[@]}")
-
+  
   for key in "${_U_XDG_KEYS[@]}"; do
     path="${(P)key}"
     
