@@ -14,7 +14,7 @@
 #
 # ------------------------------------------------------------------------------
 
-[[ -n "$_U_FILE_GUARD" ]] && return
+[[ -n "$_U_FILE_GUARD" ]] && return 0
 typeset -gr _U_FILE_GUARD=1
 
 # Constants --------------------------------------------------------------------
@@ -59,9 +59,11 @@ __seg_xdg() {
 
     if [[ "$currentPwd" == "$xdgPath" || "$currentPwd" == "$xdgPath"/* ]]; then
       echo "%F{0}as %F{2}${key}%f"
-      return
+      return 0
     fi
   done
+
+  return 1
 }
 
 __seg_vcs() {
@@ -97,7 +99,7 @@ __ultimaSetupXDG() {
 
   _U_XDG_KEYS=("${keys[@]}")
 
-  for key in $_U_XDG_KEYS; do
+  for key in "${_U_XDG_KEYS[@]}"; do
     path="${(P)key}"
     
     [[ -z "$path" ]] && continue
@@ -135,9 +137,9 @@ __ultimaSetupVCS() {
 }
 
 +vi-useGitUntracked() {
-  git rev-parse --is-inside-work-tree &>/dev/null || return 1
+  command git rev-parse --is-inside-work-tree &>/dev/null || return 1
 
-  if git ls-files --others --exclude-standard -z | read -r -d '' _; then
+  if command git ls-files --others --exclude-standard -z | read -r -d '' _; then
     hook_com[misc]="%F{4} U ›%f"
   fi
 }
@@ -218,7 +220,7 @@ __ultimaPrecmd() {
 # Init -------------------------------------------------------------------------
 
 prompt_ultima_setup() {
-  (( _U_INIT_GUARD )) && return 
+  (( _U_INIT_GUARD )) && return 0
   _U_INIT_GUARD=1
 
   autoload -Uz add-zsh-hook
