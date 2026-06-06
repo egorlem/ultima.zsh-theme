@@ -7,7 +7,7 @@
 
 ---
 
-![Demo of Ultima Zsh theme: minimalist prompt with Git status, running in Ghostty terminal with custom guezwhoz color scheme](https://github.com/egorlem/021011/blob/main/demos/zsh-theme-demo-min.png?raw=true) 
+![Demo of Ultima Zsh theme: minimalist prompt with Git status, running in Ghostty terminal with custom guezwhoz color scheme](https://raw.githubusercontent.com/egorlem/ultima.workspace/6fd5fb0d26d34bc68e3b7758f8dcf447fcf7cf93/demos/ultima-theme-p3.c9.png) 
 
 ---
 
@@ -20,7 +20,7 @@
 
 ### Key Features
 
-* **Working directory** — shows the current path.
+* **Working directory** — shows the current path with **Path Annotation**: recognizes XDG Base Directory paths and `ZDOTDIR`, annotating them with their purpose (e.g., `~/.config/nvim as XDG_CONFIG_HOME`).
 * **VCS status** — displayed only inside a repository: current action (e.g., `rebase` or `merge`), short commit hash, file changes (`A` — added, `M` — modified, `U` — untracked), and branch.
 * **SSH indicator** — shown only during remote sessions.
 * **Exit status indicator (RPROMPT)** — displayed on the right side of the prompt:
@@ -53,14 +53,25 @@ echo 'source "$HOME/.zsh/veil/veil.zsh"' >> "${ZDOTDIR:-$HOME}/.zshrc"
 
 ### Manual Installation
 
-> Include Ultima without Veil if you prefer minimal changes.
+> Clone only the theme, without Veil. Ultima works as a standard Zsh prompt theme. Two ways to load it: direct source or promptinit.
 
 ```shell
 # Clone Ultima repository
 git clone https://github.com/egorlem/ultima.zsh-theme "$HOME/.zsh/ultima"
+```
 
-# Source Ultima in your .zshrc
+**Direct source** (run in terminal)
+
+```shell
 echo 'source "$HOME/.zsh/ultima/ultima.zsh-theme"' >> "${ZDOTDIR:-$HOME}/.zshrc"
+```
+
+**Promptinit** (add to `.zshrc`)
+
+```shell
+fpath+=("$HOME/.zsh/ultima")
+autoload -Uz promptinit && promptinit
+prompt ultima
 ```
 
 ---
@@ -97,6 +108,21 @@ ZSH_THEME="ultima"
 ```
 
 ---
+
+## Configuration
+
+Add these variables to your `.zshrc` before sourcing the theme:
+
+```bash
+# Theme Configuration
+
+ULTIMA_VCS="git"                      # only git is supported
+ULTIMA_VCS_NO_UNTRACKED=1             # 1 = show untracked (U), 0 = hide
+ULTIMA_PATH_ANNOTATION=0              # 1 = enable XDG/ZDOTDIR annotation
+```
+
+> Annotation only appears if the corresponding variables (e.g., XDG_CONFIG_HOME, ZDOTDIR) are actually set in your environment.
+
 
 ## Recommended Settings and Compatibility
 
