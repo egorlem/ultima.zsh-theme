@@ -127,7 +127,7 @@ __ultimaSetupVCS() {
   zstyle ':vcs_info:git:*' unstagedstr "%F{6} M ›%f"
 
   zstyle ':vcs_info:git:*' formats "%c%u%m${badge} ${branch}"
-  zstyle ':vcs_info:git:*' actionformats "${action} ${hash}%m%u%c${badge} ${branch}"
+  zstyle ':vcs_info:git:*' actionformats "${action} ${hash}%u%c${badge} ${branch}"
 
   if [[ "$ULTIMA_VCS_NO_UNTRACKED" != "0" ]]; then 
     zstyle ':vcs_info:git*+set-message:*' hooks useGitUntracked
