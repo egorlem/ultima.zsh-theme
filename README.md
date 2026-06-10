@@ -154,7 +154,7 @@ This font already includes all the characters used in the theme and is ideal for
 
 ## License
 
-**Do What The F*ck You Want To Public License, Version 2**
+**Do What The F*ck You Want To Public License Version III**
 See [LICENSE](https://github.com/egorlem/ultima.zsh-theme/blob/f8a01d549ee38e720a597f9632ccf7960c7b9c8e/LICENSE) for details.
 
 Maintained by [Egor Lem](https://egorlem.com/)
