@@ -7,12 +7,6 @@
 # ------------------------------------------------------------------------------
 # License: WTFPL – https://github.com/egorlem/ultima.zsh-theme/blob/main/LICENSE
 # ------------------------------------------------------------------------------
-# Authors
-# -------
-#
-#  * Egor Lem <guezwhoz@gmail.com> / egorlem.com
-#
-# ------------------------------------------------------------------------------
 
 [[ -n "$_U_FILE_GUARD" ]] && return 0
 typeset -gr _U_FILE_GUARD=1
